@@ -1,26 +1,42 @@
-# Collection
+# Full Stack Collection
 
 only for my work.
 
 ## CSS
 
-### [Normalize.css](http://necolas.github.io/normalize.css/)
+### Style Guide 
 
-Normalize.css is a customisable CSS file that makes browsers render all elements more consistently and in line with modern standards.
+[Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css).
 
-See other. 
+See other. [Idiomatic CSS](https://github.com/necolas/idiomatic-css).
+
+### Normalize
+
+[Normalize.css](http://necolas.github.io/normalize.css/) is a customisable CSS file that makes browsers render all elements more consistently and in line with modern standards.
+
+See other.
 
 ### Effect
 
 * [Animate.css](http://daneden.github.io/animate.css/) is a bunch of cool, fun, and cross-browser animations for you to use in your projects. Great for emphasis, home pages, sliders, and general just-add-water-awesomeness.
+* [Hover.css](http://ianlunn.github.io/Hover/). A collection of CSS3 powered hover effects to be applied to links, buttons, logos, SVG, featured images and so on. Easily apply to your own elements, modify or just use for inspiration. Available in CSS, Sass, and LESS.
+* [iHover](http://gudh.github.io/ihover/dist/index.html) is a collection of hover effects using pure CSS, inspired by codrops article, powered by Sass.
 
-### CSS pre-processor
+### CSS Pre-processor
 
 * [Less](http://lesscss.org) is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
 * [Sass](http://sass-lang.com) is the most mature, stable, and powerful professional grade CSS extension language in the world.
 * [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 ## JavaScript
+
+### Style Guide
+
+[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+
+### altJS
+
+* [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript. 
 
 ### Library
 
@@ -44,3 +60,18 @@ Backbone.js gives structure to web applications by providing models with key-val
 #### [AngularJS](https://angularjs.org)
 
 * [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
+
+## Framework
+
+### [Bootstrap](http://getbootstrap.com)
+
+Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+* [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
+* [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
+
+* [Ratchet](http://goratchet.com). Build mobile apps with simple HTML, CSS, and JS components.
+
+## Interview
+
+[Front-end Job Interview Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions).
