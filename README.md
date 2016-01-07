@@ -1,4 +1,4 @@
-# Full Stack Collection
+# Full Stack Solutions
 
 only for my work.
 
@@ -8,13 +8,11 @@ only for my work.
 
 [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css).
 
-See other. [Idiomatic CSS](https://github.com/necolas/idiomatic-css).
+See other: [Idiomatic CSS](https://github.com/necolas/idiomatic-css), [Code Guide by @mdo](http://mdo.github.io/code-guide/#css).
 
-### Normalize
+### Normalize/Reset
 
 [Normalize.css](http://necolas.github.io/normalize.css/) is a customisable CSS file that makes browsers render all elements more consistently and in line with modern standards.
-
-See other.
 
 ### Effect
 
@@ -27,6 +25,10 @@ See other.
 * [Less](http://lesscss.org) is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
 * [Sass](http://sass-lang.com) is the most mature, stable, and powerful professional grade CSS extension language in the world.
 * [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
+
+### Font
+
+* [Font-Awesome](http://fontawesome.io) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.
 
 ## JavaScript
 
@@ -44,6 +46,8 @@ See other.
 
 jQuery is a fast, small, and feature-rich JavaScript library.
 
+##### jQuery Plugins
+
 * [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
 * [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
@@ -51,7 +55,7 @@ jQuery is a fast, small, and feature-rich JavaScript library.
 
 Zepto is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
 
-### Front-end MV*
+### MV*
 
 #### [Backbone](http://backbonejs.org)
 
@@ -69,6 +73,8 @@ Bootstrap is the most popular HTML, CSS, and JS framework for developing respons
 
 * [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
 * [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
+
+### Mobile
 
 * [Ratchet](http://goratchet.com). Build mobile apps with simple HTML, CSS, and JS components.
 
