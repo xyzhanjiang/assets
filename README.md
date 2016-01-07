@@ -22,11 +22,20 @@ See other: [Idiomatic CSS](https://github.com/necolas/idiomatic-css), [Code Guid
 
 ### CSS Pre-processor
 
-* [Less](http://lesscss.org) is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
-* [Sass](http://sass-lang.com) is the most mature, stable, and powerful professional grade CSS extension language in the world.
-* [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
+#### Less
 
-### Font
+[Less](http://lesscss.org) is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
+
+#### Sass
+
+* [Sass](http://sass-lang.com) is the most mature, stable, and powerful professional grade CSS extension language in the world.
+* [Compass](http://compass-style.org) is a Stylesheet Authoring Environment that makes your website design simpler to implement and easier to maintain.
+* [Bourbon](http://bourbon.io) is a simple and lightweight mixin library for Sass.
+* [Susy](http://susy.oddbird.net/), Responsive layout toolkit for Sass.
+
+See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
+
+### Font Icon
 
 * [Font-Awesome](http://fontawesome.io) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.
 
@@ -39,27 +48,28 @@ See other: [Idiomatic CSS](https://github.com/necolas/idiomatic-css), [Code Guid
 ### altJS
 
 * [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript. 
+* [Babel](https://babeljs.io/) is a compiler for writing next generation JavaScript.
 
 ### Library
 
-#### [jQuery](http://jquery.com)
+#### jQuery
 
-jQuery is a fast, small, and feature-rich JavaScript library.
+[jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
 
 ##### jQuery Plugins
 
 * [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
 * [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
-#### [Zepto](http://zeptojs.com)
+#### Zepto
 
-Zepto is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
+[Zepto](http://zeptojs.com) is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
 
 ### MV*
 
-#### [Backbone](http://backbonejs.org)
+#### Backbone
 
-Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
+[Backbone.js](http://backbonejs.org) gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
 
 #### [AngularJS](https://angularjs.org)
 
