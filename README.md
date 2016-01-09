@@ -71,15 +71,30 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 [Backbone.js](http://backbonejs.org) gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
 
-#### [AngularJS](https://angularjs.org)
+* [Underscore.js](http://underscorejs.org) is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
+
+#### AngularJS
+
+[AngularJS](https://angularjs.org)
 
 * [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
 
+### Template
+
+* [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
+* [Jade](http://jade-lang.com) is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
+* [Mustache](http://mustache.github.com/) is a logic-less template syntax.
+
+### Polyfill
+
+* [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
+* [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
+
 ## Framework
 
-### [Bootstrap](http://getbootstrap.com)
+### Bootstrap
 
-Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+[Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 
 * [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
 * [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
