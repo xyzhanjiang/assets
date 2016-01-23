@@ -96,6 +96,12 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 [Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 
+#### Compatibility
+
+* [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
+
+#### Extend
+
 * [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
 * [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
 
