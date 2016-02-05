@@ -50,15 +50,67 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 * [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript. 
 * [Babel](https://babeljs.io/) is a compiler for writing next generation JavaScript.
 
-### Library
+### Compressor
 
-#### jQuery
+* [UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit.
+* [UglifyJS](http://marijnhaverbeke.nl//uglifyjs) – a JavaScript parser/compressor/beautifier.
+
+### Legacy
+
+Support for IE 6.
+
+#### jQuery 1.x
 
 [jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
 
 ##### jQuery Plugins
 
 * [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
+* [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog.
+
+#### Backbone
+
+[Backbone.js](http://backbonejs.org) gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
+
+##### Dependencies
+
+* [jQuery 1.x](http://jquery.com)
+* [Underscore.js](http://underscorejs.org)
+
+##### Compatibility
+
+* [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
+
+#### Mithril
+
+##### Compatibility
+
+* [es5-shim](https://github.com/es-shims/es5-shim)
+* [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
+
+#### Utils
+
+* [is.js](http://is.js.org) is a general-purpose check library. `npm install is_js`
+* [Feature.js](http://featurejs.com) is a fast, simple and lightweight browser feature detection library.
+
+#### Plugins
+
+* [spin.js](http://spin.js.org), An animated CSS3 loading spinner with VML fallback for IE.
+
+### Polyfill
+
+* [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
+* [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
+* [store.js](https://github.com/marcuswestin/store.js)exposes a simple API for cross browser local storage.
+
+### Library
+
+#### jQuery 2.x
+
+[jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
+
+##### jQuery Plugins
+
 * [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
 #### Zepto
@@ -66,12 +118,6 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 [Zepto](http://zeptojs.com) is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
 
 ### MV*
-
-#### Backbone
-
-[Backbone.js](http://backbonejs.org) gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
-
-* [Underscore.js](http://underscorejs.org) is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
 
 #### AngularJS
 
@@ -84,11 +130,6 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 * [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
 * [Jade](http://jade-lang.com) is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
 * [Mustache](http://mustache.github.com/) is a logic-less template syntax.
-
-### Polyfill
-
-* [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
-* [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
 
 ## Framework
 
