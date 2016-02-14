@@ -1,4 +1,4 @@
-# Full Stack Solutions
+# Front-end Solutions
 
 only for my work.
 
@@ -35,7 +35,7 @@ See other: [Idiomatic CSS](https://github.com/necolas/idiomatic-css), [Code Guid
 
 See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
-### Font Icon
+### Icon Font
 
 * [Font-Awesome](http://fontawesome.io) gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.
 
@@ -57,7 +57,7 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 ### Legacy
 
-Support for IE 6.
+Can support for IE 6.
 
 #### jQuery 1.x
 
@@ -67,6 +67,8 @@ Support for IE 6.
 
 * [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
 * [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog.
+* [Timeago](http://timeago.yarp.com) is a jQuery plugin that makes it easy to support automatically updating fuzzy timestamps (e.g. "4 minutes ago").
+* [jQuery Mockjax](https://github.com/jakerella/jquery-mockjax) provides a simple and extremely flexible interface for mocking or simulating ajax requests and responses.
 
 #### Backbone
 
@@ -74,12 +76,9 @@ Support for IE 6.
 
 ##### Dependencies
 
+* [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 * [jQuery 1.x](http://jquery.com)
 * [Underscore.js](http://underscorejs.org)
-
-##### Compatibility
-
-* [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 
 #### Mithril
 
@@ -97,27 +96,36 @@ Support for IE 6.
 
 * [spin.js](http://spin.js.org), An animated CSS3 loading spinner with VML fallback for IE.
 
-### Polyfill
+#### Templates
+
+* [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
+
+#### Polyfill
 
 * [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
 * [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
-* [store.js](https://github.com/marcuswestin/store.js)exposes a simple API for cross browser local storage.
+* [store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
 
-### Library
+### Now
 
-#### jQuery 2.x
+Can support for IE 8.
 
-[jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
-
-##### jQuery Plugins
+#### jQuery Plugins
 
 * [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
-#### Zepto
+#### Bootstrap
 
-[Zepto](http://zeptojs.com) is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
+[Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 
-### MV*
+##### Compatibility
+
+* [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
+
+##### Extend
+
+* [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
+* [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
 
 #### AngularJS
 
@@ -125,30 +133,29 @@ Support for IE 6.
 
 * [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
 
-### Template
+#### Template
 
-* [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
 * [Jade](http://jade-lang.com) is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
 * [Mustache](http://mustache.github.com/) is a logic-less template syntax.
 
-## Framework
+### Future
 
-### Bootstrap
+Not support for IE 8.
 
-[Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+#### jQuery 2.x
 
-#### Compatibility
+[jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
 
-* [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
-
-#### Extend
-
-* [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
-* [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
+* [Vue.js](http://vuejs.org) is a library for building interactive web interfaces.
 
 ### Mobile
 
 * [Ratchet](http://goratchet.com). Build mobile apps with simple HTML, CSS, and JS components.
+* [ionic](http://ionicframework.com) is the open source HTML5 Mobile Framework for building amazing, cross-platform hybrid native apps and mobile websites with HTML, JavaScript, and CSS.
+
+#### Zepto
+
+[Zepto](http://zeptojs.com) is a minimalist JavaScript library for modern browsers with a largely jQuery-compatible API.
 
 ## Interview
 
