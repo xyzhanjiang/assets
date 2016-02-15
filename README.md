@@ -2,6 +2,11 @@
 
 only for my work.
 
+* [CanIuse](http://caniuse.com/)
+* [HTML5 Boilerplate](https://html5boilerplate.com/)
+* [HTML5 Please](http://html5please.com/)
+* [Modernizr](https://modernizr.com) is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.
+
 ## CSS
 
 ### Style Guide 
@@ -32,6 +37,7 @@ See other: [Idiomatic CSS](https://github.com/necolas/idiomatic-css), [Code Guid
 * [Compass](http://compass-style.org) is a Stylesheet Authoring Environment that makes your website design simpler to implement and easier to maintain.
 * [Bourbon](http://bourbon.io) is a simple and lightweight mixin library for Sass.
 * [Susy](http://susy.oddbird.net/), Responsive layout toolkit for Sass.
+* [SassMeister](http://www.sassmeister.com/)
 
 See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
@@ -82,6 +88,8 @@ Can support for IE 6.
 
 #### Mithril
 
+[Mithril](http://mithril.js.org) is a client-side MVC framework - a tool to organize code in a way that is easy to think about and to maintain.
+
 ##### Compatibility
 
 * [es5-shim](https://github.com/es-shims/es5-shim)
@@ -105,6 +113,7 @@ Can support for IE 6.
 * [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
 * [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
 * [store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
+* [Selectivizr](http://selectivizr.com) is a JavaScript utility that emulates CSS3 pseudo-classes and attribute selectors in Internet Explorer 6-8.
 
 ### Now
 
@@ -146,12 +155,19 @@ Not support for IE 8.
 
 [jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
 
-* [Vue.js](http://vuejs.org) is a library for building interactive web interfaces.
+#### D3.js
+
+[D3.js](https://d3js.org) is a JavaScript library for manipulating documents based on data.
+
+#### Vue.js
+
+[Vue.js](http://vuejs.org) is a library for building interactive web interfaces.
 
 ### Mobile
 
 * [Ratchet](http://goratchet.com). Build mobile apps with simple HTML, CSS, and JS components.
 * [ionic](http://ionicframework.com) is the open source HTML5 Mobile Framework for building amazing, cross-platform hybrid native apps and mobile websites with HTML, JavaScript, and CSS.
+* [Hammer.js](http://hammerjs.github.io), A javascript library for multi-touch gestures.
 
 #### Zepto
 
