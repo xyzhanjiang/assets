@@ -51,15 +51,32 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
 
+### Bundlers
+
+[Webpack](https://webpack.github.io) - Packs CommonJs/AMD modules for the browser, `$ npm install webpack --save-dev`.
+
 ### altJS
 
-* [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript. 
-* [Babel](https://babeljs.io/) is a compiler for writing next generation JavaScript.
+#### CoffeeScript
+
+[CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript, `$ npm install -g coffee-script`.
+
+#### Babel
+
+[Babel](https://babeljs.io/) is a compiler for writing next generation JavaScript.
+
+Installation for Webpack, `$ npm install --save-dev babel-loader babel-core`.
+
+Usage:
+
+``` javascript
+var Person = require("babel!./Person.js").default;
+new Person();
+```
 
 ### Compressor
 
-* [UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit.
-* [UglifyJS](http://marijnhaverbeke.nl//uglifyjs) – a JavaScript parser/compressor/beautifier.
+* [UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit, `$ npm install uglify-js -g`.
 
 ### Legacy
 
@@ -85,6 +102,15 @@ Can support for IE 6.
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 * [jQuery 1.x](http://jquery.com)
 * [Underscore.js](http://underscorejs.org)
+
+Installation, `$ npm install --save backbone`.
+
+Usage:
+
+``` javascript
+var Backbone = require('backbone');
+Backbone.$ = require('jquery');
+```
 
 #### Mithril
 
@@ -154,6 +180,19 @@ Not support for IE 8.
 #### jQuery 2.x
 
 [jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
+
+#### React
+
+[React](https://facebook.github.io/react/) - A declarative, efficient, and flexible JavaScript library for building user interfaces.
+
+Installation, `$ npm install --save react react-dom`.
+
+Usage:
+
+``` javascript
+var React = require('react');
+var ReactDOM = require('react-dom');
+```
 
 #### D3.js
 
