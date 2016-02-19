@@ -53,30 +53,48 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 ### Bundlers
 
-[Webpack](https://webpack.github.io) - Packs CommonJs/AMD modules for the browser, `$ npm install webpack --save-dev`.
+[Webpack](https://webpack.github.io) - Packs CommonJs/AMD modules for the browser, `$ npm install --save-dev webpack`.
 
 ### altJS
 
 #### CoffeeScript
 
-[CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript, `$ npm install -g coffee-script`.
+* [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript, `$ npm install -g coffee-script`.
+* [CoffeeScript Style Guide](https://github.com/polarmobile/coffeescript-style-guide) - Best-practices and coding conventions for the CoffeeScript programming language.
 
 #### Babel
 
 [Babel](https://babeljs.io/) is a compiler for writing next generation JavaScript.
 
-Installation for Webpack, `$ npm install --save-dev babel-loader babel-core`.
+Installation for Webpack, `$ npm install --save-dev babel-loader babel-core babel-preset-es2015 babel-preset-react`.
 
 Usage:
 
 ``` javascript
-var Person = require("babel!./Person.js").default;
+var Person = require('babel!./Person.js').default;
 new Person();
+
+// Module
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+export default Person;
 ```
+
+ECMAScript 6 Features: arrows and lexical this, and so on.
+
+[ECMAScript 5 compatibility table](http://kangax.github.io/compat-table/es5/), [ECMAScript 6 compatibility table](http://kangax.github.io/compat-table/es6/).
 
 ### Compressor
 
-* [UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit, `$ npm install uglify-js -g`.
+[UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit, `$ npm install -g uglify-js`.
+
+### QA
+
+[JSHint](http://jshint.com), A static code analysis tool for JavaScript.
 
 ### Legacy
 
@@ -86,7 +104,7 @@ Can support for IE 6.
 
 [jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
 
-##### jQuery Plugins
+jQuery Plugins:
 
 * [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
 * [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog.
@@ -97,7 +115,7 @@ Can support for IE 6.
 
 [Backbone.js](http://backbonejs.org) gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
 
-##### Dependencies
+Dependencies:
 
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 * [jQuery 1.x](http://jquery.com)
@@ -116,7 +134,7 @@ Backbone.$ = require('jquery');
 
 [Mithril](http://mithril.js.org) is a client-side MVC framework - a tool to organize code in a way that is easy to think about and to maintain.
 
-##### Compatibility
+Compatibility:
 
 * [es5-shim](https://github.com/es-shims/es5-shim)
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
@@ -130,16 +148,54 @@ Backbone.$ = require('jquery');
 
 * [spin.js](http://spin.js.org), An animated CSS3 loading spinner with VML fallback for IE.
 
-#### Templates
+#### Templating Engines
 
 * [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
+
+#### Functional Programming
+
+* [Underscore.js](http://underscorejs.org) - JavaScript's utility _ belt.
+
+#### Data Visualization
+
+[Chart.js](http://www.chartjs.org) - Simple HTML5 Charts using the `<canvas>` tag.
+
+Compatibility, [ExplorerCanvas](https://github.com/arv/ExplorerCanvas).
+
+Installation, `$ npm install --save chart.js`.
+
+Usage:
+
+``` javascript
+var Chart = require('chart.js');
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myNewChart = new Chart(ctx).Pie(data);
+```
 
 #### Polyfill
 
 * [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
 * [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
-* [store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
 * [Selectivizr](http://selectivizr.com) is a JavaScript utility that emulates CSS3 pseudo-classes and attribute selectors in Internet Explorer 6-8.
+
+##### Storage
+
+[store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
+
+##### Canvas
+
+[ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
+
+Usage:
+
+``` html
+<head>
+  <!--[if lte IE 8]>
+    <script src="excanvas.js"></script>
+  <![endif]-->
+</head>
+```
 
 ### Now
 
@@ -153,14 +209,15 @@ Can support for IE 8.
 
 [Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 
-##### Compatibility
+Compatibility:
 
 * [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
 
-##### Extend
+Extension:
 
 * [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
 * [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
+* [bootstrap-wysiwyg](https://github.com/steveathon/bootstrap-wysiwyg)
 
 #### AngularJS
 
@@ -168,10 +225,16 @@ Can support for IE 8.
 
 * [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
 
-#### Template
+#### Templating Engines
 
 * [Jade](http://jade-lang.com) is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
 * [Mustache](http://mustache.github.com/) is a logic-less template syntax.
+
+#### Tours And Guides
+
+[intro.js](http://usablica.github.io/intro.js/) - A better way for new feature introduction and step-by-step users guide for your website and project.
+
+Installation, `$ npm install --save intro.js`.
 
 ### Future
 
