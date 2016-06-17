@@ -106,8 +106,8 @@ Can support for IE 6.
 
 jQuery Plugins:
 
-* [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery.
-* [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog.
+* [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery, `$ npm install --save jquery-validation@1.14.0`
+* [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog, `$ npm install --save noty`
 * [Timeago](http://timeago.yarp.com) is a jQuery plugin that makes it easy to support automatically updating fuzzy timestamps (e.g. "4 minutes ago").
 * [jQuery Mockjax](https://github.com/jakerella/jquery-mockjax) provides a simple and extremely flexible interface for mocking or simulating ajax requests and responses.
 
@@ -182,6 +182,17 @@ var myNewChart = new Chart(ctx).Pie(data);
 ##### Storage
 
 [store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
+
+Installation, `$ npm install --save store`.
+
+Usage:
+
+``` javascript
+global.localStorage = require('localStorage')
+var store = require('./store')
+store.set('foo', 1)
+console.log(store.get('foo'))
+```
 
 ##### Canvas
 
