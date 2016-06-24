@@ -98,11 +98,17 @@ ECMAScript 6 Features: arrows and lexical this, and so on.
 
 ### Legacy
 
-Can support for IE 6.
+~~Support for IE 6+.~~
 
-#### jQuery 1.x
+### Now
+
+Support for IE 8+.
+
+#### jQuery
 
 [jQuery](http://jquery.com) is a fast, small, and feature-rich JavaScript library.
+
+Installation, `$ npm install --save jquery@1.12.4`.
 
 jQuery Plugins:
 
@@ -110,6 +116,7 @@ jQuery Plugins:
 * [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog, `$ npm install --save noty`
 * [Timeago](http://timeago.yarp.com) is a jQuery plugin that makes it easy to support automatically updating fuzzy timestamps (e.g. "4 minutes ago").
 * [jQuery Mockjax](https://github.com/jakerella/jquery-mockjax) provides a simple and extremely flexible interface for mocking or simulating ajax requests and responses.
+* [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
 #### Backbone
 
@@ -139,18 +146,81 @@ Compatibility:
 * [es5-shim](https://github.com/es-shims/es5-shim)
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 
+#### Bootstrap
+
+[Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+Compatibility:
+
+* [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
+
+Extension:
+
+* [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
+* [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
+* [bootstrap-wysiwyg](https://github.com/steveathon/bootstrap-wysiwyg)
+
+#### AngularJS
+
+[AngularJS](https://angularjs.org)
+
+* [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
+
 #### Utils
 
 * [is.js](http://is.js.org) is a general-purpose check library. `npm install is_js`
 * [Feature.js](http://featurejs.com) is a fast, simple and lightweight browser feature detection library.
 
-#### Plugins
+#### Cookie
 
-* [spin.js](http://spin.js.org), An animated CSS3 loading spinner with VML fallback for IE.
+[JavaScript Cookie](https://github.com/js-cookie/js-cookie), A simple, lightweight JavaScript API for handling browser cookies.
+
+Installation, `$ npm install --save js-cookie`.
+
+Usage:
+
+``` javascript
+var Cookies = require('js-cookie')
+
+Cookies.set('name', 'value')
+Cookies.get('name')
+Cookies.remove('name')
+```
+
+#### Loading...
+
+[spin.js](http://spin.js.org), An animated CSS3 loading spinner with VML fallback for IE.
+
+Installation, `$ npm install --save spin`.
+
+Usage:
+
+``` javascript
+var Spinner = require('spin')
+
+var spin = new Spinner({color: '#fff', lines: 12}).spin(document.body)
+spin.stop()
+```
 
 #### Templating Engines
 
-* [Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
+[Handlebars.js](http://handlebarsjs.com) is an extension to the Mustache templating language.
+
+Installation, `$ npm install --save handlebars`.
+
+Usage:
+
+``` javascript
+var Handlebars = require('handlebars')
+
+var source = '<p>My name is {{name}}</p>'
+var template = Handlebars.compile(source)
+var data = {
+  name: 'Lee Lei'
+}
+
+var result = template(data)
+```
 
 #### Functional Programming
 
@@ -207,39 +277,6 @@ Usage:
   <![endif]-->
 </head>
 ```
-
-### Now
-
-Can support for IE 8.
-
-#### jQuery Plugins
-
-* [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
-
-#### Bootstrap
-
-[Bootstrap](http://getbootstrap.com) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
-
-Compatibility:
-
-* [Respond.js](https://github.com/scottjehl/Respond), a fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more).
-
-Extension:
-
-* [bootstrap-datepicker](http://eternicode.github.io/bootstrap-datepicker/)
-* [Bootstrap Timepicker](http://jdewit.github.io/bootstrap-timepicker/)
-* [bootstrap-wysiwyg](https://github.com/steveathon/bootstrap-wysiwyg)
-
-#### AngularJS
-
-[AngularJS](https://angularjs.org)
-
-* [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
-
-#### Templating Engines
-
-* [Jade](http://jade-lang.com) is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
-* [Mustache](http://mustache.github.com/) is a logic-less template syntax.
 
 #### Tours And Guides
 
