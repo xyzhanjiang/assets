@@ -47,20 +47,21 @@ See other: [Stylus](http://stylus-lang.com) expressive, dynamic, robust css.
 
 ## JavaScript
 
-### Style Guide
+### Common
+
+#### Style Guide
 
 [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
 
-### Bundlers
+#### Workflow
+
+[Gulp](http://gulpjs.com)
+
+Installation, `$ npm install --global gulp-cli`.
+
+#### Bundlers
 
 [Webpack](https://webpack.github.io) - Packs CommonJs/AMD modules for the browser, `$ npm install --save-dev webpack`.
-
-### altJS
-
-#### CoffeeScript
-
-* [CoffeeScript](http://coffeescript.org) is a little language that compiles into JavaScript, `$ npm install -g coffee-script`.
-* [CoffeeScript Style Guide](https://github.com/polarmobile/coffeescript-style-guide) - Best-practices and coding conventions for the CoffeeScript programming language.
 
 #### Babel
 
@@ -88,11 +89,11 @@ ECMAScript 6 Features: arrows and lexical this, and so on.
 
 [ECMAScript 5 compatibility table](http://kangax.github.io/compat-table/es5/), [ECMAScript 6 compatibility table](http://kangax.github.io/compat-table/es6/).
 
-### Compressor
+#### Compressor
 
 [UglifyJS 2](http://lisperator.net/uglifyjs/) is a JavaScript parser, minifier, compressor or beautifier toolkit, `$ npm install -g uglify-js`.
 
-### QA
+#### QA
 
 [JSHint](http://jshint.com), A static code analysis tool for JavaScript.
 
@@ -112,11 +113,60 @@ Installation, `$ npm install --save jquery@1.12.4`.
 
 jQuery Plugins:
 
-* [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery, `$ npm install --save jquery-validation@1.14.0`
-* [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog, `$ npm install --save noty`
+* [jQuery Validation Plugin](http://jqueryvalidation.org) Form validation with jQuery
+
+  Installation, `$ npm install --save jquery-validation@1.14.0`
+
+  Usage:
+
+  ``` javascript
+  require('jquery-validation')
+
+  $('form').validate({
+    submitHandler: function(form) {
+      form.submit()
+    }
+  })
+  ```
+
+* [noty](http://ned.im/noty) is a jQuery notification plugin that makes it easy to create alert - success - error - warning - information - confirmation messages as an alternative the standard alert dialog
+
+  Installation, `$ npm install --save noty`
+
+  Usage:
+
+  ``` javascript
+  var noty = require('noty')
+
+  var n = noty({
+    text: 'There is a error!',
+    type: 'error'
+  })
+  ```
+
 * [Timeago](http://timeago.yarp.com) is a jQuery plugin that makes it easy to support automatically updating fuzzy timestamps (e.g. "4 minutes ago").
 * [jQuery Mockjax](https://github.com/jakerella/jquery-mockjax) provides a simple and extremely flexible interface for mocking or simulating ajax requests and responses.
 * [Select2](https://select2.github.io) is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
+
+  Usage:
+
+  ``` javascript
+  $('select').select2()
+  ```
+
+* [slick](http://kenwheeler.github.io/slick) the last carousel you'll ever need.
+
+  Installation, `$ npm install slick-carousel --save`
+
+  Usage:
+
+  ``` javascript
+  require('slick-carousel')
+  $(element).slick({
+    slidesToShow: 4,
+    slidesToScroll: 4
+  })
+  ```
 
 #### Backbone
 
@@ -128,7 +178,7 @@ Dependencies:
 * [jQuery 1.x](http://jquery.com)
 * [Underscore.js](http://underscorejs.org)
 
-Installation, `$ npm install --save backbone`.
+Installation, `$ npm install --save backbone`
 
 Usage:
 
@@ -168,7 +218,18 @@ Extension:
 
 #### Utils
 
-* [is.js](http://is.js.org) is a general-purpose check library. `npm install is_js`
+* [is.js](http://is.js.org) is a general-purpose check library
+
+  Installation, `$ npm install --save is_js`
+
+  Usage:
+
+  ``` javascript
+  var is = require('is_js')
+  is.array(['foo', 'bar', 'baz'])
+  => true
+  ```
+
 * [Feature.js](http://featurejs.com) is a fast, simple and lightweight browser feature detection library.
 
 #### Cookie
@@ -185,6 +246,21 @@ var Cookies = require('js-cookie')
 Cookies.set('name', 'value')
 Cookies.get('name')
 Cookies.remove('name')
+```
+
+#### Storage
+
+[store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
+
+Installation, `$ npm install --save store`.
+
+Usage:
+
+``` javascript
+global.localStorage = require('localStorage')
+var store = require('./store')
+store.set('foo', 1)
+console.log(store.get('foo'))
 ```
 
 #### Loading...
@@ -237,10 +313,10 @@ Installation, `$ npm install --save chart.js`.
 Usage:
 
 ``` javascript
-var Chart = require('chart.js');
+var Chart = require('chart.js')
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myNewChart = new Chart(ctx).Pie(data);
+var ctx = document.getElementById('myChart').getContext('2d')
+var myNewChart = new Chart(ctx).Pie(data)
 ```
 
 #### Polyfill
@@ -248,21 +324,6 @@ var myNewChart = new Chart(ctx).Pie(data);
 * [EasyXDM](http://easyxdm.net/wp/) is a Javascript library that enables you as a developer to easily work around the limitation set in place by the Same Origin Policy, in turn making it easy to communicate and expose javascript API’s across domain boundaries.
 * [History.js](https://browserstate.github.com/history.js/demo/) gracefully supports the HTML5 History/State APIs (pushState, replaceState, onPopState) in all browsers.
 * [Selectivizr](http://selectivizr.com) is a JavaScript utility that emulates CSS3 pseudo-classes and attribute selectors in Internet Explorer 6-8.
-
-##### Storage
-
-[store.js](https://github.com/marcuswestin/store.js) exposes a simple API for cross browser local storage.
-
-Installation, `$ npm install --save store`.
-
-Usage:
-
-``` javascript
-global.localStorage = require('localStorage')
-var store = require('./store')
-store.set('foo', 1)
-console.log(store.get('foo'))
-```
 
 ##### Canvas
 
