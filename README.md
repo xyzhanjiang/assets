@@ -219,7 +219,7 @@ gulp.task('css', () =>
 
 ### [Babel](https://babeljs.io/)
 
-使用 Babel 来编译 ES2015 代码。
+使用 Babel 来编译的 ES2015 代码。
 
 安装 [gulp-babel](https://github.com/babel/gulp-babel) 模块：
 
