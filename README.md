@@ -1,6 +1,6 @@
 # Front-end Solutions
 
-工作中需要使用到的一些工具，同类型的工具有不同的替代品，这不是一个完整清单，不会包含所有的项目
+工作中需要使用到的一些工具，同类型的工具有不同的替代品，这不是一个囊括所有工具的完整清单
 
 ## <a name="TOC">内容列表</a>
 
@@ -62,7 +62,7 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 $ npm install --save unfetch
 ```
 
-基本用法，POST 请求，数据格式为 JSON 字符串并带 cookie：
+基本用法，POST 请求，请求类型为 JSON 字符串并带 cookie：
 
 ``` javascript
 import fetch from 'unfetch'
@@ -76,8 +76,34 @@ fetch('/url', {
   body: JSON.stringify({
     username: 'Tom',
   })
-}).then( r => r.json()).then((res) => {
-  //
+}).then((r) => r.json()).then((res) => {
+  // Do more
+})
+```
+
+请求类型为 application/x-www-form-urlencoded
+
+``` javascript
+fetch('/url', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  credentials: 'same-origin',
+  body: 'username=Tom'
+})
+```
+
+上传文件：
+
+``` javascript
+var input = document.querySelector('input[type="file"]')
+var data = new FormData()
+data.append('file', input.files[0])
+
+fetch('/url', {
+  method: 'POST',
+  body: data
 })
 ```
 
@@ -100,9 +126,34 @@ fetch('/url', {
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 * [fetch](https://github.com/github/fetch)
+    安装模块：`$ npm install whatwg-fetch --save`，需要注意模块的名字
 
 ### <a name="modules">一些常用无依赖模块</a>
 
 * [JavaScript Cookie](https://github.com/js-cookie/js-cookie)，用于读写 cookie
+
+    安装模块：`$ npm install js-cookie --save`
+
+    常用使用方法：
+
+    ``` javascript
+    import Cookies from 'js-cookie'
+
+    Cookies.set('name', 'value')
+    Cookies.get('name')
+    Cookies.remove('name')
+    ```
+
 * [Store.js](https://github.com/marcuswestin/store.js)，使用本地储存保存数据
+
+    安装模块：`$ npm install store --save`
+
 * [spin.js](http://spin.js.org/)，加载动画效果
+
+    安装模块：`$ npm install spin.js --save`
+
+    对于支持 CSS 动画的浏览器可以使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
+
+### <a name="jquery-plugins">常用 jQuery 插件</a>
+
+* [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
