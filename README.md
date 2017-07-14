@@ -14,6 +14,8 @@
 1. [数据可视化](#data-visualization)
 1. [Polyfill](#polyfill)
 1. [模块](#modules)
+1. [jQuery 插件](#jquery-plugins)
+1. [正则](#reg)
 
 ## JavaScript
 
@@ -56,60 +58,100 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="http">Http</a>
 
-[unfetch](https://github.com/developit/unfetch)
+1. [axios](https://github.com/mzabriskie/axios)
 
-``` shell
-$ npm install --save unfetch
-```
+    使用 npm 安装：
 
-基本用法，POST 请求，请求类型为 JSON 字符串并带 cookie：
+    ``` shell
+    $ npm install --save axios
+    ```
 
-``` javascript
-import fetch from 'unfetch'
+    需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-fetch('/url', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  credentials: 'same-origin',
-  body: JSON.stringify({
-    username: 'Tom',
-  })
-}).then((r) => r.json()).then((res) => {
-  // Do more
-})
-```
+    基本简单用法：
 
-请求类型为 application/x-www-form-urlencoded
+    ``` javascript
+    import axios from 'axios'
 
-``` javascript
-fetch('/url', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  credentials: 'same-origin',
-  body: 'username=Tom'
-})
-```
+    axios.post('/url', {
+      username: 'Tom'
+    }).then((res) => {
+      // Do more
+    }).catch((error) => {
+      console.log(error)
+    })
+    ```
 
-上传文件：
+    全局设置：
 
-``` javascript
-var input = document.querySelector('input[type="file"]')
-var data = new FormData()
-data.append('file', input.files[0])
+    ``` javascript
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    ```
 
-fetch('/url', {
-  method: 'POST',
-  body: data
-})
-```
+1. [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
+
+    使用 npm 安装：
+
+    ``` shell
+    $ npm install --save unfetch
+    ```
+
+    需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+
+    基本简单用法，发送 POST 请求，请求类型为 JSON 字符串并带 cookie：
+
+    ``` javascript
+    import fetch from 'unfetch'
+
+    fetch('/url', {
+      method: 'POST', // default GET
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        username: 'Tom'
+      })
+    }).then((r) => r.json()).then((res) => {
+      // Do more
+    })
+    ```
+
+    请求类型为 `application/x-www-form-urlencoded`
+
+    ``` javascript
+    fetch('/url', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      credentials: 'same-origin',
+      body: 'username=Tom'
+    })
+    ```
+
+    上传文件：
+
+    ``` javascript
+    var input = document.querySelector('input[type="file"]')
+    var data = new FormData()
+    data.append('file', input.files[0])
+
+    fetch('/url', {
+      method: 'POST',
+      body: data
+    })
+    ```
 
 ### <a name="vue">Vue</a>
 
 [Vue.js](http://vuejs.org/)，中文网站：[https://cn.vuejs.org/](https://cn.vuejs.org/)
+
+通过 npm 安装：
+
+``` shell
+$ npm install --save vue
+```
 
 * 脚手架 [vue-cli](https://github.com/vuejs/vue-cli)
 * 状态管理 [Vuex](https://vuex.vuejs.org/)
@@ -125,7 +167,17 @@ fetch('/url', {
 * [es5-shim](https://github.com/es-shims/es5-shim)
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+
+    通过 npm 安装模块：`$ npm install es6-promise --save`
+
+    自动打补丁：
+
+    ``` javascript
+    import 'es6-promise/auto'
+    ```
+
 * [fetch](https://github.com/github/fetch)
+    
     安装模块：`$ npm install whatwg-fetch --save`，需要注意模块的名字
 
 ### <a name="modules">一些常用无依赖模块</a>
@@ -157,3 +209,12 @@ fetch('/url', {
 ### <a name="jquery-plugins">常用 jQuery 插件</a>
 
 * [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+
+### <a name="reg">常用正则</a>
+
+* 驼峰转连字符
+
+    ``` javascript
+    'userName'.replace(/([A-Z])/g, '-$1').toLowerCase() // user-name
+    ```
+
