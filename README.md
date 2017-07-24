@@ -4,22 +4,110 @@
 
 ## <a name="TOC">内容列表</a>
 
-1. [代码风格指南](#style-guide)
-1. [包管理工具](#package)
-1. [构建工具](#workflow)
-1. [打包工具](#bundler)
-1. [ES6](#es6)
-1. [Http](#http)
-1. [Vue](#vue)
-1. [数据可视化](#data-visualization)
-1. [Polyfill](#polyfill)
-1. [模块](#modules)
-1. [jQuery 插件](#jquery-plugins)
-1. [正则](#reg)
+1. HTML
+    1. [Doctype](#doctype)
+    1. [Meta](#meta)
+    1. [IE 条件注释](#conditional-comments)
+1. CSS
+    1. [代码风格指南](#css-style-guide)
+    1. [预处理器](#pre-processor)
+    1. [效果](#effects)
+    1. [Icon Fonts](#icon-fonts)
+1. JavaScript
+    1. [代码风格指南](#js-style-guide)
+    1. [包管理工具](#package)
+    1. [构建工具](#workflow)
+    1. [打包工具](#bundler)
+    1. [ES6](#es6)
+    1. [Http](#http)
+    1. [Vue](#vue)
+    1. [数据可视化](#data-visualization)
+    1. [Polyfill](#polyfill)
+    1. [模块](#modules)
+    1. [jQuery 插件](#jquery-plugins)
+    1. [正则](#reg)
+
+## HTML
+
+### <a name="doctype">HTML5 文档类型申明</a>
+
+``` html
+<!DOCTYPE html>
+```
+
+### <a name="meta">Meta</a>
+
+* 定义文档字符集
+
+    ``` html
+    <meta charset="utf-8">
+    ```
+
+    通常来说 UTF-8 编码是最好的选择，它包含所有语言中所有字符的通用字符集
+
+* IE 渲染模式
+
+    ``` html
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    ```
+
+    在网站里增加这个 Meta 元素，使 IE 浏览器以最新的模式渲染页面
+
+* 国产双核浏览器渲染模式
+
+    ``` html
+    <meta name="renderer" content="webkit">
+    ```
+
+    在网站里增加这个 Meta 元素，告诉360浏览器这个网址应该用哪个内核渲染，那么360浏览器就会在读取到这个标签后，立即切换对应的内核。并将这个行为应用于这个二级域名下所有网址
+
+* 响应式布局
+
+    ``` html
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    ```
+
+### <a name="conditional-comments">IE 条件注释</a>
+
+``` html
+<!--[if (lt IE 9) & (!IEMobile)]>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+```
+
+IE 中的条件注释(Conditional comments)对 IE 的版本和 IE 非 IE 有优秀的区分能力，是 WEB 设计中常用的 hack 方法。推荐使用。
+
+lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
+
+Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
+
+## CSS
+
+### <a name="css-style-guide">代码风格指南</a>
+
+* [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
+* [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
+* [Code Guide by @mdo](http://codeguide.co/#css)
+
+### <a name="pre-processor">预处理器</a>
+
+1. [Sass](https://github.com/sass/sass)
+
+1. [Less](https://github.com/less/less.js)
+
+### <a name="effects">效果</a>
+
+* [Animate.css](https://daneden.github.io/animate.css/)
+* [Hover.css](http://ianlunn.github.io/Hover/)
+* [iHover](http://gudh.github.io/ihover/dist/index.html)
+
+### <a name="icon-fonts">Icon Fonts</a>
+
+[Font-Awesome](http://fontawesome.io/)
 
 ## JavaScript
 
-### <a name="style-guide">代码风格指南</a>
+### <a name="js-style-guide">代码风格指南</a>
 
 都看看，没有什么不好，然后汲取各家所长，形成自己的风格
 
@@ -45,6 +133,26 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 ### <a name="bundler">打包工具</a>
 
 [Webpack](https://webpack.github.io/)
+
+通过 npm 安装：
+
+``` shell
+$ npm install --save-dev webpack
+```
+
+基础的 webpack.config.js 文件：
+
+``` javascript
+var path = require('path')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+}
+```
 
 ### <a name="es6">ES6</a>
 
@@ -74,7 +182,7 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
     import axios from 'axios'
 
     axios.post('/url', {
-      username: 'Tom'
+      param: 'value'
     }).then((res) => {
       // Do more
     }).catch((error) => {
@@ -82,10 +190,19 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
     })
     ```
 
-    全局设置：
+    全局设置请求类型为 `application/x-www-form-urlencoded`：
 
     ``` javascript
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    ```
+
+    使用这种格式需要转化请求的数据，在客户端可以使用 `URLSearchParams` API：
+
+    ``` javascript
+    var params = new URLSearchParams()
+    params.append('param1', 'value1')
+    params.append('param2', 'value2')
+    axios.post('/url', params)
     ```
 
 1. [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
@@ -110,7 +227,7 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
       },
       credentials: 'same-origin',
       body: JSON.stringify({
-        username: 'Tom'
+        param: 'value'
       })
     }).then((r) => r.json()).then((res) => {
       // Do more
@@ -126,7 +243,7 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       credentials: 'same-origin',
-      body: 'username=Tom'
+      body: 'param1=value1&param2=value2'
     })
     ```
 
