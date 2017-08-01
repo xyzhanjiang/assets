@@ -4,16 +4,16 @@
 
 ## <a name="TOC">内容列表</a>
 
-1. HTML
+* HTML
     1. [Doctype](#doctype)
     1. [Meta](#meta)
     1. [IE 条件注释](#conditional-comments)
-1. CSS
+* CSS
     1. [代码风格指南](#css-style-guide)
     1. [预处理器](#pre-processor)
     1. [效果](#effects)
     1. [Icon Fonts](#icon-fonts)
-1. JavaScript
+* JavaScript
     1. [代码风格指南](#js-style-guide)
     1. [包管理工具](#package)
     1. [构建工具](#workflow)
@@ -25,7 +25,7 @@
     1. [Polyfill](#polyfill)
     1. [模块](#modules)
     1. [jQuery 插件](#jquery-plugins)
-    1. [正则](#reg)
+    1. [正则表达式](#reg)
 
 ## HTML
 
@@ -93,11 +93,43 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 
 1. [Sass](https://github.com/sass/sass)
 
+    和 webpack 一起使用，通过 npm 安装：
+
+    ``` shell
+    npm install sass-loader node-sass webpack --save-dev
+    ```
+
+    在 webpack.config.js 里配置：
+
+    ``` javascript
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
+        }
+      ]
+    }
+    ```
+
 1. [Less](https://github.com/less/less.js)
 
 ### <a name="effects">效果</a>
 
 * [Animate.css](https://daneden.github.io/animate.css/)
+
+    通过 npm 安装：
+
+    ``` shell
+    $ npm install animate.css --save
+    ```
+
 * [Hover.css](http://ianlunn.github.io/Hover/)
 * [iHover](http://gudh.github.io/ihover/dist/index.html)
 
@@ -163,6 +195,31 @@ module.exports = {
 * [es6features](https://github.com/lukehoban/es6features), ECMAScript 6 Features
 * [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
 * [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
+
+和 webpack 一起使用，通过 npm 安装：
+
+``` shell
+npm install --save-dev babel-loader babel-core babel-preset-env webpack
+```
+
+在 webpack.config.js 里配置：
+
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
+      }
+    }
+  ]
+}
+```
 
 ### <a name="http">Http</a>
 
