@@ -4,28 +4,35 @@
 
 ## <a name="TOC">内容列表</a>
 
-* HTML
-    1. [Doctype](#doctype)
-    1. [Meta](#meta)
-    1. [IE 条件注释](#conditional-comments)
-* CSS
-    1. [代码风格指南](#css-style-guide)
-    1. [预处理器](#pre-processor)
-    1. [效果](#effects)
-    1. [Icon Fonts](#icon-fonts)
-* JavaScript
-    1. [代码风格指南](#js-style-guide)
-    1. [包管理工具](#package)
-    1. [构建工具](#workflow)
-    1. [打包工具](#bundler)
-    1. [ES6](#es6)
-    1. [Http](#http)
-    1. [Vue](#vue)
-    1. [数据可视化](#data-visualization)
-    1. [Polyfill](#polyfill)
-    1. [模块](#modules)
-    1. [jQuery 插件](#jquery-plugins)
-    1. [正则表达式](#reg)
+### HTML
+
+1. [Doctype](#doctype)
+1. [Meta](#meta)
+1. [IE 条件注释](#conditional-comments)
+
+### CSS
+
+1. [代码风格指南](#css-style-guide)
+1. [预处理器](#pre-processor)
+1. [效果](#effects)
+1. [Icon](#icon)
+
+### JavaScript
+
+1. [代码风格指南](#js-style-guide)
+1. [包管理工具](#package)
+1. [构建工具](#workflow)
+1. [打包工具](#bundler)
+1. [ES6](#es6)
+1. [Http](#http)
+1. [模板](#template)
+1. [Vue](#vue)
+1. [路由](#router)
+1. [数据可视化](#data-visualization)
+1. [Polyfill](#polyfill)
+1. [模块](#modules)
+1. [jQuery 插件](#jquery-plugins)
+1. [正则表达式](#reg)
 
 ## HTML
 
@@ -120,6 +127,31 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 
 1. [Less](https://github.com/less/less.js)
 
+    在 webpack 里和 [Less loader](https://github.com/webpack-contrib/less-loader) 一起使用，通过 npm 安装：
+
+    ``` shell
+    npm install --save-dev less-loader less webpack
+    ```
+
+    在 webpack.config.js 里配置：
+
+    ``` javascript
+    module: {
+      rules: [
+        {
+          test: /\.less$/,
+          use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'less-loader'
+          }]
+        }
+      ]
+    }
+    ```
+
 ### <a name="effects">效果</a>
 
 * [Animate.css](https://daneden.github.io/animate.css/)
@@ -131,9 +163,16 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
     ```
 
 * [Hover.css](http://ianlunn.github.io/Hover/)
+
+    通过 npm 安装：
+
+    ``` shell
+    $ npm install hover.css --save
+    ```
+
 * [iHover](http://gudh.github.io/ihover/dist/index.html)
 
-### <a name="icon-fonts">Icon Fonts</a>
+### <a name="icon">Icon</a>
 
 [Font-Awesome](http://fontawesome.io/)
 
@@ -218,6 +257,14 @@ module: {
       }
     }
   ]
+}
+```
+
+通过 .babelrc 文件配置：
+
+``` javascript
+{
+  "presets": ["env"]
 }
 ```
 
@@ -317,6 +364,58 @@ module: {
     })
     ```
 
+### <a name="template">模板</a>
+
+[Handlebars](https://github.com/wycats/handlebars.js)
+
+通过 npm 安装：
+
+``` shell
+$ npm install --save handlebars
+```
+
+引用：
+
+``` javascript
+const Handlebars = require('handlebars')
+
+// or runtime only
+const Handlebars = require('handlebars/runtime')
+```
+
+在 webpack 里和 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 一起使用，通过 npm 安装：
+
+``` shell
+$ npm install --save handlebars-loader
+```
+
+在 webpack.config.js 里配置：
+
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.handlebars$/,
+      use: [{
+        loader: 'handlebars-loader'
+      }]
+    }
+  ]
+}
+```
+
+引用模板文件：
+
+``` javascript
+const template = require('./template.handlebars')
+```
+
+返回值是一个渲染函数：
+
+``` javascript
+var html = template(data)
+```
+
 ### <a name="vue">Vue</a>
 
 [Vue.js](http://vuejs.org/)，中文网站：[https://cn.vuejs.org/](https://cn.vuejs.org/)
@@ -327,9 +426,32 @@ module: {
 $ npm install --save vue
 ```
 
+和 webpack 一起使用，使用 [vue-loader](https://github.com/vuejs/vue-loader) 加载 .vue 组件，通过 npm 安装：
+
+``` shell
+npm install --save-dev vue-loader vue-template-compiler webpack
+```
+
+在 webpack.config.js 里配置：
+
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.vue$/,
+      use: {
+        loader: 'vue-loader'
+      }
+    }
+  ]
+}
+```
+
 * 脚手架 [vue-cli](https://github.com/vuejs/vue-cli)
 * 状态管理 [Vuex](https://vuex.vuejs.org/)
 * 路由 [vue-router](https://github.com/vuejs/vue-router)
+
+### <a name="router">路由</a>
 
 ### <a name="data-visualization">数据可视化</a>
 
@@ -354,7 +476,7 @@ $ npm install --save vue
     
     安装模块：`$ npm install whatwg-fetch --save`，需要注意模块的名字
 
-### <a name="modules">一些常用无依赖模块</a>
+### <a name="modules">常用模块</a>
 
 * [JavaScript Cookie](https://github.com/js-cookie/js-cookie)，用于读写 cookie
 
@@ -386,9 +508,9 @@ $ npm install --save vue
 
 ### <a name="reg">常用正则</a>
 
-* 驼峰转连字符
+驼峰转连字符
 
-    ``` javascript
-    'userName'.replace(/([A-Z])/g, '-$1').toLowerCase() // user-name
-    ```
+``` javascript
+'userName'.replace(/([A-Z])/g, '-$1').toLowerCase() // user-name
+```
 
