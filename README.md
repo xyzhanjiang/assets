@@ -229,16 +229,24 @@ module.exports = {
 
 使用 [Babel](https://babeljs.io/) 转化 JavaScript 代码，中文网站：[http://babeljs.cn/](http://babeljs.cn/)
 
-深入学习 ES6
+单独使用，通过 npm 安装：
 
-* [es6features](https://github.com/lukehoban/es6features), ECMAScript 6 Features
-* [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
-* [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
+``` shell
+npm install --save-dev babel-cli babel-preset-env
+```
 
 和 webpack 一起使用，通过 npm 安装：
 
 ``` shell
 npm install --save-dev babel-loader babel-core babel-preset-env webpack
+```
+
+创建一个 .babelrc 文件：
+
+``` javascript
+{
+  "presets": ["env"]
+}
 ```
 
 在 webpack.config.js 里配置：
@@ -250,23 +258,33 @@ module: {
       test: /\.js$/,
       exclude: /node_modules/,
       use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
-        }
+        loader: 'babel-loader'
       }
     }
   ]
 }
 ```
 
-通过 .babelrc 文件配置：
+支持 async/await 语法，安装 [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime) 和 [es6-promise](https://github.com/stefanpenner/es6-promise)
+
+``` shell
+npm install --save regenerator-runtime es6-promise
+```
+
+使用：
 
 ``` javascript
-{
-  "presets": ["env"]
-}
+import 'es6-promise/auto'
+import regeneratorRuntime from 'regenerator-runtime'
 ```
+
+可以支持到 IE 9
+
+深入学习 ES6
+
+* [es6features](https://github.com/lukehoban/es6features), ECMAScript 6 Features
+* [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
+* [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
 
 ### <a name="http">Http</a>
 
