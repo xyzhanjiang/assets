@@ -185,7 +185,7 @@ $ npm install animate.css --save
 $ npm install hover.css --save
 ```
 
-* [iHover](http://gudh.github.io/ihover/dist/index.html)
+#### [iHover](http://gudh.github.io/ihover/dist/index.html)
 
 ### <a name="icon">Icon</a>
 
