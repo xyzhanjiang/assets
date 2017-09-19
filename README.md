@@ -14,6 +14,7 @@
 
 1. [代码风格指南](#css-style-guide)
 1. [预处理器](#pre-processor)
+1. [重置样式](#reset)
 1. [效果](#effects)
 1. [Icon](#icon)
 
@@ -25,12 +26,14 @@
 1. [打包工具](#bundler)
 1. [ES6](#es6)
 1. [Http](#http)
-1. [模板](#template)
+1. [HTML 模板](#html-template)
 1. [Vue](#vue)
 1. [路由](#router)
+1. [异步](#async)
 1. [数据可视化](#data-visualization)
 1. [Polyfill](#polyfill)
 1. [模块](#modules)
+1. [jQuery](#jquery)
 1. [jQuery 插件](#jquery-plugins)
 1. [正则表达式](#reg)
 
@@ -82,7 +85,7 @@
 <![endif]-->
 ```
 
-IE 中的条件注释(Conditional comments)对 IE 的版本和 IE 非 IE 有优秀的区分能力，是 WEB 设计中常用的 hack 方法。推荐使用。
+IE 中的条件注释(Conditional comments)对 IE 的版本和 IE 非 IE 有优秀的区分能力，是 WEB 设计中常用的 hack 方法，推荐使用。
 
 lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
 
@@ -96,79 +99,91 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 * [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 * [Code Guide by @mdo](http://codeguide.co/#css)
 
+### <a name="reset">重置样式</a>
+
+推荐使用 [normalize.css](https://github.com/necolas/normalize.css) 作为重置样式表，这也是 Bootstrap 内置使用的
+
 ### <a name="pre-processor">预处理器</a>
 
-1. [Sass](https://github.com/sass/sass)
+#### [Sass](https://github.com/sass/sass)
 
-    和 webpack 一起使用，通过 npm 安装：
+和 webpack 一起使用，通过 npm 安装：
 
-    ``` shell
-    npm install sass-loader node-sass webpack --save-dev
-    ```
+``` shell
+npm install sass-loader node-sass webpack --save-dev
+```
 
-    在 webpack.config.js 里配置：
+在 webpack.config.js 里配置：
 
-    ``` javascript
-    module: {
-      rules: [
-        {
-          test: /\.scss$/,
-          use: [{
-            loader: 'style-loader'
-          }, {
-            loader: 'css-loader'
-          }, {
-            loader: 'sass-loader'
-          }]
-        }
-      ]
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.scss$/,
+      use: [{
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }, {
+        loader: 'sass-loader'
+      }]
     }
-    ```
+  ]
+}
+```
 
-1. [Less](https://github.com/less/less.js)
+#### [Less](https://github.com/less/less.js)
 
-    在 webpack 里和 [Less loader](https://github.com/webpack-contrib/less-loader) 一起使用，通过 npm 安装：
+在 webpack 里和 [Less loader](https://github.com/webpack-contrib/less-loader) 一起使用，通过 npm 安装：
 
-    ``` shell
-    npm install --save-dev less-loader less webpack
-    ```
+``` shell
+npm install --save-dev less-loader less webpack
+```
 
-    在 webpack.config.js 里配置：
+在 webpack.config.js 里配置：
 
-    ``` javascript
-    module: {
-      rules: [
-        {
-          test: /\.less$/,
-          use: [{
-            loader: 'style-loader'
-          }, {
-            loader: 'css-loader'
-          }, {
-            loader: 'less-loader'
-          }]
-        }
-      ]
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.less$/,
+      use: [{
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }, {
+        loader: 'less-loader'
+      }]
     }
-    ```
+  ]
+}
+```
 
 ### <a name="effects">效果</a>
 
-* [Animate.css](https://daneden.github.io/animate.css/)
+#### [Animate.css](https://daneden.github.io/animate.css/)
 
-    通过 npm 安装：
+通过 npm 安装：
 
-    ``` shell
-    $ npm install animate.css --save
-    ```
+``` shell
+$ npm install animate.css --save
+```
 
-* [Hover.css](http://ianlunn.github.io/Hover/)
+为元素添加 `animated` 和对应动画样式的类即可：
 
-    通过 npm 安装：
+``` html
+<div class="animated bounce">...</div>
+```
 
-    ``` shell
-    $ npm install hover.css --save
-    ```
+为元素添加 `infinite` 类动画将无限循环，其它动画样式可以自行设置。
+
+#### [Hover.css](http://ianlunn.github.io/Hover/)
+
+通过 npm 安装：
+
+``` shell
+$ npm install hover.css --save
+```
 
 * [iHover](http://gudh.github.io/ihover/dist/index.html)
 
@@ -241,14 +256,6 @@ npm install --save-dev babel-cli babel-preset-env
 npm install --save-dev babel-loader babel-core babel-preset-env webpack
 ```
 
-创建一个 .babelrc 文件：
-
-``` javascript
-{
-  "presets": ["env"]
-}
-```
-
 在 webpack.config.js 里配置：
 
 ``` javascript
@@ -265,20 +272,28 @@ module: {
 }
 ```
 
-支持 async/await 语法，安装 [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime) 和 [es6-promise](https://github.com/stefanpenner/es6-promise)
+创建一个 .babelrc 文件：
+
+``` javascript
+{
+  "presets": ["env"]
+}
+```
+
+支持 async/await 语法，安装 [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
 ``` shell
 npm install --save regenerator-runtime es6-promise
 ```
 
-使用：
+在 JavaScript 中引入：
 
 ``` javascript
 import 'es6-promise/auto'
 import regeneratorRuntime from 'regenerator-runtime'
 ```
 
-可以支持到 IE 9
+编译后的代码可以支持到 IE 9
 
 深入学习 ES6
 
@@ -288,101 +303,103 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 ### <a name="http">Http</a>
 
-1. [axios](https://github.com/mzabriskie/axios)
+#### [axios](https://github.com/mzabriskie/axios)
 
-    使用 npm 安装：
+使用 npm 安装：
 
-    ``` shell
-    $ npm install --save axios
-    ```
+``` shell
+$ npm install --save axios
+```
 
-    需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-    基本简单用法：
+基本简单用法：
 
-    ``` javascript
-    import axios from 'axios'
+``` javascript
+import axios from 'axios'
 
-    axios.post('/url', {
-      param: 'value'
-    }).then((res) => {
-      // Do more
-    }).catch((error) => {
-      console.log(error)
-    })
-    ```
+axios.post('/url', {
+  param: 'value'
+}).then((res) => {
+  // Do more
+}).catch((error) => {
+  console.log(error)
+})
+```
 
-    全局设置请求类型为 `application/x-www-form-urlencoded`：
+全局设置请求类型为 `application/x-www-form-urlencoded`：
 
-    ``` javascript
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-    ```
+``` javascript
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+```
 
-    使用这种格式需要转化请求的数据，在客户端可以使用 `URLSearchParams` API：
+提交这种格式需要转化为查询字符串 `param1=value1&param2=value2` 格式，在客户端可以使用 `URLSearchParams` API：
 
-    ``` javascript
-    var params = new URLSearchParams()
-    params.append('param1', 'value1')
-    params.append('param2', 'value2')
-    axios.post('/url', params)
-    ```
+``` javascript
+var params = new URLSearchParams()
+params.append('param1', 'value1')
+params.append('param2', 'value2')
+axios.post('/url', params)
+```
 
-1. [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
+该 API 的 polyfill 可以在这里找到 [url-search-params](https://github.com/WebReflection/url-search-params) 或者也可以使用 [query-string](https://github.com/sindresorhus/query-string) 这个模块
 
-    使用 npm 安装：
+#### [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
 
-    ``` shell
-    $ npm install --save unfetch
-    ```
+使用 npm 安装：
 
-    需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+``` shell
+$ npm install --save unfetch
+```
 
-    基本简单用法，发送 POST 请求，请求类型为 JSON 字符串并带 cookie：
+需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-    ``` javascript
-    import fetch from 'unfetch'
+基本简单用法，发送 POST 请求，请求类型为 JSON 字符串并带 cookie：
 
-    fetch('/url', {
-      method: 'POST', // default GET
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin',
-      body: JSON.stringify({
-        param: 'value'
-      })
-    }).then((r) => r.json()).then((res) => {
-      // Do more
-    })
-    ```
+``` javascript
+import fetch from 'unfetch'
 
-    请求类型为 `application/x-www-form-urlencoded`
+fetch('/url', {
+  method: 'POST', // default GET
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  credentials: 'same-origin',
+  body: JSON.stringify({
+    param: 'value'
+  })
+}).then((r) => r.json()).then((res) => {
+  // Do more
+})
+```
 
-    ``` javascript
-    fetch('/url', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      credentials: 'same-origin',
-      body: 'param1=value1&param2=value2'
-    })
-    ```
+请求类型为 `application/x-www-form-urlencoded`
 
-    上传文件：
+``` javascript
+fetch('/url', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  credentials: 'same-origin',
+  body: 'param1=value1&param2=value2'
+})
+```
 
-    ``` javascript
-    var input = document.querySelector('input[type="file"]')
-    var data = new FormData()
-    data.append('file', input.files[0])
+上传文件：
 
-    fetch('/url', {
-      method: 'POST',
-      body: data
-    })
-    ```
+``` javascript
+var input = document.querySelector('input[type="file"]')
+var data = new FormData()
+data.append('file', input.files[0])
 
-### <a name="template">模板</a>
+fetch('/url', {
+  method: 'POST',
+  body: data
+})
+```
+
+### <a name="html-template">HTML 模板</a>
 
 [Handlebars](https://github.com/wycats/handlebars.js)
 
@@ -401,7 +418,7 @@ const Handlebars = require('handlebars')
 const Handlebars = require('handlebars/runtime')
 ```
 
-在 webpack 里和 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 一起使用，通过 npm 安装：
+配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，省掉了编译模板的过程，通过 npm 安装：
 
 ``` shell
 $ npm install --save handlebars-loader
@@ -422,15 +439,10 @@ module: {
 }
 ```
 
-引用模板文件：
+使用示例：
 
 ``` javascript
 const template = require('./template.handlebars')
-```
-
-返回值是一个渲染函数：
-
-``` javascript
 var html = template(data)
 ```
 
@@ -471,6 +483,36 @@ module: {
 
 ### <a name="router">路由</a>
 
+[page.js](https://github.com/visionmedia/page.js)
+
+[director](https://github.com/flatiron/director)
+
+### <a name="async">异步</a>
+
+[Async](https://github.com/caolan/async)
+
+通过 npm 安装：`$ npm install --save async`
+
+在 JavaScript 中引用：
+
+``` javascript
+var async = require('async')
+```
+
+个别引用：
+
+``` javascript
+var waterfall = require('async/waterfall')
+var map = require('async/map')
+```
+
+安装 ES2015 模块：`$ npm install --save async-es`，使用 ES2015 import 语法：
+
+``` javascript
+import waterfall from 'async-es/waterfall'
+import async from 'async-es'
+```
+
 ### <a name="data-visualization">数据可视化</a>
 
 [Chart.js](http://www.chartjs.org/), [https://github.com/chartjs/Chart.js](https://github.com/chartjs/Chart.js)
@@ -482,9 +524,7 @@ module: {
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-    通过 npm 安装模块：`$ npm install es6-promise --save`
-
-    自动打补丁：
+    通过 npm 安装模块：`$ npm install es6-promise --save`，自动打补丁：
 
     ``` javascript
     import 'es6-promise/auto'
@@ -498,9 +538,7 @@ module: {
 
 * [JavaScript Cookie](https://github.com/js-cookie/js-cookie)，用于读写 cookie
 
-    安装模块：`$ npm install js-cookie --save`
-
-    常用使用方法：
+    安装模块：`$ npm install js-cookie --save`，常用使用方法：
 
     ``` javascript
     import Cookies from 'js-cookie'
@@ -512,13 +550,22 @@ module: {
 
 * [Store.js](https://github.com/marcuswestin/store.js)，使用本地储存保存数据
 
-    安装模块：`$ npm install store --save`
+    安装模块：`$ npm install store --save`，使用方法和 cookie 类似
 
 * [spin.js](http://spin.js.org/)，加载动画效果
 
-    安装模块：`$ npm install spin.js --save`
+    可以兼容到 IE 6，安装模块：`$ npm install spin.js --save`，使用：
+
+    ``` javascript
+    const Spinner = require('spin.js')
+    const spin = new Spinner().spin(document.body)
+    ```
 
     对于支持 CSS 动画的浏览器可以使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
+
+### <a name="jquery">jQuery</a>
+
+当前最新版本兼容到 IE 9+，如果需要兼容 IE 6-8 使用 v1.12
 
 ### <a name="jquery-plugins">常用 jQuery 插件</a>
 
