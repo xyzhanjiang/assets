@@ -13,7 +13,7 @@
 ### CSS
 
 1. [代码风格指南](#css-style-guide)
-1. [预处理器](#pre-processor)
+1. [PostCSS](#postcss)
 1. [重置样式](#reset)
 1. [效果](#effects)
 1. [Icon](#icon)
@@ -24,7 +24,8 @@
 1. [包管理工具](#package)
 1. [构建工具](#workflow)
 1. [打包工具](#bundler)
-1. [ES6](#es6)
+1. [ECMAScript5](#es5)
+1. [ECMAScript6](#es6)
 1. [Http](#http)
 1. [HTML 模板](#html-template)
 1. [Vue](#vue)
@@ -91,6 +92,12 @@ lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
 
 Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
 
+另外 respond.js 需要在样式表之后加载，如果条件不允许，可以等样式表加载完成之后手动执行 respond.js
+
+``` javascript
+if (window.respond && !window.respond.mediaQueriesSupported) window.respond.update()
+```
+
 ## CSS
 
 ### <a name="css-style-guide">代码风格指南</a>
@@ -103,14 +110,12 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 
 推荐使用 [normalize.css](https://github.com/necolas/normalize.css) 作为重置样式表，这也是 Bootstrap 内置使用的
 
-### <a name="pre-processor">预处理器</a>
+### <a name="postcss">PostCSS</a>
 
-#### [Sass](https://github.com/sass/sass)
-
-和 webpack 一起使用，通过 npm 安装：
+在 webpack 里和 [postcss-loader](https://github.com/postcss/postcss-loader) 一起使用，通过 npm 安装：
 
 ``` shell
-npm install sass-loader node-sass webpack --save-dev
+npm install --save-dev style-loader css-loader postcss-loader postcss-cssnext cssnano webpack
 ```
 
 在 webpack.config.js 里配置：
@@ -119,42 +124,32 @@ npm install sass-loader node-sass webpack --save-dev
 module: {
   rules: [
     {
-      test: /\.scss$/,
+      test: /\.css$/,
+      exclude: /node_modules/,
       use: [{
         loader: 'style-loader'
       }, {
-        loader: 'css-loader'
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1
+        }
       }, {
-        loader: 'sass-loader'
+        loader: 'postcss-loader'
       }]
     }
   ]
 }
 ```
 
-#### [Less](https://github.com/less/less.js)
-
-在 webpack 里和 [Less loader](https://github.com/webpack-contrib/less-loader) 一起使用，通过 npm 安装：
-
-``` shell
-npm install --save-dev less-loader less webpack
-```
-
-在 webpack.config.js 里配置：
+创建一个 `postcss.config.js` 文件：
 
 ``` javascript
-module: {
-  rules: [
-    {
-      test: /\.less$/,
-      use: [{
-        loader: 'style-loader'
-      }, {
-        loader: 'css-loader'
-      }, {
-        loader: 'less-loader'
-      }]
-    }
+module.exports = {
+  plugins: [
+    require('postcss-cssnext'),
+    require('cssnano')({
+      autoprefixer: false
+    })
   ]
 }
 ```
@@ -163,11 +158,7 @@ module: {
 
 #### [Animate.css](https://daneden.github.io/animate.css/)
 
-通过 npm 安装：
-
-``` shell
-$ npm install animate.css --save
-```
+通过 npm 安装：`npm install animate.css --save`
 
 为元素添加 `animated` 和对应动画样式的类即可：
 
@@ -179,11 +170,7 @@ $ npm install animate.css --save
 
 #### [Hover.css](http://ianlunn.github.io/Hover/)
 
-通过 npm 安装：
-
-``` shell
-$ npm install hover.css --save
-```
+通过 npm 安装：`npm install hover.css --save`
 
 #### [iHover](http://gudh.github.io/ihover/dist/index.html)
 
@@ -209,7 +196,7 @@ $ npm install hover.css --save
 如果使用 npm 安装模块因为网络原因安装不成功，可以使用 [cnpm](https://npm.taobao.org)，例如
 
 ``` shell
-$ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
+npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 ```
 
 ### <a name="workflow">构建工具</a>
@@ -220,11 +207,7 @@ $ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 [Webpack](https://webpack.github.io/)
 
-通过 npm 安装：
-
-``` shell
-$ npm install --save-dev webpack
-```
+通过 npm 安装：`npm install --save-dev webpack`
 
 基础的 webpack.config.js 文件：
 
@@ -240,21 +223,31 @@ module.exports = {
 }
 ```
 
-### <a name="es6">ES6</a>
+### <a name="es5">ECMAScript5</a>
+
+如果需要，可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器。
+
+通过 npm 安装：`npm install --save es5-shim`
+
+一些示例：
+
+遍历 Object
+
+```
+var obj = {
+  key1: 'value1',
+  key2: 'value2'
+}
+Object.keys(obj).forEach((key) => console.log(key))
+```
+
+### <a name="es6">ECMAScript6</a>
 
 使用 [Babel](https://babeljs.io/) 转化 JavaScript 代码，中文网站：[http://babeljs.cn/](http://babeljs.cn/)
 
-单独使用，通过 npm 安装：
+单独使用，通过 npm 安装：`npm install --save-dev babel-cli babel-preset-env`
 
-``` shell
-npm install --save-dev babel-cli babel-preset-env
-```
-
-和 webpack 一起使用，通过 npm 安装：
-
-``` shell
-npm install --save-dev babel-loader babel-core babel-preset-env webpack
-```
+和 webpack 一起使用，通过 npm 安装：`npm install --save-dev babel-loader babel-core babel-preset-env webpack`
 
 在 webpack.config.js 里配置：
 
@@ -305,11 +298,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 #### [axios](https://github.com/mzabriskie/axios)
 
-使用 npm 安装：
-
-``` shell
-$ npm install --save axios
-```
+使用 npm 安装：`npm install --save axios`
 
 需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
@@ -346,11 +335,7 @@ axios.post('/url', params)
 
 #### [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
 
-使用 npm 安装：
-
-``` shell
-$ npm install --save unfetch
-```
+使用 npm 安装：`npm install --save unfetch`
 
 需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
@@ -403,11 +388,7 @@ fetch('/url', {
 
 [Handlebars](https://github.com/wycats/handlebars.js)
 
-通过 npm 安装：
-
-``` shell
-$ npm install --save handlebars
-```
+通过 npm 安装：`npm install --save handlebars`
 
 引用：
 
@@ -421,7 +402,7 @@ const Handlebars = require('handlebars/runtime')
 配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，省掉了编译模板的过程，通过 npm 安装：
 
 ``` shell
-$ npm install --save handlebars-loader
+npm install --save handlebars-loader
 ```
 
 在 webpack.config.js 里配置：
@@ -450,11 +431,7 @@ var html = template(data)
 
 [Vue.js](http://vuejs.org/)，中文网站：[https://cn.vuejs.org/](https://cn.vuejs.org/)
 
-通过 npm 安装：
-
-``` shell
-$ npm install --save vue
-```
+通过 npm 安装：`npm install --save vue`
 
 和 webpack 一起使用，使用 [vue-loader](https://github.com/vuejs/vue-loader) 加载 .vue 组件，通过 npm 安装：
 
@@ -491,7 +468,7 @@ module: {
 
 [Async](https://github.com/caolan/async)
 
-通过 npm 安装：`$ npm install --save async`
+通过 npm 安装：`npm install --save async`
 
 在 JavaScript 中引用：
 
@@ -506,7 +483,7 @@ var waterfall = require('async/waterfall')
 var map = require('async/map')
 ```
 
-安装 ES2015 模块：`$ npm install --save async-es`，使用 ES2015 import 语法：
+安装 ES2015 模块：`npm install --save async-es`，使用 ES2015 import 语法：
 
 ``` javascript
 import waterfall from 'async-es/waterfall'
@@ -524,7 +501,7 @@ import async from 'async-es'
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-    通过 npm 安装模块：`$ npm install es6-promise --save`，自动打补丁：
+    通过 npm 安装模块：`npm install es6-promise --save`，自动打补丁：
 
     ``` javascript
     import 'es6-promise/auto'
@@ -532,13 +509,13 @@ import async from 'async-es'
 
 * [fetch](https://github.com/github/fetch)
     
-    安装模块：`$ npm install whatwg-fetch --save`，需要注意模块的名字
+    安装模块：`npm install whatwg-fetch --save`，需要注意模块的名字
 
 ### <a name="modules">常用模块</a>
 
 * [JavaScript Cookie](https://github.com/js-cookie/js-cookie)，用于读写 cookie
 
-    安装模块：`$ npm install js-cookie --save`，常用使用方法：
+    安装模块：`npm install js-cookie --save`，常用使用方法：
 
     ``` javascript
     import Cookies from 'js-cookie'
@@ -550,11 +527,11 @@ import async from 'async-es'
 
 * [Store.js](https://github.com/marcuswestin/store.js)，使用本地储存保存数据
 
-    安装模块：`$ npm install store --save`，使用方法和 cookie 类似
+    安装模块：`npm install store --save`，使用方法和 cookie 类似
 
 * [spin.js](http://spin.js.org/)，加载动画效果
 
-    可以兼容到 IE 6，安装模块：`$ npm install spin.js --save`，使用：
+    这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js --save`，使用方式：
 
     ``` javascript
     const Spinner = require('spin.js')
