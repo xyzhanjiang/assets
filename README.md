@@ -174,6 +174,10 @@ module.exports = {
 
 #### [iHover](http://gudh.github.io/ihover/dist/index.html)
 
+#### 常用 timing-function
+
+抖动效果的贝塞尔曲线：`cubic-bezier(0.68, -0.55, 0.27, 1.55)`
+
 ### <a name="icon">Icon</a>
 
 [Font-Awesome](http://fontawesome.io/)
@@ -223,11 +227,21 @@ module.exports = {
 }
 ```
 
+#### webpack@3 兼容低版本浏览器(IE 8)策略
+
+1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)
+1. 使用 `es3ify-webpack-plugin` 插件
+
 ### <a name="es5">ECMAScript5</a>
 
-如果需要，可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器。
+一些新增 API 可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器。
 
 通过 npm 安装：`npm install --save es5-shim`
+
+``` javascript
+import 'es5-shim'
+import 'es5-shim/es5-sham'
+```
 
 一些示例：
 
@@ -267,13 +281,15 @@ module: {
 
 创建一个 .babelrc 文件：
 
-``` javascript
+``` json
 {
   "presets": ["env"]
 }
 ```
 
-支持 async/await 语法，安装 [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+#### async/await
+
+要支持 async/await 语法，需要安装 [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)，如果环境不支持 ES6 Promise 还需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
 ``` shell
 npm install --save regenerator-runtime es6-promise
@@ -286,7 +302,7 @@ import 'es6-promise/auto'
 import regeneratorRuntime from 'regenerator-runtime'
 ```
 
-编译后的代码可以支持到 IE 9
+在引入这两个模块之后，使用了 async/await 语法的代码经过编译后可以支持到 IE 9
 
 深入学习 ES6
 
@@ -296,9 +312,31 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 ### <a name="http">Http</a>
 
+#### [jQuery.ajax]
+
+全局设置响应类型为 `json`：
+
+``` javascript
+$.ajaxSetup({
+  dataType: 'json'
+})
+```
+
+在请求头里添加 `token`：
+
+``` javascript
+import Cookies from 'js-cookie'
+
+var token = Cookies.get('_csrf')
+
+$(document).ajaxSend((e, xhr, options) => {
+  xhr.setRequestHeader('X-CSRF-TOKEN', token)
+})
+```
+
 #### [axios](https://github.com/mzabriskie/axios)
 
-使用 npm 安装：`npm install --save axios`
+使用 npm 安装：`npm install --save axios`，axios 可以兼容到 IE8
 
 需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
@@ -425,6 +463,29 @@ module: {
 ``` javascript
 const template = require('./template.handlebars')
 var html = template(data)
+$('#element').html(html)
+```
+
+Object.seal
+
+``` javascript
+if (!Object.seal) {
+  Object.seal = function seal(object) {
+    if (Object(object) !== object) {
+      throw new TypeError('Object.seal can only be called on Objects.')
+    }
+    // this is misleading and breaks feature-detection, but
+    // allows "securable" code to "gracefully" degrade to working
+    // but insecure code.
+    return object
+  }
+}
+```
+
+或者安装 es5-shim：`npm install --save es5-shim`
+
+``` javascript
+require('es5-shim/es5-sham')
 ```
 
 ### <a name="vue">Vue</a>
@@ -458,9 +519,27 @@ module: {
 * 状态管理 [Vuex](https://vuex.vuejs.org/)
 * 路由 [vue-router](https://github.com/vuejs/vue-router)
 
+### <a name="angular">Angular</a>
+
+通过 npm 全局安装 TypeScript：`npm install --g angular-cli typescript`
+
+创建项目并启动：
+
+``` shell
+ng new project-name
+cd project-name
+ng serve
+```
+
+创建组件：
+
+``` shell
+ng generate component component-name
+```
+
 ### <a name="router">路由</a>
 
-[page.js](https://github.com/visionmedia/page.js)
+[Navigo](https://github.com/krasimir/navigo)
 
 [director](https://github.com/flatiron/director)
 
@@ -531,10 +610,17 @@ import async from 'async-es'
 
 * [spin.js](http://spin.js.org/)，加载动画效果
 
-    这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js --save`，使用方式：
+    这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js@2 --save`，使用方式：
 
     ``` javascript
     const Spinner = require('spin.js')
+    const spin = new Spinner().spin(document.body)
+    ```
+
+    最新版的使用方式：
+
+    ``` javascript
+    import {Spinner} from 'spin.js'
     const spin = new Spinner().spin(document.body)
     ```
 
@@ -546,7 +632,55 @@ import async from 'async-es'
 
 ### <a name="jquery-plugins">常用 jQuery 插件</a>
 
-* [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+#### [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+
+通过 npm 安装：`npm install jquery-validation@1.14.0 --save`
+
+显示特定的错误提示，使用 `showErrors` 方法：
+
+``` javascript
+validator.showErrors({
+  username: 'message'
+})
+```
+
+多个字段使用相同的 `name` 属性时，添加 `class` 校验规则：
+
+``` javascript
+$.validator.addClassRules('js-input-required', {
+  required: true
+})
+```
+
+使用时：
+
+``` html
+<input class="js-input-required" name="username" type="text">
+<input class="js-input-required" name="username" type="text">
+```
+
+#### [slick](https://github.com/kenwheeler/slick)
+
+通过 npm 安装：`npm install slick-carousel --save`
+
+基本用法：
+
+``` html
+<div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+  <div><h3>1</h3></div>
+  <div><h3>2</h3></div>
+  <div><h3>3</h3></div>
+  <div><h3>4</h3></div>
+  <div><h3>5</h3></div>
+  <div><h3>6</h3></div>
+</div>
+```
+
+需要手动调用插件：
+
+``` javascript
+$('[data-slick]').slick()
+```
 
 ### <a name="reg">常用正则</a>
 
