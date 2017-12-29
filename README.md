@@ -29,6 +29,7 @@
 1. [Http](#http)
 1. [HTML 模板](#html-template)
 1. [Vue](#vue)
+1. [Angular](#angular)
 1. [路由](#router)
 1. [异步](#async)
 1. [数据可视化](#data-visualization)
@@ -312,7 +313,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 ### <a name="http">Http</a>
 
-#### [jQuery.ajax]
+#### jQuery.ajax
 
 全局设置响应类型为 `json`：
 
