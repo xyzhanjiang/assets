@@ -2,42 +2,42 @@
 
 工作中需要使用到的一些工具，同类型的工具有不同的替代品，这不是一个囊括所有工具的完整清单
 
-## <a name="TOC">内容列表</a>
+## <a name="TOC">Table of Contents</a>
 
 ### HTML
 
 1. [Doctype](#doctype)
 1. [Meta](#meta)
-1. [IE 条件注释](#conditional-comments)
+1. [IE Conditional Comments](#conditional-comments)
 
 ### CSS
 
-1. [代码风格指南](#css-style-guide)
+1. [CSS Style Guide](#css-style-guide)
+1. [Normalize](#normalize)
 1. [PostCSS](#postcss)
-1. [重置样式](#reset)
-1. [效果](#effects)
+1. [Effects](#effects)
 1. [Icon](#icon)
 
 ### JavaScript
 
-1. [代码风格指南](#js-style-guide)
-1. [包管理工具](#package)
-1. [构建工具](#workflow)
-1. [打包工具](#bundler)
+1. [JS Style Guide](#js-style-guide)
+1. [Package](#package)
+1. [Workflow](#workflow)
+1. [Bundler](#bundler)
 1. [ECMAScript5](#es5)
 1. [ECMAScript6](#es6)
 1. [Http](#http)
-1. [HTML 模板](#html-template)
+1. [HTML Template](#html-template)
 1. [Vue](#vue)
 1. [Angular](#angular)
-1. [路由](#router)
-1. [异步](#async)
-1. [数据可视化](#data-visualization)
+1. [Router](#router)
+1. [Async](#async)
+1. [Data Visualization](#data-visualization)
 1. [Polyfill](#polyfill)
-1. [模块](#modules)
+1. [Modules](#modules)
 1. [jQuery](#jquery)
-1. [jQuery 插件](#jquery-plugins)
-1. [正则表达式](#reg)
+1. [jQuery Plugins](#jquery-plugins)
+1. [Regex](#regex)
 
 ## HTML
 
@@ -79,7 +79,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     ```
 
-### <a name="conditional-comments">IE 条件注释</a>
+### <a name="conditional-comments">IE Conditional Comments</a>
 
 ``` html
 <!--[if (lt IE 9) & (!IEMobile)]>
@@ -101,13 +101,13 @@ if (window.respond && !window.respond.mediaQueriesSupported) window.respond.upda
 
 ## CSS
 
-### <a name="css-style-guide">代码风格指南</a>
+### <a name="css-style-guide">CSS Style Guide</a>
 
 * [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
 * [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 * [Code Guide by @mdo](http://codeguide.co/#css)
 
-### <a name="reset">重置样式</a>
+### <a name="normalize">Normalize</a>
 
 推荐使用 [normalize.css](https://github.com/necolas/normalize.css) 作为重置样式表，这也是 Bootstrap 内置使用的
 
@@ -155,7 +155,7 @@ module.exports = {
 }
 ```
 
-### <a name="effects">效果</a>
+### <a name="effects">Effects</a>
 
 #### [Animate.css](https://daneden.github.io/animate.css/)
 
@@ -175,7 +175,7 @@ module.exports = {
 
 #### [iHover](http://gudh.github.io/ihover/dist/index.html)
 
-#### 常用 timing-function
+#### Timing Function
 
 抖动效果的贝塞尔曲线：`cubic-bezier(0.68, -0.55, 0.27, 1.55)`
 
@@ -185,14 +185,14 @@ module.exports = {
 
 ## JavaScript
 
-### <a name="js-style-guide">代码风格指南</a>
+### <a name="js-style-guide">JS Style Guide</a>
 
 都看看，没有什么不好，然后汲取各家所长，形成自己的风格
 
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [JavaScript Standard Style](https://github.com/feross/standard)
 
-### <a name="package">包管理工具</a>
+### <a name="package">Package</a>
 
 [npm](https://www.npmjs.com/)
 
@@ -204,11 +204,11 @@ module.exports = {
 npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 ```
 
-### <a name="workflow">构建工具</a>
+### <a name="workflow">Workflow</a>
 
 [Gulp](http://gulpjs.com/)
 
-### <a name="bundler">打包工具</a>
+### <a name="bundler">Bundler</a>
 
 [Webpack](https://webpack.github.io/)
 
@@ -228,10 +228,33 @@ module.exports = {
 }
 ```
 
-#### webpack@3 兼容低版本浏览器(IE 8)策略
+#### webpack@3 for IE 8
 
 1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)
 1. 使用 `es3ify-webpack-plugin` 插件
+    
+    Usage:
+
+    ``` shell
+    npm install es3ify-webpack-plugin --save-dev
+    ```
+
+    webpack.config.js:
+
+    ``` javascript
+    var webpack = require('webpack')
+    var es3ifyPlugin = require('es3ify-webpack-plugin')
+    var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
+
+    plugins: [
+      new es3ifyPlugin(),
+      new UglifyJsPlugin({
+        compress: {
+          properties: false
+        }
+      })
+    ]
+    ```
 
 ### <a name="es5">ECMAScript5</a>
 
@@ -244,7 +267,7 @@ import 'es5-shim'
 import 'es5-shim/es5-sham'
 ```
 
-一些示例：
+#### Example
 
 遍历 Object
 
@@ -260,7 +283,7 @@ Object.keys(obj).forEach((key) => console.log(key))
 
 使用 [Babel](https://babeljs.io/) 转化 JavaScript 代码，中文网站：[http://babeljs.cn/](http://babeljs.cn/)
 
-单独使用，通过 npm 安装：`npm install --save-dev babel-cli babel-preset-env`
+单独使用，需要安装 babel-cli：`npm install --save-dev babel-cli babel-preset-env`
 
 和 webpack 一起使用，通过 npm 安装：`npm install --save-dev babel-loader babel-core babel-preset-env webpack`
 
@@ -423,7 +446,7 @@ fetch('/url', {
 })
 ```
 
-### <a name="html-template">HTML 模板</a>
+### <a name="html-template">HTML Template</a>
 
 [Handlebars](https://github.com/wycats/handlebars.js)
 
@@ -444,7 +467,7 @@ const Handlebars = require('handlebars/runtime')
 npm install --save handlebars-loader
 ```
 
-在 webpack.config.js 里配置：
+in webpack.config.js:
 
 ``` javascript
 module: {
@@ -459,7 +482,7 @@ module: {
 }
 ```
 
-使用示例：
+example:
 
 ``` javascript
 const template = require('./template.handlebars')
@@ -467,7 +490,7 @@ var html = template(data)
 $('#element').html(html)
 ```
 
-Object.seal
+Object.seal polyfill:
 
 ``` javascript
 if (!Object.seal) {
@@ -475,9 +498,7 @@ if (!Object.seal) {
     if (Object(object) !== object) {
       throw new TypeError('Object.seal can only be called on Objects.')
     }
-    // this is misleading and breaks feature-detection, but
-    // allows "securable" code to "gracefully" degrade to working
-    // but insecure code.
+
     return object
   }
 }
@@ -501,7 +522,7 @@ require('es5-shim/es5-sham')
 npm install --save-dev vue-loader vue-template-compiler webpack
 ```
 
-在 webpack.config.js 里配置：
+in webpack.config.js:
 
 ``` javascript
 module: {
@@ -515,6 +536,18 @@ module: {
   ]
 }
 ```
+
+`vue-loader@13` update:
+
+``` javascript
+// before
+const about = require('./about.vue')
+
+// after
+const about = require('./about.vue').default
+```
+
+[release](https://github.com/vuejs/vue-loader/releases/tag/v13.0.0)
 
 * 脚手架 [vue-cli](https://github.com/vuejs/vue-cli)
 * 状态管理 [Vuex](https://vuex.vuejs.org/)
@@ -538,13 +571,27 @@ ng serve
 ng generate component component-name
 ```
 
-### <a name="router">路由</a>
+### <a name="router">Router</a>
 
-[Navigo](https://github.com/krasimir/navigo)
+#### [Navigo](https://github.com/krasimir/navigo)
 
-[director](https://github.com/flatiron/director)
+Installation: `npm install navigo --save`
 
-### <a name="async">异步</a>
+##### Usage
+
+``` javascript
+var router = new Navigo(null, true, '#!')
+
+router
+  .on(function() {
+    //
+  })
+  .resolve()
+```
+
+#### [director](https://github.com/flatiron/director)
+
+### <a name="async">Async</a>
 
 [Async](https://github.com/caolan/async)
 
@@ -570,18 +617,18 @@ import waterfall from 'async-es/waterfall'
 import async from 'async-es'
 ```
 
-### <a name="data-visualization">数据可视化</a>
+### <a name="data-visualization">Data Visualization</a>
 
 [Chart.js](http://www.chartjs.org/), [https://github.com/chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 
-### <a name="polyfill">一些常用 Polyfill</a>
+### <a name="polyfill">Polyfill</a>
 
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 * [es5-shim](https://github.com/es-shims/es5-shim)
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
-    通过 npm 安装模块：`npm install es6-promise --save`，自动打补丁：
+    installation via npm: `npm install es6-promise --save`，自动打补丁：
 
     ``` javascript
     import 'es6-promise/auto'
@@ -591,11 +638,11 @@ import async from 'async-es'
     
     安装模块：`npm install whatwg-fetch --save`，需要注意模块的名字
 
-### <a name="modules">常用模块</a>
+### <a name="modules">Modules</a>
 
-* [JavaScript Cookie](https://github.com/js-cookie/js-cookie)，用于读写 cookie
+#### [JavaScript Cookie](https://github.com/js-cookie/js-cookie)
 
-    安装模块：`npm install js-cookie --save`，常用使用方法：
+    用于读写 cookie，安装模块：`npm install js-cookie --save`，常用使用方法：
 
     ``` javascript
     import Cookies from 'js-cookie'
@@ -605,37 +652,37 @@ import async from 'async-es'
     Cookies.remove('name')
     ```
 
-* [Store.js](https://github.com/marcuswestin/store.js)，使用本地储存保存数据
+#### [Store.js](https://github.com/marcuswestin/store.js)
 
-    安装模块：`npm install store --save`，使用方法和 cookie 类似
+    使用本地储存保存数据，安装模块：`npm install store --save`，使用方法和 cookie 类似
 
-* [spin.js](http://spin.js.org/)，加载动画效果
+#### [spin.js](http://spin.js.org/)
 
-    这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js@2 --save`，使用方式：
+    加载动画效果，这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js@2 --save`，使用方式：
 
     ``` javascript
     const Spinner = require('spin.js')
     const spin = new Spinner().spin(document.body)
     ```
 
-    最新版的使用方式：
+    最新版(@3)可以兼容到 IE9，使用方式上有一些变化：
 
     ``` javascript
     import {Spinner} from 'spin.js'
     const spin = new Spinner().spin(document.body)
     ```
 
-    对于支持 CSS 动画的浏览器可以使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
+    对于支持 CSS 动画的浏览器可以考虑使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
 
 ### <a name="jquery">jQuery</a>
 
-当前最新版本兼容到 IE 9+，如果需要兼容 IE 6-8 使用 v1.12
+当前最新版本(@3)兼容到 IE 9+，如果需要兼容 IE 6-8 使用 v1.12
 
-### <a name="jquery-plugins">常用 jQuery 插件</a>
+### <a name="jquery-plugins">jQuery plugins</a>
 
 #### [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
 
-通过 npm 安装：`npm install jquery-validation@1.14.0 --save`
+Installation via npm: `npm install jquery-validation@1.14.0 --save`
 
 显示特定的错误提示，使用 `showErrors` 方法：
 
@@ -662,9 +709,9 @@ $.validator.addClassRules('js-input-required', {
 
 #### [slick](https://github.com/kenwheeler/slick)
 
-通过 npm 安装：`npm install slick-carousel --save`
+Installation via npm: `npm install slick-carousel --save`
 
-基本用法：
+example:
 
 ``` html
 <div data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
@@ -683,7 +730,9 @@ $.validator.addClassRules('js-input-required', {
 $('[data-slick]').slick()
 ```
 
-### <a name="reg">常用正则</a>
+#### [jquery-confirm](https://github.com/craftpip/jquery-confirm)
+
+### <a name="regex">Regex</a>
 
 驼峰转连字符
 
