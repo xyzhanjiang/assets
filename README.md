@@ -38,13 +38,16 @@
 1. [jQuery](#jquery)
 1. [jQuery Plugins](#jquery-plugins)
 1. [Regex](#regex)
+1. [Media](#media)
+1. [Code](#code)
 
 ## HTML
 
-### <a name="doctype">HTML5 文档类型申明</a>
+### <a name="doctype">HTML5 文档类型声明</a>
 
 ``` html
 <!DOCTYPE html>
+<html lang="zh-CN">
 ```
 
 ### <a name="meta">Meta</a>
@@ -149,7 +152,8 @@ module.exports = {
   plugins: [
     require('postcss-cssnext'),
     require('cssnano')({
-      autoprefixer: false
+      autoprefixer: false,
+      safe: true
     })
   ]
 }
@@ -231,7 +235,7 @@ module.exports = {
 #### webpack@3 for IE 8
 
 1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)
-1. 使用 `es3ify-webpack-plugin` 插件
+1. 使用 `es3ify-webpack-plugin` 插件，同时给 UglifyJs 插件配置不压缩属性：
     
     Usage:
 
@@ -258,13 +262,13 @@ module.exports = {
 
 ### <a name="es5">ECMAScript5</a>
 
-一些新增 API 可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器。
+一些新增 API 可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器(一般情况下指IE < 9)。
 
 通过 npm 安装：`npm install --save es5-shim`
 
 ``` javascript
 import 'es5-shim'
-import 'es5-shim/es5-sham'
+import 'es5-shim/es5-sham' // 按需求决定是否引入 sham
 ```
 
 #### Example
@@ -346,10 +350,10 @@ $.ajaxSetup({
 })
 ```
 
-在请求头里添加 `token`：
+从 cookie 里获取 `token` 值并添加到请求头：
 
 ``` javascript
-import Cookies from 'js-cookie'
+const Cookies = require('js-cookie')
 
 var token = Cookies.get('_csrf')
 
@@ -642,37 +646,37 @@ import async from 'async-es'
 
 #### [JavaScript Cookie](https://github.com/js-cookie/js-cookie)
 
-    用于读写 cookie，安装模块：`npm install js-cookie --save`，常用使用方法：
+用于读写 cookie，安装模块：`npm install js-cookie --save`，常用使用方法：
 
-    ``` javascript
-    import Cookies from 'js-cookie'
+``` javascript
+import Cookies from 'js-cookie'
 
-    Cookies.set('name', 'value')
-    Cookies.get('name')
-    Cookies.remove('name')
-    ```
+Cookies.set('name', 'value')
+Cookies.get('name')
+Cookies.remove('name')
+```
 
 #### [Store.js](https://github.com/marcuswestin/store.js)
 
-    使用本地储存保存数据，安装模块：`npm install store --save`，使用方法和 cookie 类似
+使用本地储存保存数据，安装模块：`npm install store --save`，使用方法和 cookie 类似
 
 #### [spin.js](http://spin.js.org/)
 
-    加载动画效果，这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js@2 --save`，使用方式：
+加载动画效果，这玩意儿可以兼容到 IE 6，安装模块：`npm install spin.js@2 --save`，使用方式：
 
-    ``` javascript
-    const Spinner = require('spin.js')
-    const spin = new Spinner().spin(document.body)
-    ```
+``` javascript
+const Spinner = require('spin.js')
+const spin = new Spinner().spin(document.body)
+```
 
-    最新版(@3)可以兼容到 IE9，使用方式上有一些变化：
+最新版(@3)可以兼容到 IE9，使用方式上有一些变化：
 
-    ``` javascript
-    import {Spinner} from 'spin.js'
-    const spin = new Spinner().spin(document.body)
-    ```
+``` javascript
+import {Spinner} from 'spin.js'
+const spin = new Spinner().spin(document.body)
+```
 
-    对于支持 CSS 动画的浏览器可以考虑使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
+对于支持 CSS 动画的浏览器可以考虑使用 [SpinKit](https://github.com/tobiasahlin/SpinKit)
 
 ### <a name="jquery">jQuery</a>
 
@@ -700,7 +704,7 @@ $.validator.addClassRules('js-input-required', {
 })
 ```
 
-使用时：
+使用时只需要给元素添加这个 class 就能对该元素应用这个校验规则：
 
 ``` html
 <input class="js-input-required" name="username" type="text">
@@ -732,6 +736,15 @@ $('[data-slick]').slick()
 
 #### [jquery-confirm](https://github.com/craftpip/jquery-confirm)
 
+Installation via npm: `npm install jquery-confirm --save`
+
+Usage:
+
+``` javascript
+import 'jquery-confirm/dist/jquery-confirm.min.css'
+require('jquery-confirm')
+```
+
 ### <a name="regex">Regex</a>
 
 驼峰转连字符
@@ -740,3 +753,53 @@ $('[data-slick]').slick()
 'userName'.replace(/([A-Z])/g, '-$1').toLowerCase() // user-name
 ```
 
+### <a name="media">Media</a>
+
+#### [pdf.js](https://github.com/mozilla/pdf.js)
+
+Installation via npm: `npm install pdfjs-dist --save`
+
+Usage
+
+``` javascript
+var pdfjsLib = require('pdfjs-dist/webpack')
+
+var loadingTask = pdfjsLib.getDocument(url)
+loadingTask.promise.then(function(pdfDocument) {
+
+  return pdfDocument.getPage(1).then(function(pdfPage) {
+
+    var viewport = pdfPage.getViewport(1.0)
+    var canvas = document.getElementById('canvas')
+    canvas.width = viewport.width
+    canvas.height = viewport.height
+    var ctx = canvas.getContext('2d')
+    var renderTask = pdfPage.render({
+      canvasContext: ctx,
+      viewport: viewport
+    })
+    return renderTask.promise
+  })
+}).catch(function(reason) {
+  console.error('Error: ' + reason)
+})
+```
+
+### <a name="code">Code</a>
+
+#### 判断是否是数组
+
+``` javascript
+var isArray = Array.isArray || function(obj) {
+  return ({}).toString.call(obj) == '[object Array]'
+}
+```
+
+仅针对 ECMAScript 3 环境；如果 ECMAScript 5 环境直接用 `Array.isArray` 方法就可以了
+
+#### 数组取最大/最小值
+
+``` javascript
+Math.max.apply(null, [1, 100, 55]) // 100
+Math.min.apply(null, [1, 100, 55]) // 1
+```
