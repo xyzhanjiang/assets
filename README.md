@@ -27,6 +27,9 @@
 1. [ECMAScript5](#es5)
 1. [ECMAScript6](#es6)
 1. [Http](#http)
+    1. [jQuery.ajax](#jquery-ajax)
+    1. [axios](#axios)
+    1. [unfetch](#unfetch)
 1. [HTML Template](#html-template)
 1. [Vue](#vue)
 1. [Angular](#angular)
@@ -234,7 +237,7 @@ module.exports = {
 
 #### webpack@3 for IE 8
 
-1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)
+1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)，自己创建模块的时候避免使用  UMD 模式。
 1. 使用 `es3ify-webpack-plugin` 插件，同时给 UglifyJs 插件配置不压缩属性：
     
     Usage:
@@ -254,8 +257,17 @@ module.exports = {
       new es3ifyPlugin(),
       new UglifyJsPlugin({
         compress: {
-          properties: false
-        }
+          properties: false,
+          warnings: false
+        },
+        output: {
+          beautify: true,
+          quote_keys: true
+        },
+        mangle: {
+          screw_ie8: false
+        },
+        sourceMap: false
       })
     ]
     ```
@@ -275,7 +287,7 @@ import 'es5-shim/es5-sham' // 按需求决定是否引入 sham
 
 遍历 Object
 
-```
+``` javascript
 var obj = {
   key1: 'value1',
   key2: 'value2'
@@ -340,7 +352,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 ### <a name="http">Http</a>
 
-#### jQuery.ajax
+#### <a name="jquery-ajax">jQuery.ajax</a>
 
 全局设置响应类型为 `json`：
 
@@ -362,7 +374,7 @@ $(document).ajaxSend((e, xhr, options) => {
 })
 ```
 
-#### [axios](https://github.com/mzabriskie/axios)
+#### <a name="axios">axios</a>
 
 使用 npm 安装：`npm install --save axios`，axios 可以兼容到 IE8
 
@@ -399,7 +411,7 @@ axios.post('/url', params)
 
 该 API 的 polyfill 可以在这里找到 [url-search-params](https://github.com/WebReflection/url-search-params) 或者也可以使用 [query-string](https://github.com/sindresorhus/query-string) 这个模块
 
-#### [unfetch](https://github.com/developit/unfetch), 一个非常小的 fetch polyfill
+#### <a name="unfetch">unfetch</a>
 
 使用 npm 安装：`npm install --save unfetch`
 
@@ -463,6 +475,14 @@ const Handlebars = require('handlebars')
 
 // or runtime only
 const Handlebars = require('handlebars/runtime')
+```
+
+注册一个 helper
+
+``` javascript
+Handlebars.registerHelper('eq', function (a, b, options) {
+  return a === b ? options.fn(this) : options.inverse(this)
+})
 ```
 
 配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，省掉了编译模板的过程，通过 npm 安装：
@@ -577,6 +597,8 @@ ng generate component component-name
 
 ### <a name="router">Router</a>
 
+客户端路由如果使用 hash 模式，将 `#` 替换为 `#!`，谷歌的爬虫才会索引这个页面的内容
+
 #### [Navigo](https://github.com/krasimir/navigo)
 
 Installation: `npm install navigo --save`
@@ -666,10 +688,11 @@ Cookies.remove('name')
 
 ``` javascript
 const Spinner = require('spin.js')
+Spinner.defaults.position = 'fixed'
 const spin = new Spinner().spin(document.body)
 ```
 
-最新版(@3)可以兼容到 IE9，使用方式上有一些变化：
+最新版(@3)可以兼容到 IE 9，使用方式上有一些变化：
 
 ``` javascript
 import {Spinner} from 'spin.js'
@@ -681,6 +704,22 @@ const spin = new Spinner().spin(document.body)
 ### <a name="jquery">jQuery</a>
 
 当前最新版本(@3)兼容到 IE 9+，如果需要兼容 IE 6-8 使用 v1.12
+
+事件节流
+
+``` javascript
+$(() => {
+  let timer = 0
+  $(window).scroll(() => {
+    if (!timer) {
+      timer = setTimeout(() => {
+        // dosomething()
+        timer = 0
+      }, 150)
+    }
+  })
+})
+```
 
 ### <a name="jquery-plugins">jQuery plugins</a>
 
