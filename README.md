@@ -99,7 +99,7 @@ lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
 
 Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
 
-另外 respond.js 需要在样式表之后加载，如果条件不允许，可以等样式表加载完成之后手动执行 respond.js
+另外 respond.js 需要在样式表之后加载，如果条件不允许，可以等样式表加载完成之后手动执行一次 respond.js
 
 ``` javascript
 if (window.respond && !window.respond.mediaQueriesSupported) window.respond.update()
@@ -148,7 +148,7 @@ module: {
 }
 ```
 
-创建一个 `postcss.config.js` 文件：
+创建一个 `postcss.config.js` 配置文件：
 
 ``` javascript
 module.exports = {
@@ -161,6 +161,8 @@ module.exports = {
   ]
 }
 ```
+
+由于两个插件都自带 autoprefixer 功能，故 cssnano 设置 autoprefixer 为 `false`
 
 ### <a name="effects">Effects</a>
 
@@ -235,52 +237,17 @@ module.exports = {
 }
 ```
 
-#### webpack@3 for IE 8
-
-1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)，自己创建模块的时候避免使用  UMD 模式。
-1. 使用 `es3ify-webpack-plugin` 插件，同时给 UglifyJs 插件配置不压缩属性：
-    
-    Usage:
-
-    ``` shell
-    npm install es3ify-webpack-plugin --save-dev
-    ```
-
-    webpack.config.js:
-
-    ``` javascript
-    var webpack = require('webpack')
-    var es3ifyPlugin = require('es3ify-webpack-plugin')
-    var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
-
-    plugins: [
-      new es3ifyPlugin(),
-      new UglifyJsPlugin({
-        compress: {
-          properties: false,
-          warnings: false
-        },
-        output: {
-          beautify: true,
-          quote_keys: true
-        },
-        mangle: {
-          screw_ie8: false
-        },
-        sourceMap: false
-      })
-    ]
-    ```
+[webpack@3 for IE 8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
 
 ### <a name="es5">ECMAScript5</a>
 
-一些新增 API 可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器(一般情况下指IE < 9)。
+一些新增 API 可以使用 [es5-shim](https://github.com/es-shims/es5-shim) 来兼容一些老旧浏览器(一般情况下指 IE < 9)。
 
 通过 npm 安装：`npm install --save es5-shim`
 
 ``` javascript
-import 'es5-shim'
-import 'es5-shim/es5-sham' // 按需求决定是否引入 sham
+require('es5-shim')
+require('es5-shim/es5-sham') // 按需求决定是否引入 sham
 ```
 
 #### Example
@@ -319,7 +286,7 @@ module: {
 }
 ```
 
-创建一个 .babelrc 文件：
+创建一个 .babelrc 配置文件：
 
 ``` json
 {
@@ -534,6 +501,8 @@ if (!Object.seal) {
 require('es5-shim/es5-sham')
 ```
 
+需要注意的是 handlebars-loader 并不会打包图片路径
+
 ### <a name="vue">Vue</a>
 
 [Vue.js](http://vuejs.org/)，中文网站：[https://cn.vuejs.org/](https://cn.vuejs.org/)
@@ -725,7 +694,7 @@ $(() => {
 
 #### [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
 
-Installation via npm: `npm install jquery-validation@1.14.0 --save`
+Installation via npm: `npm install jquery-validation --save`
 
 显示特定的错误提示，使用 `showErrors` 方法：
 
@@ -841,4 +810,10 @@ var isArray = Array.isArray || function(obj) {
 ``` javascript
 Math.max.apply(null, [1, 100, 55]) // 100
 Math.min.apply(null, [1, 100, 55]) // 1
+```
+
+#### 字符串反转
+
+``` javascript
+'abc'.split('').reverse().join('') // cba
 ```
