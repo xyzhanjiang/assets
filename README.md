@@ -9,6 +9,7 @@
 1. [Doctype](#doctype)
 1. [Meta](#meta)
 1. [IE Conditional Comments](#conditional-comments)
+1. [I Love IE 8](https://github.com/xyzhanjiang/assets/tree/master/html/ie8/)
 
 ### CSS
 
@@ -96,12 +97,6 @@ IE 中的条件注释(Conditional comments)对 IE 的版本和 IE 非 IE 有优�
 lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
 
 Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
-
-另外 respond.js 需要在样式表之后加载，如果条件不允许，可以等样式表加载完成之后手动执行一次 respond.js
-
-``` javascript
-if (window.respond && !window.respond.mediaQueriesSupported) window.respond.update()
-```
 
 ## CSS
 
