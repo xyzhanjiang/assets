@@ -40,6 +40,7 @@ if (window.respond && !window.respond.mediaQueriesSupported) window.respond.upda
 
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [fetch](https://github.com/github/fetch)
+* [background-size-polyfill](https://github.com/louisremi/background-size-polyfill)
 
 ## last-child
 
@@ -49,18 +50,29 @@ IE 8 不支持 `:last-child` 选择器，但是支持 `:first-child` 选择器�
 /* before */
 ul > li {
   border-bottom: 1px solid #ccc;
+}
 
-  &:last-child {
-    border-bottom: none;
-  }
+ul > li:last-child {
+  border-bottom: none;
 }
 
 /* after */
 ul > li {
   border-top: 1px solid #ccc;
+}
 
-  &:first-child {
-    border-bottom: none;
-  }
+ul > li:first-child {
+  border-bottom: none;
+}
+```
+
+## Input
+
+只有 `height` 的输入框文字并不会自动垂直居中，需要指定 `line-height`
+
+``` css
+input {
+	height: 30px;
+	line-height: 30px;
 }
 ```
