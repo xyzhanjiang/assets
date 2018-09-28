@@ -4,7 +4,7 @@
 
 ## html5shiv
 
-HTML5 新增加的元素在 IE 8 不能被识别，不能应用样式，需要添加[html5shiv](https://github.com/aFarkas/html5shiv)，其实现原理是通过 `document.createElement(elementName)` 创建特定元素之后即可为该元素设置样式。
+HTML5 新增加的元素在 IE 8 不能被识别，不能应用样式，需要添加 [html5shiv](https://github.com/aFarkas/html5shiv)，其实现原理是通过 `document.createElement(elementName)` 创建特定元素之后即可为该元素设置样式。
 
 ## Respond
 
@@ -24,15 +24,16 @@ if (window.respond && !window.respond.mediaQueriesSupported) window.respond.upda
 
 ## ECMAScript5
 
-[es5-shim](https://github.com/es-shims/es5-shim) 用以支持部分 es5 api，这里包含两个文件，es5-shim.js 和 es5-sham.js，shim 文件里面包含可以被完美模拟的 api，而 sham 文件里面则包含部分不能被完美模拟的 api，这些 api 并不保证和原生 api 效果一样，需要酌情使用。
+[es5-shim](https://github.com/es-shims/es5-shim) 用以支持部分 es5 api，这里面包含两个文件，es5-shim.js 和 es5-sham.js，shim 文件里面包含可以被完美模拟的 api，而 sham 文件里面则包含部分不能被完美模拟的 api，这些 api 并不保证和原生 api 效果一样，需要酌情使用。
 
-## ECMAScript6
+## ECMAScript2015
 
 [es6-shim](https://github.com/paulmillr/es6-shim) 用以支持部分 es6 api。
 
-一些单独的 polyfill
+引用大全套 polyfill 可能会造成项目中残留部分完全没用使用到的代码，所以这里有一些可以单独使用的 polyfill
 
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+* [object-assign](https://github.com/sindresorhus/object-assign)，这是一个 ponyfill
 
 ## Polyfill
 
@@ -72,7 +73,7 @@ ul > li:first-child {
 
 ``` css
 input {
-	height: 30px;
-	line-height: 30px;
+  height: 30px;
+  line-height: 30px;
 }
 ```

@@ -1,6 +1,37 @@
-# webpack@3 for IE 8
+## webpack@4 for IE 8
 
-webpack3 为了兼容 IE8 需要做的一些牺牲：
+webpack@4 兼容 IE8 方案：
+
+1. 使用 `require` 方法引用模块及样式。
+1. 配置 UglifyJs 插件
+
+    webpack.config.js:
+
+    ``` javascript
+    const webpack = require('webpack')
+    const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+    plugins: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            properties: false,
+            warnings: false
+          },
+          output: {
+            beautify: true,
+            quote_keys: true
+          },
+          ie8: true
+        },
+        sourceMap: true
+      })
+    ]
+    ```
+
+## webpack@3 for IE 8
+
+webpack@3 兼容 IE8 方案：
 
 1. 引入模块时使用 `require` 方法(也就是 commonjs)代替 `import` 关键字(es6 module)，自己创建模块的时候避免使用 UMD 模式。
 1. 使用 `es3ify-webpack-plugin` 插件将代码转化为 ES3 环境兼容
