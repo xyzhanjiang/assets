@@ -19,7 +19,7 @@ Handlebars.registerHelper('eq', function (a, b, options) {
 })
 ```
 
-配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，省掉了编译模板的过程，通过 npm 安装：
+配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，将编译模板的过程放到了打包时，节省了运行时的开销，通过 npm 安装：
 
 ``` shell
 npm install --save handlebars-loader
@@ -48,7 +48,9 @@ var html = template(data)
 $('#element').html(html)
 ```
 
-Object.seal polyfill:
+不过，需要注意的是 handlebars-loader 并不会处理模板中的图片路径之类的，如果需要的话，可以选择使用 [Handlebars template loader](https://github.com/emaphp/handlebars-template-loader)，会根据配置来处理模板中的其它资源
+
+另外，如果可能的话，有时候需要这个 Object.seal polyfill:
 
 ``` javascript
 if (!Object.seal) {
@@ -62,10 +64,8 @@ if (!Object.seal) {
 }
 ```
 
-或者安装 es5-shim：`npm install --save es5-shim`
+或者安装 es5-shim：`npm install --save es5-shim` 也是可以的
 
 ``` javascript
 require('es5-shim/es5-sham')
 ```
-
-需要注意的是 handlebars-loader 并不会打包图片路径

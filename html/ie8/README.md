@@ -22,26 +22,36 @@ respond.js 需要在样式表之后加载，如果条件不允许，比如样式
 if (window.respond && !window.respond.mediaQueriesSupported) window.respond.update()
 ```
 
-## ECMAScript5
+## ES5
 
 [es5-shim](https://github.com/es-shims/es5-shim) 用以支持部分 es5 api，这里面包含两个文件，es5-shim.js 和 es5-sham.js，shim 文件里面包含可以被完美模拟的 api，而 sham 文件里面则包含部分不能被完美模拟的 api，这些 api 并不保证和原生 api 效果一样，需要酌情使用。
 
-## ECMAScript2015
+## ES2015
 
 [es6-shim](https://github.com/paulmillr/es6-shim) 用以支持部分 es6 api。
 
 引用大全套 polyfill 可能会造成项目中残留部分完全没用使用到的代码，所以这里有一些可以单独使用的 polyfill
 
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
-* [object-assign](https://github.com/sindresorhus/object-assign)，这是一个 ponyfill
+* [object-assign](https://github.com/sindresorhus/object-assign)，这其实是一个 ponyfill
 
 ## Polyfill
 
 其他：
 
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
-* [fetch](https://github.com/github/fetch)
+* [fetch](https://github.com/github/fetch) 需要 Promise
 * [background-size-polyfill](https://github.com/louisremi/background-size-polyfill)
+
+## 伪元素
+
+伪元素选择器不支持两个冒号的写法，使用一个冒号
+
+``` css
+element:after {
+  content: "";
+}
+```
 
 ## last-child
 
@@ -63,7 +73,7 @@ ul > li {
 }
 
 ul > li:first-child {
-  border-bottom: none;
+  border-top: none;
 }
 ```
 
@@ -77,3 +87,7 @@ input {
   line-height: 30px;
 }
 ```
+
+## jQuery
+
+使用 v1.12.4

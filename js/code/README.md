@@ -1,15 +1,5 @@
 # Code
 
-#### 判断是否是数组
-
-``` javascript
-var isArray = Array.isArray || function(obj) {
-  return ({}).toString.call(obj) == '[object Array]'
-}
-```
-
-仅针对 ECMAScript 3 环境；如果 ECMAScript 5 环境直接用 `Array.isArray` 方法就可以了
-
 #### 数组取最大/最小值
 
 Math.max() 和 Math.min() 方法接受多个单独的值作为参数，如果需要获取数组当中的最大值/最小值，则需要一些技巧

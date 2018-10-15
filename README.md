@@ -25,8 +25,8 @@
 1. [Package](#package)
 1. [Workflow](#workflow)
 1. [Bundler](#bundler)
-1. [ECMAScript5](#es5)
-1. [ECMAScript2015](#es2015)
+1. [ES5](#es5)
+1. [ES2015](#es2015)
 1. [Http](#http)
     1. [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http/ajax/)
     1. [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http/axios/)
@@ -119,11 +119,11 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 * [Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
 
-### <a name="es5">ECMAScript5</a>
+### <a name="es5">ES5</a>
 
-* [ECMAScript5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
+* [ES5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
 
-### <a name="es2015">ECMAScript2015</a>
+### <a name="es2015">ES2015</a>
 
 * [Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
 * [Async Await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
