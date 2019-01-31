@@ -4,11 +4,7 @@ modal, dialog, alert
 
 ## Bootstrap
 
-将 Bootstrap v3 的 Modal 插件单独拎出来用
-
-``` shell
-npm install --save bootstrap@3
-```
+将 Bootstrap v3 的 Modal 插件单独拎出来用，installation via npm: `npm install --save bootstrap@3`
 
 Usage
 
@@ -36,15 +32,13 @@ require('bootstrap/js/modal')
         <p>内容区域</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <!-- 弹框内按钮添加 data-dismiss="modal" 属性即可点击该按钮关闭弹框 -->
         <button type="button" class="btn btn-primary">确定</button>
       </div>
     </div><!-- end .modal-content -->
   </div><!-- end .modal-dialog -->
 </div><!-- end .modal -->
 ```
-
-PS. 弹框内按钮添加 `data-dismiss="modal"` 属性即可点击该按钮关闭弹框
 
 点击某个按钮触发弹框，无需额外添加任何 JavaScript 代码
 
@@ -67,7 +61,7 @@ $('#modal').modal('show')
 Usage
 
 ``` javascript
-import swal from 'sweetalert' // 样式也在里面
+import swal from 'sweetalert' // 样式也包含在里面
 
 swal('Hello world!')
 ```
@@ -81,7 +75,7 @@ swal('Hello world!')
 Usage
 
 ``` javascript
-import Swal from 'sweetalert2' // 样式也在里面
+import Swal from 'sweetalert2' // 样式也包含在里面
 
 Swal.fire('Hello world!')
 ```
@@ -93,7 +87,7 @@ import 'sweetalert2/dist/sweetalert2.css'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 ```
 
-另外需要引用一个 ES6 Promise polyfill
+另外需要引用 ES6 Promise polyfill, WeakMap polyfill
 
 ## jquery-confirm
 

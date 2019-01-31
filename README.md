@@ -27,11 +27,8 @@
 1. [Bundler](#bundler)
 1. [ES5](#es5)
 1. [ES2015](#es2015)
-1. [Http Request](#http-request)
-    1. [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/ajax/)
-    1. [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/axios/)
-    1. [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/unfetch/)
-1. [File Upload](#file-upload)
+1. [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
+1. [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
 1. [HTML Template](#html-template)
 1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
 1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
@@ -42,8 +39,8 @@
 1. [Modules](#modules)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
 1. [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
-1. [Store](https://github.com/xyzhanjiang/assets/tree/master/js/store/)
-1. [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/modules/spin/)
+1. [Storage](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
+1. [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
 1. [Media](#media)
 1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
 
@@ -137,16 +134,6 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 * [es6features](https://github.com/lukehoban/es6features), ECMAScript 6 Features
 * [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
 * [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
-
-### <a name="http-request">Http Request</a>
-
-* [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/ajax/)
-* [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/axios/)
-* [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/unfetch/)
-
-### <a name="file-upload">File Upload</a>
-
-[upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
 
 ### <a name="html-template">HTML Template</a>
 
