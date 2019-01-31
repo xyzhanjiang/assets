@@ -9,7 +9,7 @@
 1. [Doctype](#doctype)
 1. [Meta](https://github.com/xyzhanjiang/assets/tree/master/html/meta/)
 1. [IE Conditional Comments](#conditional-comments)
-1. [I Love IE 8](https://github.com/xyzhanjiang/assets/tree/master/html/ie8/)
+1. [Compatible With IE 8](https://github.com/xyzhanjiang/assets/tree/master/html/ie8/)
 
 ### CSS
 
@@ -27,10 +27,11 @@
 1. [Bundler](#bundler)
 1. [ES5](#es5)
 1. [ES2015](#es2015)
-1. [Http](#http)
-    1. [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http/ajax/)
-    1. [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http/axios/)
-    1. [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http/unfetch/)
+1. [Http Request](#http-request)
+    1. [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/ajax/)
+    1. [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/axios/)
+    1. [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/unfetch/)
+1. [File Upload](#file-upload)
 1. [HTML Template](#html-template)
 1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
 1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
@@ -40,6 +41,9 @@
 1. [Polyfill](#polyfill)
 1. [Modules](#modules)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
+1. [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
+1. [Store](https://github.com/xyzhanjiang/assets/tree/master/js/store/)
+1. [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/modules/spin/)
 1. [Media](#media)
 1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
 
@@ -134,11 +138,15 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 * [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
 * [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
 
-### <a name="http">Http</a>
+### <a name="http-request">Http Request</a>
 
-* [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http/ajax/)
-* [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http/axios/)
-* [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http/unfetch/)
+* [jQuery.ajax](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/ajax/)
+* [axios](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/axios/)
+* [unfetch](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/unfetch/)
+
+### <a name="file-upload">File Upload</a>
+
+[upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
 
 ### <a name="html-template">HTML Template</a>
 
@@ -166,12 +174,6 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 * [fetch](https://github.com/github/fetch)
-
-### <a name="modules">Modules</a>
-
-* [JavaScript Cookie](https://github.com/js-cookie/js-cookie)
-* [Store.js](https://github.com/marcuswestin/store.js)
-* [spin.js](https://github.com/xyzhanjiang/assets/tree/master/js/modules/spin/)
 
 ### <a name="media">Media</a>
 

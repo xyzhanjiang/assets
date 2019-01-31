@@ -1,6 +1,6 @@
-# I Love IE 8
+# Compatible With IE 8
 
-项目兼容 IE 8 需要做的一些牺牲
+兼容 IE 8
 
 ## html5shiv
 
@@ -30,7 +30,7 @@ if (window.respond && !window.respond.mediaQueriesSupported) window.respond.upda
 
 [es6-shim](https://github.com/paulmillr/es6-shim) 用以支持部分 es6 api。
 
-引用大全套 polyfill 可能会造成项目中残留部分完全没用使用到的代码，所以这里有一些可以单独使用的 polyfill
+引用大全套 polyfill 可能会造成项目中残留部分完全没用使用到的代码，所以这里还有一些可以单独使用的 polyfill
 
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 * [object-assign](https://github.com/sindresorhus/object-assign)，这其实是一个 ponyfill
@@ -79,7 +79,7 @@ ul > li:first-child {
 
 ## Input
 
-只有 `height` 的输入框文字并不会自动垂直居中，需要指定 `line-height`
+只有 `height` 的输入框文字并不会自动垂直居中，需要指定 `line-height` 或者使用 `padding` 属性：
 
 ``` css
 input {
@@ -90,4 +90,4 @@ input {
 
 ## jQuery
 
-使用 v1.12.4
+使用 v1.12.4，后续版本不再兼容 IE 8
