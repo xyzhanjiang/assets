@@ -4,7 +4,7 @@ modal, dialog, alert
 
 ## Bootstrap
 
-将 Bootstrap v3 的 Modal 插件单独拎出来用，installation via npm: `npm install --save bootstrap@3`
+将 Bootstrap v3 的 Modal 插件单独拎出来用(v3 可以兼容 IE 8)，installation via npm: `npm install --save bootstrap@3`
 
 Usage
 
@@ -16,9 +16,9 @@ require('bootstrap/js/transition') // optional, 可选的是否需要过渡效�
 require('bootstrap/js/modal')
 ```
 
-如果项目样式不是基于 Bootstrap 的就需要另外单独写样式，参照 bootstrap-modal.css 文件
+如果项目样式不是基于 Bootstrap 的就需要另外为 Modal 单独写样式，参照 bootstrap-modal.css 文件
 
-基本的 HTML 结构
+基本的 HTML 结构如下
 
 ``` html
 <div class="modal fade" id="modal" tabindex="-1" role="dialog">
@@ -40,7 +40,7 @@ require('bootstrap/js/modal')
 </div><!-- end .modal -->
 ```
 
-点击某个按钮触发弹框，无需额外添加任何 JavaScript 代码
+另外需要准备一个按钮来触发弹框，无需额外添加任何 JavaScript 代码
 
 ``` html
 <button data-toggle="modal" data-target="#modal" type="button">Show modal</button>
@@ -115,7 +115,7 @@ var dialog = document.querySelector('dialog')
 dialog.showModal()
 ```
 
-polyfill, installation via npm: `npm install --save dialog-polyfill`
+使用 polyfill 之后可以兼容大部分主流浏览器，installation via npm: `npm install --save dialog-polyfill`
 
 Usage
 

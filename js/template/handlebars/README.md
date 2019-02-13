@@ -25,7 +25,7 @@ Handlebars.registerHelper('eq', function (a, b, options) {
 npm install --save handlebars-loader
 ```
 
-in webpack.config.js:
+in webpack.config.js
 
 ``` javascript
 module: {
@@ -48,9 +48,27 @@ var html = template(data)
 $('#element').html(html)
 ```
 
-不过，需要注意的是 handlebars-loader 并不会处理模板中的图片路径之类的，如果需要的话，可以选择使用 [Handlebars template loader](https://github.com/emaphp/handlebars-template-loader)，会根据配置来处理模板中的其它资源
+不过，需要注意的是 handlebars-loader 并不会处理模板中的图片路径之类的，如果需要的话，可以配置一个参数
 
-另外，如果可能的话，有时候需要这个 Object.seal polyfill:
+in webpack.config.js
+
+``` javascript
+module: {
+  rules: [
+    {
+      test: /\.handlebars$/,
+      use: [{
+        loader: 'handlebars-loader',
+        options: {
+          inlineRequires: '/images/'
+        }
+      }]
+    }
+  ]
+}
+```
+
+另外，如果可能的话，有时候需要这个 Object.seal polyfill
 
 ``` javascript
 if (!Object.seal) {
