@@ -38,11 +38,11 @@
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
 1. [Media](#media)
 1. Plugins
-  1. [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
-  1. [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
-  1. [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
-  1. [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
-  1. [Storage](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
+    1. [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
+    1. [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
+    1. [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
+    1. [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
+    1. [Storage](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
 1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
 
 ## HTML

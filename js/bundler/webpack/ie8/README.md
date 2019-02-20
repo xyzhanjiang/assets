@@ -11,22 +11,27 @@ webpack@4 兼容 IE8 方案：
     const webpack = require('webpack')
     const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-    plugins: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            properties: false,
-            warnings: false
-          },
-          output: {
-            beautify: true,
-            quote_keys: true
-          },
-          ie8: true
-        },
-        sourceMap: true
-      })
-    ]
+    module.exports = {
+      optimization: {
+        minimizer: [new UglifyJsPlugin({
+          uglifyOptions: {
+            warnings: false,
+            parse: {},
+            compress: {
+              properties: false
+            },
+            mangle: true
+            output: {
+              comments: /^!/
+            },
+            toplevel: false,
+            nameCache: null,
+            ie8: true,
+            keep_fnames: false,
+          }
+        })]
+      }
+    }
     ```
 
 ## webpack@3 for IE 8
