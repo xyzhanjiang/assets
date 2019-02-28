@@ -1,8 +1,8 @@
 # Modal
 
-modal, dialog, alert
+modal, dialog, alert...
 
-## Bootstrap
+## Bootstrap Modal Plugin
 
 将 Bootstrap v3 的 Modal 插件单独拎出来用(v3 可以兼容 IE 8)，installation via npm: `npm install --save bootstrap@3`
 
@@ -25,14 +25,17 @@ require('bootstrap/js/modal')
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title">标题</h4>
       </div>
       <div class="modal-body">
         <p>内容区域</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <!-- 弹框内按钮添加 data-dismiss="modal" 属性即可点击该按钮关闭弹框 -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <!-- 弹框内按钮添加 data-dismiss="modal" 属性即可点击该按钮关闭弹框 -->
         <button type="button" class="btn btn-primary">确定</button>
       </div>
     </div><!-- end .modal-content -->
@@ -53,20 +56,6 @@ require('bootstrap/js/modal')
 ``` javascript
 $('#modal').modal('show')
 ```
-
-## sweetalert
-
-[sweetalert](https://github.com/t4t5/sweetalert), installation via npm: `npm install --save sweetalert`
-
-Usage
-
-``` javascript
-import swal from 'sweetalert' // 样式也包含在里面
-
-swal('Hello world!')
-```
-
-该插件内置了样式和 ES6 Promise polyfill
 
 ## sweetalert2
 

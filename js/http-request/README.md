@@ -61,7 +61,7 @@ axios.post('/url', {
 全局设置请求类型为 `application/x-www-form-urlencoded`
 
 ``` javascript
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
 ```
 
 提交这种格式需要转化为查询字符串 `param1=value1&param2=value2` 格式，在客户端可以使用 `URLSearchParams` API
@@ -124,7 +124,7 @@ fetch('/url', {
 })
 ```
 
-上传文件：
+上传文件
 
 ``` javascript
 var input = document.querySelector('input[type="file"]')
@@ -138,6 +138,8 @@ fetch('/url', {
 ```
 
 ## XMLHttpRequest
+
+使用原生撸
 
 ``` javascript
 var xhr = new XMLHttpRequest()
