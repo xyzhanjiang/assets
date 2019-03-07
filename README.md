@@ -29,10 +29,8 @@
 1. [HTML Template](#html-template)
 1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
 1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
-1. [Router](#router)
 1. [Data Visualization](#data-visualization)
 1. [Polyfill](#polyfill)
-1. [Modules](#modules)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
 1. [Media](#media)
 1. Tools
@@ -40,6 +38,7 @@
     * [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
     * [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
     * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
+    * [Router](#router)
     * [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
     * [Storage](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
 1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
