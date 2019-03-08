@@ -25,7 +25,7 @@
 1. [Package](#package)
 1. [Bundler](#bundler)
 1. [ES5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
-1. [ES2015](#es2015)
+1. [ES2015 and Beyond](#es2015)
 1. [HTML Template](#html-template)
 1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
 1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
@@ -115,7 +115,7 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 * [Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
 
-### <a name="es2015">ES2015</a>
+### <a name="es2015">ES2015 and Beyond</a>
 
 * [Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
 * [Async Await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
