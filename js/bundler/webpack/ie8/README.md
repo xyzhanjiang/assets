@@ -40,7 +40,7 @@ axios.get('/url').catch(err => console.log(err))
 axios.get('/url')['catch'](err => console.log(err))
 ```
 
-可以配置一下 UglifyJs 插件自动解决这个问题
+可以通过配置 UglifyJs 插件自动解决这个问题
 
 webpack.config.js
 

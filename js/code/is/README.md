@@ -16,7 +16,7 @@ var isArray = Array.isArray || function(obj) {
 
 ``` javascript
 var isNumber = Number.isFinity || function(obj) {
-  return typeof obj == 'number' && isFinity(obj)
+  return typeof obj == 'number' && isFinite(obj)
 }
 ```
 

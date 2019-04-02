@@ -15,6 +15,8 @@ require('blueimp-file-upload')
 $('input[type="file"]').fileupload(options)
 ```
 
+该插件兼容主流浏览器，并提供丰富的功能
+
 ## XMLHttpRequest Level 2
 
 利用 XMLHttpRequest Level 2 和 FormData API 结合 rxjs/ajax 实现异步上传
@@ -34,3 +36,5 @@ rxjs.fromEvent(document.querySelector('input[type="file"]'), 'change')
     console.log(response)
   })
 ```
+
+使用 fetch api 或者 axios 同理

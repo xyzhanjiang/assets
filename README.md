@@ -74,6 +74,16 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 * [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 * [Code Guide by @mdo](http://codeguide.co/#css)
 
+### <a name="tips">Tips</a>
+
+字体大小
+
+``` css
+html {
+  -webkit-text-size-adjust: 100%;
+}
+```
+
 ### <a name="normalize">Normalize</a>
 
 推荐使用 [normalize.css](https://github.com/necolas/normalize.css) 作为重置样式表，这也是 Bootstrap 内置使用的
