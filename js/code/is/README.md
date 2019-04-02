@@ -15,7 +15,7 @@ var isArray = Array.isArray || function(obj) {
 除开 NaN 和 Infinity
 
 ``` javascript
-var isNumber = Number.isFinity || function(obj) {
+var isNumber = Number.isFinite || function(obj) {
   return typeof obj == 'number' && isFinite(obj)
 }
 ```

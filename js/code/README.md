@@ -27,3 +27,16 @@ Math.min(...[1, 100, 55]) // 1
 ``` javascript
 'userName'.replace(/([A-Z])/g, '-$1').toLowerCase() // user-name
 ```
+
+#### 判断优化
+
+``` javascript
+if (foo === 'bar' || foo === 'baz') {
+  //
+}
+
+// to
+if (['bar', 'baz'].includes(foo)) {
+  //
+}
+```
