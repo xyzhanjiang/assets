@@ -13,4 +13,6 @@ import 'es6-promise/auto'
 import regeneratorRuntime from 'regenerator-runtime'
 ```
 
-在引入这两个模块之后，使用了 async/await 语法的代码经过编译后可以支持到 IE 9
+Compatibility: IE9+
+
+Dependencies: [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime), [ES6-Promise](https://github.com/stefanpenner/es6-promise)

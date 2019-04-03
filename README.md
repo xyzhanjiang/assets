@@ -29,6 +29,7 @@
 1. [HTML Template](#html-template)
 1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
 1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
+1. [Rxjs](https://github.com/xyzhanjiang/assets/tree/master/js/rxjs/)
 1. [Data Visualization](#data-visualization)
 1. [Polyfill](#polyfill)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)

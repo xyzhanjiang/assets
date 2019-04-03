@@ -4,7 +4,7 @@ modal, dialog, alert...
 
 ## Bootstrap Modal Plugin
 
-将 Bootstrap v3 的 Modal 插件单独拎出来用(v3 可以兼容 IE 8)，installation via npm: `npm install --save bootstrap@3`
+将 Bootstrap v3 的 Modal 插件单独拎出来用(v3 可以兼容 IE8)，installation via npm: `npm install --save bootstrap@3`
 
 Usage
 
@@ -57,6 +57,10 @@ require('bootstrap/js/modal')
 $('#modal').modal('show')
 ```
 
+Compatibility: IE8+
+
+Dependencies: jQuery
+
 ## sweetalert2
 
 [sweetalert](https://github.com/sweetalert2/sweetalert2), installation via npm: `npm install --save sweetalert2`
@@ -88,6 +92,10 @@ Usage
 require('jquery-confirm/dist/jquery-confirm.min.css')
 require('jquery-confirm')
 ```
+
+Compatibility: IE8+
+
+Dependencies: jQuery
 
 ## HTML5 Dialog element
 

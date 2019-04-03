@@ -1,10 +1,10 @@
-# Compatible With IE 8
+# Compatible With IE8
 
-兼容 IE 8
+兼容 IE8
 
 ## html5shiv
 
-HTML5 新增加的元素在 IE 8 不能被识别，不能应用样式，需要添加 [html5shiv](https://github.com/aFarkas/html5shiv)，其实现原理是通过 `document.createElement(elementName)` 创建特定元素之后即可为该元素设置样式。
+HTML5 新增加的元素在 IE8 不能被识别，不能应用样式，需要添加 [html5shiv](https://github.com/aFarkas/html5shiv)，其实现原理是通过 `document.createElement(elementName)` 创建特定元素之后即可为该元素设置样式。
 
 ## Respond
 
@@ -55,7 +55,7 @@ element:after {
 
 ## last-child
 
-IE 8 不支持 `:last-child` 选择器，但是支持 `:first-child` 选择器，某些情况下可以使用 `:first-child` 替代 `:last-child`
+IE8 不支持 `:last-child` 选择器，但是支持 `:first-child` 选择器，某些情况下可以使用 `:first-child` 替代 `:last-child`
 
 ``` css
 /* before */
@@ -90,7 +90,7 @@ input {
 
 ## jQuery
 
-使用 v1.12.4，后续版本不再兼容 IE 8
+使用 v1.12.4，后续版本不再兼容 IE8
 
 ## Webpack
 

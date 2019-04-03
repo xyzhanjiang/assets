@@ -15,7 +15,9 @@ require('blueimp-file-upload')
 $('input[type="file"]').fileupload(options)
 ```
 
-该插件兼容主流浏览器，并提供丰富的功能
+Compatibility: IE6+
+
+Dependencies: jQuery
 
 ## XMLHttpRequest Level 2
 
@@ -37,4 +39,8 @@ rxjs.fromEvent(document.querySelector('input[type="file"]'), 'change')
   })
 ```
 
-使用 fetch api 或者 axios 同理
+使用 fetch api, axios 或者原生 XMLHttpRequest 对象同理
+
+Compatibility: IE10+ see [caniuse](https://caniuse.com/#feat=xhr2)
+
+Dependencies: none

@@ -38,9 +38,13 @@ $.when($.ajax({
 })
 ```
 
+Compatibility: IE6+
+
+Dependencies: none
+
 ## axios
 
-[axios](https://github.com/axios/axios), installation via npm: `npm install --save axios`，axios 可以兼容到 IE8
+[axios](https://github.com/axios/axios), installation via npm: `npm install --save axios`
 
 需要 ES6 Promise 支持，如果环境不支持 ES6 Promise 需要使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
@@ -75,6 +79,10 @@ axios.post('/url', params)
 
 该 API 的 polyfill 可以在这里找到 [url-search-params](https://github.com/WebReflection/url-search-params) 或者也可以使用 [query-string](https://github.com/sindresorhus/query-string) 这个模块
 
+Compatibility: IE8+
+
+Dependencies: none
+
 ## fetch
 
 ``` javascript
@@ -85,6 +93,10 @@ fetch('/example.html')
 ```
 
 [fetch polyfill](https://github.com/github/fetch), installation via npm: `npm install --save whatwg-fetch`
+
+Compatibility with polyfill: IE 10+ see [caniuse](https://caniuse.com/#feat=fetch)
+
+Optional dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
 ## unfetch
 
@@ -137,6 +149,10 @@ fetch('/url', {
 })
 ```
 
+Compatibility: IE8+
+
+Optional dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+
 ## XMLHttpRequest
 
 使用原生撸
@@ -151,3 +167,7 @@ xhr.onreadystatechange = function() {
 }
 xhr.send()
 ```
+
+Compatibility: IE7+
+
+Dependencies: none

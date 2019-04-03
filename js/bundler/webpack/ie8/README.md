@@ -1,4 +1,4 @@
-## webpack@4 for IE 8
+## webpack@4 for IE8
 
 webpack@4 兼容 IE8 方案
 
@@ -34,7 +34,7 @@ IE 8 不完全支持这个方法，webpack/babel 编译后的代码可能会使�
 axios.get('/url').catch(err => console.log(err))
 ```
 
-这里的 catch 在 IE 8 会报缺少标识符错误，加上引号可以解决这个问题
+这里的 catch 在 IE8 会报缺少标识符错误，加上引号可以解决这个问题
 
 ``` javascript
 axios.get('/url')['catch'](err => console.log(err))
@@ -85,7 +85,7 @@ module.exports = {
 * Default + Rest + Spread
 * Let + Const
 
-## webpack@3 for IE 8
+## webpack@3 for IE8
 
 ### Object.defineProperty
 

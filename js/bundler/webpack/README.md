@@ -4,4 +4,4 @@
 
 这里有个极简的 webpack.config.js 文件
 
-[webpack@4 for IE 8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
+[webpack@4 for IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)

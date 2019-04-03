@@ -29,6 +29,10 @@ function bar() {}
 foo(bar)
 ```
 
+Compatibility: all
+
+Dependencies: none
+
 ## Promise
 
 ``` javascript
@@ -45,7 +49,11 @@ function bar() {}
 foo().then(bar)
 ```
 
-jQuery
+Compatibility: see [caniuse](https://caniuse.com/#feat=promises)
+
+Dependencies: none
+
+## jQuery.Deferred
 
 ``` javascript
 function foo() {
@@ -61,6 +69,32 @@ function bar() {}
 foo().then(bar)
 ```
 
+Compatibility: IE6+
+
+Dependencies: jQuery 1.8+
+
 ## Async Await
 
-To be continued
+本质还是基于 promise 的
+
+``` javascript
+function foo() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      ...
+      resolve()
+    }, 100)
+  })
+}
+
+function bar() {}
+
+;(async function() {
+  await foo()
+  bar()
+})()
+```
+
+Compatibility: see [caniuse](https://caniuse.com/#feat=async-functions)
+
+Dependencies: none
