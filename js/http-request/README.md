@@ -30,9 +30,9 @@ $(document).ajaxSend((e, xhr, options) => {
 
 ``` javascript
 $.when($.ajax({
-  url: '/1'
+  url: '/api/1'
 }), $.ajax({
-  url: '/2'
+  url: '/api/2'
 })).done((res1, res2) => {
   // Do something
 })
@@ -53,7 +53,7 @@ Dependencies: none
 ``` javascript
 import axios from 'axios'
 
-axios.post('/url', {
+axios.post('/api', {
   param: 'value'
 }).then((res) => {
   // Do more
@@ -74,7 +74,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 var params = new URLSearchParams()
 params.append('param1', 'value1')
 params.append('param2', 'value2')
-axios.post('/url', params)
+axios.post('/api', params)
 ```
 
 该 API 的 polyfill 可以在这里找到 [url-search-params](https://github.com/WebReflection/url-search-params) 或者也可以使用 [query-string](https://github.com/sindresorhus/query-string) 这个模块
@@ -86,7 +86,7 @@ Dependencies: none
 ## fetch
 
 ``` javascript
-fetch('/example.html')
+fetch('/api')
   .then((response) => {
     console.log(response)
   })
@@ -94,7 +94,7 @@ fetch('/example.html')
 
 [fetch polyfill](https://github.com/github/fetch), installation via npm: `npm install --save whatwg-fetch`
 
-Compatibility with polyfill: IE 10+ see [caniuse](https://caniuse.com/#feat=fetch)
+Compatibility with polyfill: IE10+ see [caniuse](https://caniuse.com/#feat=fetch)
 
 Optional dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
@@ -155,7 +155,7 @@ Optional dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise
 
 ## XMLHttpRequest
 
-使用原生撸
+使用最基础的 XMLHttpRequest 对象
 
 ``` javascript
 var xhr = new XMLHttpRequest()

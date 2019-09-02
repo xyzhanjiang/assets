@@ -4,7 +4,7 @@
 
 ## jQuery File Upload Plugin
 
-基于 jQuery 使用 [blueimp/jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload) 插件，功能齐全，installation via npm: `npm install --save blueimp-file-upload`
+基于 jQuery 使用 [blueimp/jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload) 插件，功能齐全，扩展丰富，installation via npm: `npm install --save blueimp-file-upload`
 
 示例
 
@@ -17,7 +17,7 @@ $('input[type="file"]').fileupload(options)
 
 Compatibility: IE6+
 
-Dependencies: jQuery
+Dependencies: jQuery 1.6+, jQuery UI widget factory, jQuery Iframe Transport plugin
 
 ## XMLHttpRequest Level 2
 

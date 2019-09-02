@@ -82,7 +82,7 @@ if (!Object.seal) {
 }
 ```
 
-或者安装 es5-shim：`npm install --save es5-shim` 也是可以的
+或者 es5-shim：`npm install --save es5-shim` 已经包含了
 
 ``` javascript
 require('es5-shim/es5-sham')
