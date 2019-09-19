@@ -11,6 +11,11 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, 'src')
+    }
+  },
   module: {
     rules: [
       {
@@ -19,7 +24,12 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader
           },
-          'css-loader'
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader'
+          }
         ]
       },
       {
@@ -30,6 +40,13 @@ module.exports = {
             loader: 'babel-loader'
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
       },
       {
         test: /\.vue$/,
