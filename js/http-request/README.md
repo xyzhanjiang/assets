@@ -40,7 +40,7 @@ $.when($.ajax({
 
 Compatibility: IE6+
 
-Dependencies: none
+Dependencies: jQuery
 
 ## axios
 

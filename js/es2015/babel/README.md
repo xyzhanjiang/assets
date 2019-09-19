@@ -4,7 +4,7 @@
 
 单独使用，需要安装 babel-cli：`npm install --save-dev babel-cli babel-preset-env`
 
-和 webpack 一起使用，通过 npm 安装：`npm install --save-dev babel-loader babel-core babel-preset-env webpack`
+和 webpack 一起使用，通过 npm 安装：`npm install --save-dev @babel/core @babel/preset-env babel-loader webpack`
 
 在 webpack.config.js 里配置：
 
@@ -26,6 +26,6 @@ module: {
 
 ``` json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```

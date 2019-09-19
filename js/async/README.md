@@ -5,10 +5,13 @@
 ``` javascript
 function foo() {
   setTimeout(() => {
-    ...
+    var result = 5
   }, 100)
 }
-function bar() {}
+
+function bar(n) {
+  console.log(n)
+}
 ```
 
 想要在 foo 函数执行完毕后再执行 bar 函数有如下方式
@@ -20,11 +23,14 @@ function bar() {}
 ``` javascript
 function foo(cb) {
   setTimeout(() => {
-    ...
-    cb()
+    var result = 5
+    cb(result)
   }, 100)
 }
-function bar() {}
+
+function bar(n) {
+  console.log(n)
+}
 
 foo(bar)
 ```
@@ -39,19 +45,21 @@ Dependencies: none
 function foo() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      ...
-      resolve()
+      resolve(5)
     }, 100)
   })
 }
-function bar() {}
+
+function bar(n) {
+  console.log(n)
+}
 
 foo().then(bar)
 ```
 
 Compatibility: see [caniuse](https://caniuse.com/#feat=promises)
 
-Dependencies: none
+Dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
 ## jQuery.Deferred
 
@@ -59,12 +67,14 @@ Dependencies: none
 function foo() {
   var dfd = $.Deferred()
   setTimeout(() => {
-    ...
-    dfd.resolve()
+    dfd.resolve(5)
   }, 100)
   return dfd.promise
 }
-function bar() {}
+
+function bar(n) {
+  console.log(n)
+}
 
 foo().then(bar)
 ```
@@ -81,20 +91,21 @@ Dependencies: jQuery 1.8+
 function foo() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      ...
-      resolve()
+      resolve(5)
     }, 100)
   })
 }
 
-function bar() {}
+function bar(n) {
+  console.log(n)
+}
 
 ;(async function() {
-  await foo()
-  bar()
+  var result = await foo()
+  bar(result)
 })()
 ```
 
-Compatibility: see [caniuse](https://caniuse.com/#feat=async-functions)
+Compatibility: IE9+ see [caniuse](https://caniuse.com/#feat=async-functions)
 
-Dependencies: none
+Dependencies: [Babel](https://babeljs.io/), [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime), [ES6-Promise](https://github.com/stefanpenner/es6-promise)
