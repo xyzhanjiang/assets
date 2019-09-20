@@ -1,5 +1,7 @@
 import './style.css'
 
+import 'es6-promise/auto'
+import axios from 'axios'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 

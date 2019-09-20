@@ -8,7 +8,7 @@
 
 创建一个 index.html 页面，由于使用的是 Vue 开发单页应用，所以通常一个 html 文件就够了，内容也很简单，就一个 div#app
 
-*index.html*
+**index.html**
 
 ``` html
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
 
 创建一个 index.js 作为项目的主入口，创建一个 webpack.config.js 文件作为 Webpack 的配置文件，内容如下
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 'use strict'
@@ -35,6 +35,7 @@
 const path = require('path')
 
 module.exports = {
+  mode: 'development',
   entry: './index.js',
   output: {
     filename: 'index.js',
@@ -46,6 +47,8 @@ module.exports = {
 执行 `npm install --save-dev webpack-cli` 安装 Webpack
 
 在 package.json 文件对应的 `scripts` 处写入命令
+
+**package.json**
 
 ``` json
 {
@@ -65,6 +68,8 @@ module.exports = {
 
 在 package.json 文件对应的 `scripts` 处写入命令
 
+**package.json**
+
 ``` json
 {
   "scripts": {
@@ -74,7 +79,18 @@ module.exports = {
 }
 ```
 
-执行 `npm run dev` 即可启动本地服务，访问 localhost:8080 即可
+执行 `npm run dev` 即可启动本地服务，访问 localhost:8080 即可，8080 是默认的端口号，修改端口号配置如下
+
+**webpack.config.js**
+
+``` javascript
+module.exports = {
+  devServer: {
+    compress: true,
+    port: 9000
+  }
+}
+```
 
 ### 生成 HTML 文件
 
@@ -82,7 +98,7 @@ module.exports = {
 
 执行 `npm install --save-dev html-webpack-plugin`
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -105,7 +121,7 @@ module.exports = {
 
 在 webpack.config.js 中配置 vue-loader 用于引入 .vue 类型文件
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -131,7 +147,7 @@ module.exports = {
 
 新建一个 app.vue 文件作为路由组件的容器
 
-*app.vue*
+**app.vue**
 
 ``` html
 <template>
@@ -143,7 +159,7 @@ export default {}
 </script>
 ```
 
-*index.js*
+**index.js**
 
 ``` javascript
 import Vue from 'vue'
@@ -171,7 +187,7 @@ new Vue({
 
 新建一个 index.vue 文件作为首页
 
-*index.vue*
+**index.vue**
 
 ``` html
 <template>
@@ -189,7 +205,7 @@ export default {}
 
 添加一个 about.vue 文件作为关于页
 
-*about.vue*
+**about.vue**
 
 ``` html
 <template>
@@ -205,7 +221,7 @@ export default {}
 
 配置关于页的路由
 
-*index.js*
+**index.js**
 
 ``` javascript
 const router = new VueRouter({
@@ -230,7 +246,7 @@ const router = new VueRouter({
 
 在 src 目录中创建一个 pages 目录用来放置 vue 页面文件，将 app.vue index.vue about.vue 文件移入 pages 目录中，同时修改部分路径
 
-*index.js*
+**index.js**
 
 ``` javascript
 import appView from './src/pages/app.vue'
@@ -249,9 +265,9 @@ const router = new VueRouter({
 })
 ```
 
-像 `./src/pages/index.vue` 这种长路径写起麻烦，在 webpack.config.js 中配置一下 alias 参数
+像 `./src/pages/index.vue` 这种长路径写起比较麻烦，在 webpack.config.js 中配置一个 alias 参数
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -265,7 +281,7 @@ module.exports = {
 
 上面的页面路径可以再次改写
 
-*index.js*
+**index.js**
 
 ``` javascript
 import appView from '@/pages/app.vue'
@@ -286,7 +302,7 @@ const router = new VueRouter({
 
 同时，将路由配置单独提取出来，新建一个 routes.js 文件放在 src/js 目录中（js 目录需要新建）
 
-*routes.js*
+**routes.js**
 
 ``` javascript
 module.exports = [
@@ -301,7 +317,7 @@ module.exports = [
 ]
 ```
 
-*index.js*
+**index.js**
 
 ``` javascript
 import routes from '@/js/routes'
@@ -317,7 +333,7 @@ const router = new VueRouter({
 
 执行 `npm install --save-dev @babel/core @babel/preset-env babel-loader`
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -339,7 +355,7 @@ module.exports = {
 
 创建一个 .babelrc 文件（不知道怎么创建？可以直接从该项目中复制）
 
-*.babelrc*
+**.babelrc**
 
 ``` json
 {
@@ -349,9 +365,9 @@ module.exports = {
 
 ### CSS
 
-项目中肯定会用到 CSS，新建一个 style.css 样式文件
+项目中肯定会用到 CSS，新建一个 style.css 样式文件，随意写了点样式
 
-*style.css*
+**style.css**
 
 ``` css
 @charset "utf-8";
@@ -364,17 +380,17 @@ body {
 
 直接在 index.js 里面引用
 
-*index.js*
+**index.js**
 
 ``` javascript
 import './style.css'
 ```
 
-由于这里直接在 js 文件中引用了 css 文件，所以需要 [css-loader](https://github.com/webpack-contrib/css-loader)
+由于这里直接在 js 文件中引用了 css 文件，所以需要 [css-loader](https://github.com/webpack-contrib/css-loader) 来处理
 
 执行 `npm install --save-dev css-loader style-loader`
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -398,7 +414,7 @@ module.exports = {
 
 另外也可以在 vue 文件里面写 CSS
 
-*index.vue*
+**index.vue**
 
 ``` html
 <template>
@@ -418,7 +434,7 @@ h1 {
 </style>
 ```
 
-两种方式都可以选择使用
+两种方式可以根据具体需求选择使用
 
 ### 提取样式文件
 
@@ -426,7 +442,7 @@ h1 {
 
 执行 `npm install --save-dev mini-css-extract-plugin`
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -438,7 +454,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader // 代替 style-loader
           },
           {
             loader: 'css-loader'
@@ -461,7 +477,7 @@ module.exports = {
 
 执行 `npm install --save-dev file-loader`
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -478,7 +494,7 @@ module.exports = {
 
 准备一张图片 logo.gif 放在 src/images 目录中（images 目录需要新建，这张图片是用来测试的）
 
-*index.vue*
+**index.vue**
 
 ``` html
 <template>
@@ -501,7 +517,7 @@ h1 {
 
 执行 `npm run build` 打包后发现图片已经成功打包进来了，但是图片的名称改变了，如果不希望改变图片名称，可以给 file-loader 配置参数
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -511,7 +527,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
         options: {
-          name: '[path][name].[ext]'
+          name: 'images/[name].[ext]'
         }
       }
     ]
@@ -527,7 +543,7 @@ module.exports = {
 
 创建一个 postcss.config.js 文件
 
-*postcss.config.js*
+**postcss.config.js**
 
 ``` javascript
 module.exports = {
@@ -539,7 +555,7 @@ module.exports = {
 }
 ```
 
-*webpack.config.js*
+**webpack.config.js**
 
 ``` javascript
 module.exports = {
@@ -564,6 +580,51 @@ module.exports = {
 }
 ```
 
+### CSS 预处理
+
+这里使用 [postcss-preset-env](https://github.com/csstools/postcss-preset-env) 来预处理 CSS（也可以使用 Sass 或者 Less 等）
+
+执行 `npm install --save-dev postcss-preset-env`
+
+在 postcss.config.js 里增加配置
+
+**postcss.config.js**
+
+``` javascript
+module.exports = {
+  plugins: {
+    'postcss-preset-env': {},
+    'cssnano': {
+      autoprefixer: false,
+      safe: true
+    }
+  }
+}
+```
+
+### HTTP 请求
+
+使用 [Axios](https://github.com/axios/axios) 发送 HTTP 请求
+
+执行 `npm install --save axios es6-promise`
+
+**index.js**
+
+``` javascript
+import 'es6-promise/auto'
+import axios from 'axios'
+```
+
 ### 打包
+
+配置 mode 参数
+
+**webpack.config.js**
+
+``` javascript
+module.exports = {
+  mode: 'production'
+}
+```
 
 执行 `npm run build` 即可打包，打包后生成的文件都在 dist 目录中

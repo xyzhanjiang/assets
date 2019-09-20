@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+  mode: 'production',
   entry: './index.js',
   output: {
     filename: 'index.js',
@@ -45,7 +46,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
         options: {
-          name: '[path][name].[ext]'
+          name: 'images/[name].[ext]'
         }
       },
       {
@@ -67,5 +68,9 @@ module.exports = {
       filename: '[name].css'
     }),
     new VueLoaderPlugin()
-  ]
+  ],
+  devServer: {
+    compress: true,
+    port: 9000
+  }
 }
