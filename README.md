@@ -125,12 +125,15 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="bundler">Bundler</a>
 
-* [Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
+[Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
+
+* [从零开始使用 Webpack 搭建 Vue 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/vue)
+* [让 Webpack 项目兼容 IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
 
 ### <a name="es2015">ES2015 and Beyond</a>
 
-* [Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
-* [Async Await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
+* [在 Webpack 项目中配置 Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
+* [在 Webpack 项目中配置支持 async/await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
 
 深入学习 ES2015
 

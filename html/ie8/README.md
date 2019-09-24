@@ -94,4 +94,4 @@ input {
 
 ## Webpack
 
-[webpack@4 for IE 8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
+[让 Webpack 项目兼容 IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)

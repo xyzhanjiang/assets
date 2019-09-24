@@ -1,12 +1,16 @@
-# Babel
+# 在 Webpack 项目中配置 Babel
 
 使用 [Babel](https://babeljs.io/) 转化 JavaScript 代码，中文网站：[http://babeljs.cn/](http://babeljs.cn/)
 
-单独使用，需要安装 babel-cli：`npm install --save-dev babel-cli babel-preset-env`
+和 Webpack 一起使用，需要安装如下模块
 
-和 webpack 一起使用，通过 npm 安装：`npm install --save-dev @babel/core @babel/preset-env babel-loader webpack`
+``` shell
+npm install --save-dev @babel/core @babel/preset-env babel-loader webpack
+```
 
-在 webpack.config.js 里配置：
+同时在 webpack.config.js 里配置
+
+**webpack.config.js**
 
 ``` javascript
 module: {
@@ -22,10 +26,14 @@ module: {
 }
 ```
 
-创建一个 .babelrc 配置文件：
+创建一个 .babelrc 配置文件
+
+**.babelrc**
 
 ``` json
 {
   "presets": ["@babel/preset-env"]
 }
 ```
+
+即可
