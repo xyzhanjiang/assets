@@ -1,8 +1,10 @@
-# [Handlebars](https://github.com/wycats/handlebars.js)
+# 在 Webpack 项目中使用 Handlebars
+
+[Handlebars](https://github.com/wycats/handlebars.js)
 
 通过 npm 安装：`npm install --save handlebars`
 
-引用：
+在项目中引用
 
 ``` javascript
 const Handlebars = require('handlebars')

@@ -143,7 +143,7 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="html-template">HTML Template</a>
 
-* [Handlebars](https://github.com/xyzhanjiang/assets/tree/master/js/template/handlebars/)
+* [在 Webpack 项目中使用 Handlebars](https://github.com/xyzhanjiang/assets/tree/master/js/template/handlebars/)
 
 ### <a name="router">Router</a>
 

@@ -481,7 +481,7 @@ module.exports = {
 
 ### CSS
 
-项目中肯定会用到 CSS，新建一个 style.css 样式文件，随意写了点样式
+项目中肯定会用到 CSS，首先新建一个 style.css 样式文件，项目中的样式就可以写在这里面
 
 **project**
 
@@ -496,22 +496,16 @@ module.exports = {
   ...
 ```
 
-**style.css**
+然后安装 [Normalize.css](https://github.com/necolas/normalize.css) 用于使各种浏览器呈现一致的效果，这只是一种样式初始化方案，是可选的，另外也可以选择 [Bootstrap](https://github.com/twbs/bootstrap) 或者 [Bulma](https://github.com/jgthms/bulma) 等包含更多样式的样式库来作为开发的基础
 
-``` css
-@charset "utf-8";
-
-body {
-  color: #36f;
-  margin: 0;
-}
-```
+执行 `npm install --save normalize.css`
 
 直接在 index.js 里面引用
 
 **index.js**
 
 ``` javascript
+import 'normalize.css'
 import './style.css'
 // ...
 ```
@@ -564,7 +558,7 @@ h1 {
 </style>
 ```
 
-两种方式可以根据具体需求选择使用
+两种写样式的方式可以根据具体需求选择使用
 
 ### 提取样式文件
 
