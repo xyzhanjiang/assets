@@ -753,16 +753,16 @@ module.exports = {
 
 **postcss.config.js**
 
-``` javascript
-module.exports = {
-  plugins: {
-    'postcss-preset-env': {},
-    'cssnano': {
-      autoprefixer: false, // 这里两个插件都包含了 autoprefixer，只执行其中一个就行
-      safe: true
+``` diff
+  module.exports = {
+    plugins: {
++     'postcss-preset-env': {},
+      'cssnano': {
++       autoprefixer: false, // 这里两个插件都包含了 autoprefixer，只执行其中一个就行
+        safe: true
+      }
     }
   }
-}
 ```
 
 ### HTTP 请求
@@ -773,10 +773,72 @@ module.exports = {
 
 **index.js**
 
-``` javascript
-import 'es6-promise/auto'
-import axios from 'axios'
+``` diff
++ import 'es6-promise/auto'
++ import axios from 'axios'
+
+  // ...
 ```
+
+在项目中发送一个请求
+
+**index.js**
+
+``` diff
+  import 'es6-promise/auto'
+  import axios from 'axios'
+
++ axios.post('/login')
+
+  // ...
+```
+
+运行后这个请求明显会返回一个 404，那么如何让它返回有效的数据呢，在 webpack.config.js 里配置 `devServer` 参数
+
+**webpack.config.js**
+
+``` diff
+  module.exports = {
+    // ...
+    devServer: {
++     before(app, server) {
++       app.post('/login', (req, res) => {
++         res.json({success: true})
++       })
++     },
+      compress: true,
+      port: 8080
+    }
+  }
+```
+
+重新启动后，就可以看到请求 /login 地址返回了数据 `{"success": true}`，这样就可以在本地调试接口了
+
+当然，所有接口都这样写未免麻烦，可以用 `proxy` 参数将请求接口代理到其它地址去
+
+**webpack.config.js**
+
+``` diff
+  module.exports = {
+    // ...
+    devServer: {
+      before(app, server) {
+        app.post('/login', (req, res) => {
+          res.json({success: true})
+        })
+      },
++     proxy: {
++       '/api': {
++         target: 'http://localhost:3000'
++       }
++     },
+      compress: true,
+      port: 8080
+    }
+  }
+```
+
+这时，例如请求 /api/posts 实际上会被代理到 http://localhost:3000/api/posts
 
 ### 打包
 

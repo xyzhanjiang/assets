@@ -21,13 +21,13 @@ Handlebars.registerHelper('eq', function (a, b, options) {
 })
 ```
 
-配合 webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，将编译模板的过程放到了打包时，节省了运行时的开销，通过 npm 安装：
+配合 Webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，将编译模板的过程放到了打包时，节省了运行时的开销，通过 npm 安装
 
 ``` shell
-npm install --save handlebars-loader
+npm install --save-dev handlebars-loader
 ```
 
-in webpack.config.js
+**webpack.config.js**
 
 ``` javascript
 module: {
@@ -42,7 +42,7 @@ module: {
 }
 ```
 
-example:
+example
 
 ``` javascript
 const template = require('./template.handlebars')
@@ -52,7 +52,7 @@ $('#element').html(html)
 
 不过，需要注意的是 handlebars-loader 并不会处理模板中的图片路径之类的，如果需要的话，可以配置一个参数
 
-in webpack.config.js
+**webpack.config.js**
 
 ``` javascript
 module: {

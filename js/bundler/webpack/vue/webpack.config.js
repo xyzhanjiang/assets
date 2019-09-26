@@ -70,6 +70,16 @@ module.exports = {
     new VueLoaderPlugin()
   ],
   devServer: {
+    before(app, server) {
+      app.post('/login', (req, res) => {
+        res.json({success: true})
+      })
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000'
+      }
+    },
     compress: true,
     port: 8080
   }

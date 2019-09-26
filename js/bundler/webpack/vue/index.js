@@ -20,3 +20,5 @@ new Vue({
   router,
   render(h) { return h(appView) }
 })
+
+axios.post('/login')

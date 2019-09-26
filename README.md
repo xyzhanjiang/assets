@@ -169,3 +169,12 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 ### <a name="media">Media</a>
 
 * [pdf.js](https://github.com/xyzhanjiang/assets/tree/master/js/media/pdf/)
+
+### <a name="other">Other</a>
+
+* [处理异步的几种方法](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
+* [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
+* [Http 请求](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
+* [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
+* [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
+* [客户端存储](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
