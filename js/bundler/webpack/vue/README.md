@@ -203,6 +203,7 @@ import appView from 'app.vue'
 
 Vue.use(VueRouter)
 
+// 路由实例化
 const router = new VueRouter({
   routes: [
     {
@@ -214,7 +215,7 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
-  router,
+  router, // 将路由实例传入
   render(h) { return h(appView) }
 })
 ```
@@ -285,6 +286,7 @@ export default {}
 ``` javascript
 // ...
 
+// 路由实例化
 const router = new VueRouter({
   routes: [
     {
@@ -332,6 +334,7 @@ const router = new VueRouter({
 
 import appView from './src/pages/app.vue'
 
+// 路由实例化
 const router = new VueRouter({
   routes: [
     {
@@ -370,6 +373,7 @@ module.exports = {
 
 import appView from '@/pages/app.vue'
 
+// 路由实例化
 const router = new VueRouter({
   routes: [
     {
@@ -408,6 +412,7 @@ const router = new VueRouter({
 **routes.js**
 
 ``` javascript
+// 这个文件输出的是一个数组
 module.exports = [
   {
     path: '/',
@@ -429,6 +434,7 @@ module.exports = [
 
 + import routes from '@/js/routes'
 
+  // 路由实例化
   const router = new VueRouter({
 +   routes
 -   routes: [
