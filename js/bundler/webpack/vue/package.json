@@ -4,7 +4,7 @@
   "description": "none",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server & json-server --watch db.json",
+    "dev": "webpack-dev-server",
     "build": "webpack"
   },
   "author": "",

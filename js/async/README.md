@@ -5,39 +5,65 @@
 ``` javascript
 function foo() {
   setTimeout(() => {
-    var result = 5
+    console.log('foo done')
   }, 100)
 }
 
-function bar(n) {
-  console.log(n)
+function bar() {
+  console.log('bar done')
 }
 ```
 
-想要在 foo 函数执行完毕后再执行 bar 函数有如下方式
+无论怎么指定执行顺序
+
+``` javascript
+foo()
+bar()
+```
+
+最后控制台得到的结果都是
+
+``` diff
+bar done
+foo done
+```
+
+如何在 foo 函数执行完毕后再执行 bar 函数呢，有如下方式
 
 ## 回调函数
 
-将 bar 函数作为参数传递给 foo 函数
+将 bar 函数作为参数传递给 foo 函数，在 foo 函数内部执行传入的 bar 函数
 
 ``` javascript
 function foo(cb) {
   setTimeout(() => {
-    var result = 5
-    cb(result)
+    console.log('foo done')
+    cb()
   }, 100)
 }
 
-function bar(n) {
-  console.log(n)
+function bar() {
+  console.log('bar done')
 }
 
-foo(bar)
+foo(bar) // foo done, bar done
 ```
 
-Compatibility: all
+回调函数是最基础的处理异步的方式，但是它有个最大的问题就是回调地狱
 
-Dependencies: none
+``` javascript
+foo(function(result1) {
+  callback1(function(result2) {
+    callback2(function(result3) {
+      callback3(function(result4) {
+        // ...
+      })
+    })
+  })
+})
+```
+
+像这样一层又一层，代码将会被向右推到天边去，为了解决这个问题，推出了 Promise
 
 ## Promise
 
@@ -45,43 +71,59 @@ Dependencies: none
 function foo() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(5)
+      console.log('foo done')
+      resolve()
     }, 100)
   })
 }
 
-function bar(n) {
-  console.log(n)
+function bar() {
+  console.log('bar done')
 }
 
-foo().then(bar)
+foo().then(bar) // foo done, bar done
 ```
 
-Compatibility: see [caniuse](https://caniuse.com/#feat=promises)
+咋看之下比回调函数还复杂，但是把回调地狱的代码使用 Promise 方式改写将变得清晰
 
-Dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+``` javascript
+foo().then(function(result1) {
+  return callback1()
+}).then(function(result2) {
+  return callback2()
+}).then(function(result3) {
+  callback3()
+}).then(function(result4) {
+  // ...
+})
+```
+
+至少不会无止尽地向右推了
+
+相关兼容性可以参考 [caniuse](https://caniuse.com/#feat=promises)，polyfill 可以使用 [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 
 ## jQuery.Deferred
+
+jQuery 也有自己的 Promise 实现，使用方式如下
 
 ``` javascript
 function foo() {
   var dfd = $.Deferred()
   setTimeout(() => {
-    dfd.resolve(5)
+    console.log('foo done')
+    dfd.resolve()
   }, 100)
   return dfd.promise
 }
 
-function bar(n) {
-  console.log(n)
+function bar() {
+  console.log('bar done')
 }
 
-foo().then(bar)
+foo().then(bar) // foo done, bar done
 ```
 
-Compatibility: IE6+
-
-Dependencies: jQuery 1.8+
+jQuery 从 1.5 版本开始支持，但是 1.8 版本更完善
 
 ## Async Await
 
@@ -91,21 +133,20 @@ Dependencies: jQuery 1.8+
 function foo() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(5)
+      console.log('foo done')
+      resolve()
     }, 100)
   })
 }
 
-function bar(n) {
-  console.log(n)
+function bar() {
+  console.log('bar done')
 }
 
 ;(async function() {
-  var result = await foo()
-  bar(result)
-})()
+  await foo()
+  bar()
+})() // foo done, bar done
 ```
 
-Compatibility: IE9+ see [caniuse](https://caniuse.com/#feat=async-functions)
-
-Dependencies: [Babel](https://babeljs.io/), [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime), [ES6-Promise](https://github.com/stefanpenner/es6-promise)
+相关兼容性可以参考 [caniuse](https://caniuse.com/#feat=async-functions)

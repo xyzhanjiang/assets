@@ -384,7 +384,7 @@ const router = new VueRouter({
 })
 ```
 
-同时，将路由配置单独提取出来，新建一个 routes.js 文件放在 src/js 目录中（js 目录需要新建）
+同时，可以将路由配置提取出来放在一个单独的文件中，新建一个 routes.js 文件放在 src/js 目录中（js 目录需要新建）
 
 **project**
 
@@ -403,6 +403,8 @@ const router = new VueRouter({
       |- index.vue
 ```
 
+单独的路由文件
+
 **routes.js**
 
 ``` javascript
@@ -418,16 +420,28 @@ module.exports = [
 ]
 ```
 
+修改 index.js 中路由相关
+
 **index.js**
 
-``` javascript
-// ...
+``` diff
+  // ...
 
-import routes from '@/js/routes'
++ import routes from '@/js/routes'
 
-const router = new VueRouter({
-  routes
-})
+  const router = new VueRouter({
++   routes
+-   routes: [
+-     {
+-       path: '/',
+-       component: require('@/pages/index.vue').default
+-     },
+-     {
+-       path: '/about',
+-       component: require('@/pages/about.vue').default
+-     },
+-   ]
+  })
 ```
 
 ### 配置 Babel
@@ -838,7 +852,7 @@ module.exports = {
   }
 ```
 
-这时，例如请求 /api/posts 实际上会被代理到 http://localhost:3000/api/posts
+这时，例如请求 /api/posts 实际上会被代理到 `http://localhost:3000/api/posts`
 
 ### 打包
 
