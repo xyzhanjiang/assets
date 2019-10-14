@@ -33,6 +33,8 @@
 </html>
 ```
 
+接着创建一个 index.js 作为项目的主入口，创建一个 webpack.config.js 文件作为 Webpack 的配置文件，内容如下
+
 **project**
 
 ``` diff
@@ -43,7 +45,7 @@
 + |- webpack.config.js
 ```
 
-创建一个 index.js 作为项目的主入口，创建一个 webpack.config.js 文件作为 Webpack 的配置文件，内容如下
+Webpack 相关的配置都写在这个文件里面
 
 **webpack.config.js**
 
@@ -61,6 +63,8 @@ module.exports = {
   }
 }
 ```
+
+index.js 作为项目的主入口，目前还没有任何内容
 
 执行 `npm install --save-dev webpack-cli` 安装 Webpack
 

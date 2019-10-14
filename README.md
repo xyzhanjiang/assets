@@ -37,7 +37,7 @@
 1. [Media](#media)
 1. Others
     * [Async](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
-    * [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
+    * [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
     * [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
     * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
     * [Router](#router)
@@ -173,7 +173,7 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 ### <a name="other">Other</a>
 
 * [处理异步的几种方法](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
-* [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/file-upload/)
+* [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
 * [Http 请求](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
 * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
 * [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)

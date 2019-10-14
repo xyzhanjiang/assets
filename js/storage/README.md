@@ -2,7 +2,7 @@
 
 ## Cookie
 
-Cookie 是一种非常基础的客户端存储方式
+Cookie 是一种非常基础的客户端存储方式，得到广泛的支持
 
 创建多个 cookie 的方法
 
@@ -13,13 +13,13 @@ document.cookie = 'age=18'
 
 当创建多个 cookie 时只能像这样一个一个地创建，无法一次性创建多个
 
-同一名字的 cookie 在同一域、路径下只能存在一个，因此再创建一个同名 cookie 相当于修改原有的 cookie
+同一名字的 cookie 只能存在一个，因此再创建一个同名 cookie 相当于修改原有的 cookie
 
 ``` javascript
 document.cookie = 'age=20'
 ```
 
-此时名为 `age` 的 cookie 的值由 `18` 变为 `20`
+此时名为 `age` 的 cookie 的值由 `18` 变为了 `20`
 
 在创建 cookie 时还可以指定元数据，比如默认情况下，cookie 会在浏览器关闭时删除，如果指定一个失效时间，则该条 cookie 可以存储到指定的这个时间
 
@@ -39,6 +39,14 @@ console.log(cookies) // "name=Jim; age=20; ..."
 很可惜，没有方法来获取指定的某条 cookie，也无法获取 cookie 的元数据
 
 如果需要获取特定的某条 cookie 的值，只能对得到的 cookie 字符串进行操作了
+
+用正则来匹配指定的 cookie 值
+
+``` javascript
+var age = /age=([^;]+);?/.exec(document.cookie)[1]
+```
+
+在浏览器开发者工具中可以直接查看和编辑 cookie
 
 这里有个库可以简单地操作 cookie，[JavaScript Cookie](https://github.com/js-cookie/js-cookie)
 
@@ -108,7 +116,7 @@ window.addEventListener('storage', function(event) {
 localStorage.setItem('username', 'Jim')
 ```
 
-执行上面的代码，发现什么都不会发生，因为 storage 事件需要在浏览器的另一个实例中修改 Web Storage 才会触发，打开一个浏览器新标签页，输入相同的地址，在新标签页里修改 Web Storage
+执行上面的代码，会发现什么都没有发生，因为 storage 事件需要在浏览器的另一个实例中修改 Web Storage 才会触发，打开一个浏览器新标签页，输入相同的地址，在新标签页里修改 Web Storage
 
 ``` javascript
 localStorage.setItem('username', 'Lee')
@@ -121,5 +129,7 @@ localStorage.setItem('username', 'Lee')
 新值: Lee
 键名: username
 ```
+
+在浏览器开发者工具中可以直接查看和编辑 Local Storage 和 Session Storage
 
 这里有个库可以更方便地操作 Web Storage，[Store.js](https://github.com/marcuswestin/store.js)，该库为那些不支持 Web Storage 的浏览器还提供了兼容方案
