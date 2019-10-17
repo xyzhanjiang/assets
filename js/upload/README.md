@@ -6,7 +6,7 @@
 <input multiple type="file">
 ```
 
-点击这个输入框就可以选择文件，选中的文件可以通过输入框的 `files` 属性访问，这会得到一个 FileList，这是一个集合，如果只选择了一个文件，那么集合中的第一个元素就是这个文件
+点击这个输入框就可以打开浏览文件对话框选择文件了，选中的文件可以通过输入框的 `files` 属性访问，这会得到一个 FileList，这是一个集合，如果只选择了一个文件，那么集合中的第一个元素就是这个文件
 
 ``` javascript
 var input = document.querySelector('input[type="file"]')
@@ -17,7 +17,7 @@ console.log(file.size) // 文件大小
 console.log(file.type) // 文件类型
 ```
 
-一般一个输入框上传一个文件就行，要上传多个文件也可以用多个输入框来处理
+一般一个输入框上传一个文件就行，要上传多个文件也可以用多个输入框来处理（为了兼容那些不支持 multiple 属性的浏览器）
 
 ### 基本上传
 
@@ -46,36 +46,42 @@ console.log(file.type) // 文件类型
 
 ### 异步上传
 
-XMLHttpRequest Level 2 提供了异步上传的能力，让上传文件变得简单，通常情况下使用 FormData 对象来包装数据
+XMLHttpRequest Level 2 提供了异步上传的能力，让上传文件变得简单，通常情况下优先使用 FormData 对象来包装需要提交的数据，FormData 是一个构造函数，使用的时候先 new 一个实例，然后通过实例的 append 方法添加数据，直接把需要上传的文件添加进去
 
 ``` javascript
 var formData = new FormData()
-formData.append('file', file, file.name)
+formData.append('file', file, file.name) // 第 3 个参数是文件名称
+```
 
+数据准备好后，就是上传了
+
+``` javascript
 var xhr = new XMLHttpRequest()
 xhr.open('POST', '/upload/url', true)
 xhr.send(formData)
 ```
 
+这就行了
+
 ### 上传进度
 
-XMLHttpRequest Level 2 提供了 progress 事件，基于这个事件可以知道上传进度如何
+XMLHttpRequest Level 2 还提供了 progress 事件，基于这个事件可以知道上传进度如何
 
 ``` javascript
 var xhr = new XMLHttpRequest()
 xhr.open('POST', '/upload/url', true)
 xhr.upload.onprogress = function(e) {
-  console.log(e)
+  // ...
 }
 ```
 
-使用这个事件的 loaded（已上传字节数） 和 total（总数） 属性来计算上传的进度
+上传的 progress 事件由 xhr.upload 对象触发，在事件处理程序中使用这个事件对象的 loaded（已上传字节数） 和 total（总数） 属性来计算上传的进度
 
 ``` javascript
 var percent = Math.round((e.loaded / e.total) * 100)
 ```
 
-上面的计算会得到一个表示完成百分比的数字，比如 `43`，不过这两个值也不一定总会有，保险一点先判断一下事件对象的 lengthComputable 属性
+上面的计算会得到一个表示完成百分比的数字，不过这两个值也不一定总会有，保险一点先判断一下事件对象的 lengthComputable 属性
 
 ``` javascript
 if (e.lengthComputable) {
@@ -83,15 +89,44 @@ if (e.lengthComputable) {
 }
 ```
 
+将得到的数字赋值给 progress 元素即可展示上传进度
+
 ### 选择类型
 
-给文件输入框添加 `accept` 属性即可指定选择文件的类型，比如需要选择 png 格式的图片，则值为 `image/png`，如果是所有图片类型，就是 `image/*`
+给文件输入框添加 `accept` 属性即可指定选择文件的类型，比如要选择 png 格式的图片，则指定其值为 `image/png`，如果要允许选择所有类型的图片，就是 `image/*`
 
 ``` html
 <input accept="image/*" type="file">
 ```
 
 添加 `capture` 属性可以调用设备机能，比如 `capture="camera"` 可以调用相机拍照，不过这并不是一个标准属性，不同设备实现方式也不一样，需要注意
+
+``` html
+<input accept="image/*" capture="camera" type="file">
+```
+
+经测 iOS 设备添加该属性后只能拍照而不能从相册选择文件了，所以判断一下
+
+``` javascript
+if (iOS) {
+  input.removeAttribute('capture')
+}
+```
+
+### 自定义样式
+
+文件输入框在各个浏览器中呈现的样子都不大相同，而且给 input 定义样式也不是那么方便，如果有需要应用自定义样式，有一个技巧，可以用一个 label 关联到这个文件输入框，当点击这个 label 元素的时候就会触发文件输入框的点击，打开浏览文件的对话框，相当于点击了文件输入框一样的效果
+
+``` html
+<label for="file-input"></label>
+<input id="file-input" style="clip: rect(0,0,0,0); position: absolute;" type="file">
+```
+
+这时就可以将原本的文件输入框隐藏了，然后给 label 元素任意地应用样式，毕竟要给 label 元素应用样式比 input 方便得多
+
+## 示例
+
+下面是一些实际场景示例
 
 ### jQuery File Upload Plugin
 
@@ -114,7 +149,7 @@ Dependencies: jQuery 1.6+, jQuery UI widget factory, jQuery Iframe Transport plu
 
 使用 Axios 上传文件
 
-``` jsvascript
+``` javascript
 import axios from 'axios'
 
 document.querySelector('input[type="file"]').addEventListener('change', function(e) {
@@ -142,7 +177,7 @@ Dependencies: none
 
 使用 rxjs/ajax 方法上传文件
 
-``` jsvascript
+``` javascript
 import * as rxjs from 'rxjs'
 import { concatMap, filter } from 'rxjs/operators'
 import { ajax } from 'rxjs/ajax'
