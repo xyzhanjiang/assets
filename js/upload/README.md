@@ -6,7 +6,7 @@
 <input multiple type="file">
 ```
 
-点击这个输入框就可以打开浏览文件对话框选择文件了，一般一个输入框上传一个文件就行，要上传多个文件也可以用多个输入框来处理（为了兼容那些不支持 multiple 属性的浏览器）
+点击这个输入框就可以打开浏览文件对话框选择文件了，一般一个输入框上传一个文件就行，要上传多个文件也可以用多个输入框来处理，这样做是为了兼容那些不支持 multiple 属性的浏览器，同时用户一般也不会选择多个文件
 
 ### 基本上传
 
@@ -62,7 +62,7 @@ xhr.send(file)
 
 ``` javascript
 var formData = new FormData()
-formData.append('file', file, file.name) // 第 3 个参数是文件名称，不传也行
+formData.append('file', file, file.name) // 第 3 个参数是文件名称
 formData.append('username', 'Mary') // 还可以添加额外的参数
 ```
 
@@ -102,11 +102,17 @@ function progressHandler(e) {
 }
 ```
 
-支持异步上传的浏览器可以参考 [caniuse](https://caniuse.com/#feat=xhr2)
+支持 Ajax 上传的浏览器可以参考 [caniuse](https://caniuse.com/#feat=xhr2)
 
 ### 分割上传
 
-使用文件对象的 slice 方法可以分割文件，给该方法传递两个参数，一个起始位置和一个结束位置，这会返回一个新的 Blob 对象，包含原文件从起始位置到结束位置的那一部分（文件 File 对象其实也是 Blob 对象，这可以通过 `file instanceof Blob` 确定，Blob 是 File 的父类），将文件分割成几个 Blob 对象分别上传就能实现将大文件分割上传
+使用文件对象的 slice 方法可以分割文件，给该方法传递两个参数，一个起始位置和一个结束位置，这会返回一个新的 Blob 对象，包含原文件从起始位置到结束位置的那一部分（文件 File 对象其实也是 Blob 对象，这可以通过 `file instanceof Blob` 确定，Blob 是 File 的父类）
+
+``` javascript
+var blob = file.slice(0, 1024) // 文件从字节位置 0 到字节位置 1024 那 1KB
+```
+
+将文件分割成几个 Blob 对象分别上传就能实现将大文件分割上传
 
 ``` javascript
 function upload(file) {
@@ -117,8 +123,20 @@ function upload(file) {
   xhr.send(formData)
 }
 
+var blob = file.slice(0, 1024)
+upload(blob) // 上传第一部分
+
+var blob2 = file.slice(1024, 2048)
+upload(blob2) // 上传第二部分
+
+// 上传剩余部分
+```
+
+通常用一个循环来处理更方便
+
+``` javascript
 var pos = 0 // 起始位置
-var size = 1024 * 1024 // 分割块的大小，每块 1M
+var size = 1024 * 1024 // 分割块的大小，每块 1MB
 
 while (pos < file.size) {
   let blob = file.slice(pos, pos + size) // 结束位置 = 起始位置 + 块大小
@@ -162,6 +180,36 @@ if (slice) {
 } else {
   upload(file) // 不支持分割就只能直接上传整个文件了，或者提示文件过大
 }
+```
+
+### 拖拽上传
+
+通过拖拽 API 可以实现拖拽文件上传，默认情况下，拖拽一个文件到浏览器中，浏览器会尝试打开这个文件，要使用拖拽功能需要阻止这个默认行为
+
+``` javascript
+document.addEventListener('dragover', function(e) {
+  e.preventDefault()
+  e.stopPropagation()
+})
+```
+
+任意指定一个元素来作为释放拖拽的区域，给一个元素绑定 drop 事件，
+
+``` javascript
+var element = document.querySelector('label')
+element.addEventListener('drop', function(e) {
+  e.preventDefault()
+  e.stopPropagation()
+
+  // ...
+})
+```
+
+通过该事件对象的 dataTransfer 属性获取文件，然后上传即可
+
+``` javascript
+var file = e.dataTransfer.files[0]
+upload(file)
 ```
 
 ### 选择类型

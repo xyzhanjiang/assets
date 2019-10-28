@@ -1,6 +1,6 @@
-# Front-end Solutions
+# In Action
 
-工作中需要使用到的一些工具，同类型的工具有不同的替代品，这不是一个囊括所有工具的完整清单
+实战，这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
 
 ## <a name="TOC">Table of Contents</a>
 
