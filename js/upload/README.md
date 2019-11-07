@@ -14,7 +14,7 @@
 
 ``` html
 <form action="#" enctype="multipart/form-data" method="post">
-  <input type="file">
+  <input name="file" type="file">
   <button type="submit">Upload</button>
 </form>
 ```
@@ -25,7 +25,7 @@
 
 ``` html
 <form action="#" enctype="multipart/form-data" method="post" target="upload-frame">
-  <input type="file">
+  <input name="file" type="file">
   <button type="submit">Upload</button>
 </form>
 <iframe id="upload-frame" name="upload-frame" src="about:blank" style="display: none;"></iframe>
@@ -64,6 +64,12 @@ xhr.send(file)
 var formData = new FormData()
 formData.append('file', file, file.name) // 第 3 个参数是文件名称
 formData.append('username', 'Mary') // 还可以添加额外的参数
+```
+
+也可以直接把表单元素作为实例化参数
+
+``` javascript
+var formData = new FormData(document.querySelector('form'))
 ```
 
 数据准备好后，就是上传了，同样是作为参数传给 XMLHttpRequest 对象的 send 方法
@@ -136,7 +142,7 @@ upload(blob2) // 上传第二部分
 
 ``` javascript
 var pos = 0 // 起始位置
-var size = 1024 * 1024 // 分割块的大小，每块 1MB
+var size = 1024 // 每块的大小，实际不用一次传这么小一块
 
 while (pos < file.size) {
   let blob = file.slice(pos, pos + size) // 结束位置 = 起始位置 + 块大小
@@ -193,7 +199,7 @@ document.addEventListener('dragover', function(e) {
 })
 ```
 
-任意指定一个元素来作为释放拖拽的区域，给一个元素绑定 drop 事件，
+任意指定一个元素来作为释放拖拽的区域，给一个元素绑定 drop 事件
 
 ``` javascript
 var element = document.querySelector('label')
@@ -209,7 +215,7 @@ element.addEventListener('drop', function(e) {
 
 ``` javascript
 var file = e.dataTransfer.files[0]
-upload(file)
+upload(file) // upload 函数前面已经定义
 ```
 
 ### 选择类型

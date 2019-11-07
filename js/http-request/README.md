@@ -86,10 +86,9 @@ Dependencies: none
 ## fetch
 
 ``` javascript
-fetch('/api')
-  .then((response) => {
-    console.log(response)
-  })
+fetch('/api').then((response) => {
+  console.log(response)
+})
 ```
 
 [fetch polyfill](https://github.com/github/fetch), installation via npm: `npm install --save whatwg-fetch`
@@ -159,12 +158,12 @@ Optional dependencies: [ES6-Promise](https://github.com/stefanpenner/es6-promise
 
 ``` javascript
 var xhr = new XMLHttpRequest()
-xhr.open('GET', '/url', true)
 xhr.onreadystatechange = function() {
   if (xhr.readyState === 4 && xhr.status === 200) {
     console.log(xhr.responseText)
   }
 }
+xhr.open('GET', '/url', true)
 xhr.send()
 ```
 
