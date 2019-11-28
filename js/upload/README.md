@@ -1,6 +1,6 @@
 # 文件上传
 
-上传文件需要用到文件输入框，如果给文件输入框添加一个 `multiple` 属性则可以一次选择多个文件（不支持的浏览器会自动忽略这个属性）
+文件上传是 Web 开发常见需求，上传文件需要用到文件输入框，如果给文件输入框添加一个 `multiple` 属性则可以一次选择多个文件（不支持的浏览器会自动忽略这个属性）
 
 ``` html
 <input multiple type="file">
@@ -8,9 +8,9 @@
 
 点击这个输入框就可以打开浏览文件对话框选择文件了，一般一个输入框上传一个文件就行，要上传多个文件也可以用多个输入框来处理，这样做是为了兼容那些不支持 multiple 属性的浏览器，同时用户一般也不会选择多个文件
 
-### 基本上传
+### 基本上传方式
 
-提交表单的时候即可将选中的文件一起提交上传到服务器，需要注意的是由于提交的表单中包含文件，所以还要修改一下表单元素的 `enctype` 属性
+当把文件输入框放入表单中，提交表单的时候即可将选中的文件一起提交上传到服务器，需要注意的是由于提交的表单中包含文件，因此要修改一下表单元素的 `enctype` 属性为 `multipart/form-data`
 
 ``` html
 <form action="#" enctype="multipart/form-data" method="post">
@@ -31,7 +31,7 @@
 <iframe id="upload-frame" name="upload-frame" src="about:blank" style="display: none;"></iframe>
 ```
 
-这样在提交表单上传的时候，页面就不会重新加载了，取而代之的是 iframe 重新加载了，不过 iframe 原本就是隐藏的，即使重新加载也不会感知到，从体感来讲，有点像异步上传
+这样在提交表单上传的时候，页面就不会重新加载了，取而代之的是 iframe 重新加载了，不过 iframe 原本就是隐藏的，即使重新加载也不会感知到
 
 ### 访问文件
 
@@ -58,7 +58,7 @@ xhr.open('POST', '/upload/url', true)
 xhr.send(file)
 ```
 
-不过一些原因不建议像这样直接传递文件，而是推荐使用 FormData 对象来包装需要上传的文件，FormData 是一个构造函数，使用的时候先 new 一个实例，然后通过实例的 append 方法添加数据，直接把需要上传的文件添加进去
+不过一些原因不建议直接这样传递文件，而是使用 FormData 对象来包装需要上传的文件，FormData 是一个构造函数，使用的时候先 new 一个实例，然后通过实例的 append 方法向其中添加数据，直接把需要上传的文件添加进去
 
 ``` javascript
 var formData = new FormData()
@@ -66,7 +66,7 @@ formData.append('file', file, file.name) // 第 3 个参数是文件名称
 formData.append('username', 'Mary') // 还可以添加额外的参数
 ```
 
-也可以直接把表单元素作为实例化参数
+甚至也可以直接把表单元素作为实例化参数，这样整个表单中的数据就全部包含进去了
 
 ``` javascript
 var formData = new FormData(document.querySelector('form'))
@@ -80,9 +80,9 @@ xhr.open('POST', '/upload/url', true)
 xhr.send(formData)
 ```
 
-### 上传进度
+### 监测上传进度
 
-XMLHttpRequest 对象还提供了 progress 事件，基于这个事件可以知道上传进度如何
+XMLHttpRequest 对象还提供了一个 progress 事件，基于这个事件可以知道上传进度如何
 
 ``` javascript
 var xhr = new XMLHttpRequest()
@@ -142,7 +142,7 @@ upload(blob2) // 上传第二部分
 
 ``` javascript
 var pos = 0 // 起始位置
-var size = 1024 // 每块的大小，实际不用一次传这么小一块
+var size = 1024 // 块的大小
 
 while (pos < file.size) {
   let blob = file.slice(pos, pos + size) // 结束位置 = 起始位置 + 块大小
@@ -154,7 +154,7 @@ while (pos < file.size) {
 
 服务器接收到分块文件进行重新组装的代码就不在这里展示了
 
-使用这种方式上传文件会一次性发送多个 HTTP 请求，如何处理这种多个请求同时发送的情况呢？方法有很多，可以用 Promise 来处理，让每次上传都返回一个 Promise 对象，然后用 Promise.all 方法来合并处理
+使用这种方式上传文件会一次性发送多个 HTTP 请求，那么如何处理这种多个请求同时发送的情况呢？方法有很多，可以用 Promise 来处理，让每次上传都返回一个 promise 对象，然后用 Promise.all 方法来合并处理，Promise.all 方法接受一个数组作为参数，因此将每次上传返回的 promise 对象放在一个数组中
 
 ``` javascript
 var promises = []
@@ -162,10 +162,43 @@ var promises = []
 while (pos < file.size) {
   let blob = file.slice(pos, pos + size)
 
-  promises.push(upload(blob)) // upload 返回一个 promise
+  promises.push(upload(blob)) // upload 应该返回一个 promise
   pos += size
 }
+```
 
+同时改造一下 upload 函数使其返回一个 promise
+
+``` javascript
+function upload(file) {
+  return new Promise((resolve, reject) => {
+    let formData = new FormData()
+    formData.append('file', file)
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', '/upload/url', true)
+    xhr.onload = () => resolve(xhr.responseText)
+    xhr.onerror = () => reject(xhr.statusText)
+    xhr.send(formData)
+  })
+}
+```
+
+如果使用 Fetch API 替换 XMLHttpRequest 对象那将简单一点，因为 Fetch API 直接就返回一个 promise 对象
+
+``` javascript
+function upload(file) {
+  let formData = new FormData()
+  formData.append('file', file)
+  return fetch('/upload/url', {
+    method: 'POST',
+    body: formData
+  })
+}
+```
+
+当一切完成后
+
+``` javascript
 Promise.all(promises).then((response) => {
   console.log('Upload success!')
 }).catch((err) => {

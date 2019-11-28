@@ -1,4 +1,4 @@
-# 处理异步的几种方法
+# 处理异步
 
 有 foo 和 bar 两个函数，其中 foo 函数是一个比较耗时的函数（可以是动画效果或者 Ajax），这里用一个 setTimeout 来模拟耗时效果，而 bar 函数是一个普通函数
 
@@ -43,20 +43,20 @@ bar done
 
 ## 回调函数
 
-将 bar 函数作为参数传递给 foo 函数，在 foo 函数内部执行传入的 bar 函数
+回调函数就是指一件事情完成后，执行这个回调函数，将 bar 函数作为参数传递给 foo 函数，在 foo 函数内部执行传入的 bar 函数
 
 ``` javascript
 function foo(cb) {
   setTimeout(() => {
     console.log('foo done')
-    cb() // 在这里执行
+    cb() // 在这里执行回调函数
   }, 100)
 }
 
 foo(bar) // foo done, bar done
 ```
 
-给回调函数传入参数，直接在函数执行的时候传入
+如果要给回调函数传入参数，直接在函数执行的时候传入
 
 ``` javascript
 function foo(cb) {
@@ -75,7 +75,7 @@ function bar(msg) {
 }
 ```
 
-回调函数是最基础的处理异步的方式，但是它有个最大的问题就是回调地狱
+回调函数可以用来处理异步，但是它有个最大的问题就是回调地狱
 
 ``` javascript
 foo((res1) => {

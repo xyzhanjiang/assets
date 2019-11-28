@@ -1,6 +1,10 @@
 # In Action
 
-实战，这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
+1. 这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
+1. 所有 JavaScript 代码均为 ES2015 and beyond 语法，可以在最新的环境中跑，也可以通过 Babel 编译
+1. 所有 CSS 代码均为 CSSNext 语法，可以使用 PostCSS 编译
+1. 绝大多数 CSS 代码都没有浏览器厂商前缀，可以使用 Autoprefixer 插件根据兼容自动添加
+1. 自己工作中需要用到的解决方案，笔记等
 
 ## <a name="TOC">Table of Contents</a>
 
@@ -172,7 +176,7 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="other">Other</a>
 
-* [处理异步的几种方法](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
+* [处理异步](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
 * [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
 * [Http 请求](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
 * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)

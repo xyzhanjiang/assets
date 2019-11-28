@@ -2,30 +2,29 @@
 
 [Handlebars](https://github.com/wycats/handlebars.js)
 
-通过 npm 安装：`npm install --save handlebars`
+从一个模版生成 HTML 大致有这么几步
 
-在项目中引用
+1. 得到模版字符串
 
-``` javascript
-const Handlebars = require('handlebars')
+  ``` javascript
+  const template = require('./template.html')
+  ```
 
-// or runtime only
-const Handlebars = require('handlebars/runtime')
-```
+1. 将模版字符串编译成渲染函数
 
-注册一个 helper
+  ``` javascript
+  const Handlebars = require('handlebars')
+  const fn = Handlebars.compile(template)
+  ```
 
-``` javascript
-Handlebars.registerHelper('eq', function (a, b, options) {
-  return a === b ? options.fn(this) : options.inverse(this)
-})
-```
+1. 执行渲染函数传入数据生成 HTML，并添加到文档中
 
-配合 Webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，将编译模板的过程放到了打包时，节省了运行时的开销，通过 npm 安装
+  ``` javascript
+  const html = fn(data)
+  $('#element').html(html)
+  ```
 
-``` shell
-npm install --save-dev handlebars-loader
-```
+由于同一个模版编译出来的渲染函数始终都是一样的，所以可以将编译模板这一步放在构建时就执行，配合 Webpack 可以使用 [handlebars-loader](https://github.com/pcardune/handlebars-loader) 直接加载 handlebars 文件，并返回一个渲染函数，节省了运行时的开销
 
 **webpack.config.js**
 
@@ -42,11 +41,11 @@ module: {
 }
 ```
 
-example
+相对而言少了一个步骤
 
 ``` javascript
-const template = require('./template.handlebars')
-var html = template(data)
+const fn = require('./template.handlebars')
+const html = fn(data)
 $('#element').html(html)
 ```
 
@@ -70,7 +69,7 @@ module: {
 }
 ```
 
-另外，如果可能的话，有时候需要这个 Object.seal polyfill
+另外，如果是旧浏览器，可能需要这个 Object.seal polyfill
 
 ``` javascript
 if (!Object.seal) {
@@ -84,7 +83,7 @@ if (!Object.seal) {
 }
 ```
 
-或者 es5-shim：`npm install --save es5-shim` 已经包含了
+或者在 es5-shim 中已经包含了，如果有引入就不需要再单独写了
 
 ``` javascript
 require('es5-shim/es5-sham')
