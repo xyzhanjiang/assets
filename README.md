@@ -27,6 +27,7 @@
 ### JavaScript
 
 1. [JS Style Guide](#js-style-guide)
+1. [Core](#core)
 1. [Package](#package)
 1. [Bundler](#bundler)
 1. [ES5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
@@ -39,15 +40,8 @@
 1. [Polyfill](#polyfill)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
 1. [Media](#media)
-1. Others
-    * [Async](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
-    * [File Upload](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
-    * [Http Request](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
-    * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
-    * [Router](#router)
-    * [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
-    * [Storage](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
 1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
+1. [Others](#other)
 
 ## HTML
 
@@ -114,6 +108,10 @@ html {
 
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [JavaScript Standard Style](https://github.com/feross/standard)
+
+### <a name="core">Core</a>
+
+* [JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
 
 ### <a name="package">Package</a>
 

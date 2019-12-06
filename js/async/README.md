@@ -1,6 +1,10 @@
 # 处理异步
 
-有 foo 和 bar 两个函数，其中 foo 函数是一个比较耗时的函数（可以是动画效果或者 Ajax），这里用一个 setTimeout 来模拟耗时效果，而 bar 函数是一个普通函数
+在开发中，遇到异步的情况很多，比如发出一个 HTTP 请求，执行一个动画，或是用 Web worker 处理一些事务，通常我们需要在这些异步操作完成之后做点什么事情，最基本可以传一个回调函数给这些异步操作，让其在操作完毕之后执行这个回调函数
+
+## 回调函数
+
+假设有 foo 和 bar 两个函数，其中 foo 函数使用了一个 setTimeout 定时器，而 bar 函数是一个普通函数
 
 ``` javascript
 function foo() {
@@ -14,36 +18,7 @@ function bar() {
 }
 ```
 
-这两个函数无论怎么指定执行顺序
-
-``` javascript
-foo()
-bar()
-
-// 还是
-bar()
-foo()
-```
-
-最后控制台得到的结果都是
-
-``` diff
-bar done
-foo done
-```
-
-那么如何在 foo 函数执行完毕后才执行 bar 函数呢，也就是说让控制台打印出
-
-``` diff
-foo done
-bar done
-```
-
-这就需要一些处理异步的方式了
-
-## 回调函数
-
-回调函数就是指一件事情完成后，执行这个回调函数，将 bar 函数作为参数传递给 foo 函数，在 foo 函数内部执行传入的 bar 函数
+将 bar 函数作为参数传递给 foo 函数，在 foo 函数内部执行传入的 bar 函数
 
 ``` javascript
 function foo(cb) {
@@ -91,7 +66,7 @@ foo((res1) => {
 
 像这样一层又一层，代码将会被向右推到天边去
 
-## 事件发生器
+## 事件
 
 通过绑定事件，触发事件可以实现和回调函数类似的效果，由于客户端没有事件发生器，使用 jQuery 自带的
 
@@ -127,11 +102,13 @@ function bar(e, msg) {
 }
 ```
 
-事件发生器原理其实和回调函数差不多
+事件发生器原理其实和回调函数差不多，只是将回调都集中到一个地方统一管理，而且还可以绑定多个处理程序，可以解除绑定
 
 为了更好地解决异步问题，ES2015 推出了 Promise 承诺对象
 
 ## Promise
+
+一个东西在未来的某个时刻会改变自身状态为两种其中之一（比如成功或失败），那么就非常适合用 Promise 对象来表示
 
 ``` javascript
 function foo() {
@@ -222,7 +199,7 @@ function foo() {
 })() // foo done, bar done
 ```
 
-但是其本质还是基于 Promise 的
+但是其本质只是 Promise 的语法糖
 
 async/await 语法的兼容性可以参考 [caniuse](https://caniuse.com/#feat=async-functions)
 
