@@ -1,6 +1,6 @@
 # Is
 
-JavaScript 判断
+常用 JavaScript 判断
 
 ## 数据类型和值
 

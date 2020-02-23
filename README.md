@@ -1,10 +1,10 @@
 # In Action
 
-1. 这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
-1. 所有 JavaScript 代码均为 ES2015 and beyond 语法，可以在最新的环境中跑，也可以通过 Babel 编译
-1. 所有 CSS 代码均为 CSSNext 语法，可以使用 PostCSS 编译
-1. 绝大多数 CSS 代码都没有浏览器厂商前缀，可以使用 Autoprefixer 插件根据兼容自动添加
-1. 自己工作中需要用到的解决方案，笔记等
+* 这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
+* 所有 JavaScript 代码均为 ES2015 and beyond 语法，可以在最新的环境中跑，也可以通过 Babel 编译
+* 所有 CSS 代码均为 CSSNext 语法，可以使用 PostCSS 编译
+* 绝大多数 CSS 代码都没有浏览器厂商前缀，可以使用 Autoprefixer 插件根据兼容自动添加
+* 自己工作中需要用到的解决方案，笔记等
 
 ## <a name="TOC">Table of Contents</a>
 
@@ -111,7 +111,8 @@ html {
 
 ### <a name="core">Core</a>
 
-* [JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
+* [常用 JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
+* [那些啰儿八嗦的 JavaScript 代码](https://github.com/xyzhanjiang/assets/tree/master/js/core/verbose/)
 
 ### <a name="package">Package</a>
 
