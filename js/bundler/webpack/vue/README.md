@@ -4,9 +4,9 @@
 
 ### 创建项目
 
-先创建一个空目录，在该目录打开命令行，执行 `npm init` 命令创建一个项目（无法执行 npm 命令？需要先安装 [Node](https://nodejs.org/en/)），这个过程会提示输入一些内容，随意输入就行，完成后会自动生成一个 package.json 文件，里面包含刚才输入的内容
+首先需要创建一个空目录，在该目录打开命令行，执行 `npm init` 命令创建一个项目（无法执行 npm 命令？需要先安装 [Node](https://nodejs.org/en/)），这个过程会提示输入一些内容，随意输入就行，完成后会自动生成一个 package.json 文件，里面包含了刚才输入的那些内容，其实这个步骤就只是生成一个 package.json 文件而已，手动创建也可以
 
-创建一个 index.html 页面，由于使用的是 Vue 开发单页应用，所以通常一个 html 文件就够了，内容也很简单，就一个 div#app
+然后创建一个 index.html 页面，由于使用的是 Vue 开发单页应用，所以通常情况下我们只需要一个 html 文件，内容也很简单，就一个 div#app
 
 **project**
 
@@ -33,7 +33,7 @@
 </html>
 ```
 
-接着创建一个 index.js 作为项目的主入口，创建一个 webpack.config.js 文件作为 Webpack 的配置文件，内容如下
+接着创建一个 index.js 作为项目的主入口，项目的 JavaScript 代码都可以写在这个文件里面，创建一个 webpack.config.js 文件作为 Webpack 的配置文件
 
 **project**
 
@@ -45,7 +45,7 @@
 + |- webpack.config.js
 ```
 
-Webpack 相关的配置都写在这个文件里面
+Webpack 相关的配置都写在这个文件里面，Webpack 会根据这个配置文件进行打包，内容如下
 
 **webpack.config.js**
 
@@ -84,7 +84,7 @@ index.js 作为项目的主入口，目前还没有任何内容
 
 ### 启动本地服务
 
-使用 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 来启动本地服务，方便开发以及本地调试
+为了方便开发和调试，我们需要启动一个本地服务，这可以通过使用 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 来实现
 
 执行 `npm install --save-dev webpack webpack-dev-server`
 
@@ -101,7 +101,7 @@ index.js 作为项目的主入口，目前还没有任何内容
   }
 ```
 
-执行 `npm run dev` 即可启动本地服务，访问 localhost:8080 即可，8080 是默认的端口号，修改端口号配置如下
+执行 `npm run dev` 即可启动本地服务，访问 localhost:8080 即可，8080 是默认的端口号，修改端口号方式如下，如果端口号被占用，则需要另外的端口号
 
 **webpack.config.js**
 
@@ -139,21 +139,28 @@ module.exports = {
 }
 ```
 
+用当前目录下的 index.html 文件作为模版来生成一个 index.html 文件，不用怀疑，生成的文件位于 dist 目录中，用于部署到服务器
+
 ### 安装 Vue
 
-执行 `npm install --save-dev vue-loader vue-template-compiler`
+执行 `npm install --save-dev vue-loader@16.0.0-alpha.3 @vue/compiler-sfc@3.0.0-alpha.9` 安装开发依赖
 
-执行 `npm install --save vue vue-router`
+执行 `npm install --save vue@3.0.0-alpha.9 vue-router@4.0.0-alpha.0` 安装项目依赖
 
-在 webpack.config.js 中配置 vue-loader 用于引入 .vue 类型文件
+在 webpack.config.js 中配置 vue-loader 用于加载 .vue 后缀的文件，@vue/compiler-sfc 模块是 Vue 模板的编译器，其版本和 Vue 必须保持一致
 
 **webpack.config.js**
 
 ``` javascript
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader/lib/plugin')
 
 module.exports = {
   // ...
+  resolve: {
+    alias: {
+      'vue': '@vue/runtime-dom'
+    }
+  },
   module: {
     rules: [
       {
@@ -197,18 +204,21 @@ export default {}
 </script>
 ```
 
+`<router-view>` 组件由 vue-router 模块提供，因此需要将其引入后再使用
+
 **index.js**
 
 ``` javascript
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+import { createRouter, createHashHistory } from 'vue-router'
 
 import appView from 'app.vue'
 
 Vue.use(VueRouter)
 
 // 路由实例化
-const router = new VueRouter({
+const router = createRouter({
+  history: createHashHistory(),
   routes: [
     {
       path: '/',
@@ -217,11 +227,9 @@ const router = new VueRouter({
   ]
 })
 
-new Vue({
-  el: '#app',
-  router, // 将路由实例传入
-  render(h) { return h(appView) }
-})
+createApp(appView)
+  .use(router)
+  .mount('#app')
 ```
 
 新建一个 index.vue 文件作为首页
@@ -246,13 +254,9 @@ new Vue({
   <h1>这是首页</h1>
 </div>
 </template>
-
-<script>
-export default {}
-</script>
 ```
 
-### 添加页面
+### 添加新页面
 
 添加一个 about.vue 文件作为关于页
 
@@ -277,10 +281,6 @@ export default {}
   <h1>这是关于页</h1>
 </div>
 </template>
-
-<script>
-export default {}
-</script>
 ```
 
 配置关于页的路由
@@ -292,6 +292,7 @@ export default {}
 
 // 路由实例化
 const router = new VueRouter({
+  history: createHashHistory(),
   routes: [
     {
       path: '/',
@@ -305,13 +306,25 @@ const router = new VueRouter({
 })
 ```
 
+生成导航
+
+**app.vue**
+
+``` diff
+  <template>
++ <router-link to="/">首页</router-link>
++ <router-link to="/about">关于</router-link>
+  <router-view></router-view>
+  </template>
+```
+
 访问 http://localhost:8080/#/about 即可显示关于页
 
 ### 文件分类
 
 随着页面的增加，vue 文件将会越来越多，放在项目根目录下面并不科学，在当前目录创建一个 src 目录用来放置开发源文件
 
-在 src 目录中创建一个 pages 目录用来放置 vue 页面文件，将 app.vue、index.vue、about.vue 文件移入 pages 目录中，同时修改对应的引用路径
+在 src 目录中创建一个 pages 目录用来放置 vue 页面文件，将 app.vue、index.vue、about.vue 文件移入 pages 目录中
 
 **project**
 
@@ -330,6 +343,8 @@ const router = new VueRouter({
 +     |- app.vue
 +     |- index.vue
 ```
+
+文件的位置移动了，因此其引用的路径也需要修改
 
 **index.js**
 
@@ -357,15 +372,16 @@ const router = new VueRouter({
 
 **webpack.config.js**
 
-``` javascript
-module.exports = {
-  // ...
-  resolve: {
-    alias: {
-      '@': path.join(__dirname, 'src')
+``` diff
+  module.exports = {
+    // ...
+    resolve: {
+      alias: {
+        'vue': '@vue/runtime-dom',
++       '@': path.join(__dirname, 'src')
+      }
     }
   }
-}
 ```
 
 上面的页面路径可以再次改写
@@ -378,7 +394,8 @@ module.exports = {
 import appView from '@/pages/app.vue'
 
 // 路由实例化
-const router = new VueRouter({
+const router = createRouter({
+  history: createHashHistory(),
   routes: [
     {
       path: '/',
@@ -439,7 +456,8 @@ module.exports = [
 + import routes from '@/js/routes'
 
   // 路由实例化
-  const router = new VueRouter({
+  const router = createRouter({
+    history: createHashHistory(),
 +   routes
 -   routes: [
 -     {
@@ -503,6 +521,8 @@ module.exports = {
 }
 ```
 
+这是 Babel 的配置文件，其转换的规则由这个文件定义
+
 ### CSS
 
 项目中肯定会用到 CSS，首先新建一个 style.css 样式文件，项目中的样式就可以写在这里面
@@ -520,7 +540,7 @@ module.exports = {
   ...
 ```
 
-然后安装 [Normalize.css](https://github.com/necolas/normalize.css) 用于使各种浏览器呈现一致的效果，这只是一种样式初始化方案，是可选的，另外也可以选择 [Bootstrap](https://github.com/twbs/bootstrap) 或者 [Bulma](https://github.com/jgthms/bulma) 等包含更多样式的样式库来作为开发的基础
+然后安装 [Normalize.css](https://github.com/necolas/normalize.css) 用于使各种浏览器呈现一致的效果，这只是一种样式初始化方案，是可选的，另外也可以选择 [Bootstrap](https://github.com/twbs/bootstrap) 或者 [Bulma](https://github.com/jgthms/bulma) 等等各种各样的样式库来作为项目开发的基础
 
 执行 `npm install --save normalize.css`
 
@@ -570,10 +590,6 @@ module.exports = {
   <h1>这是首页</h1>
 </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style>
 h1 {
@@ -675,10 +691,6 @@ module.exports = {
 </div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style>
 h1 {
   text-align: center;
@@ -729,6 +741,8 @@ module.exports = {
   ...
 ```
 
+在其配置文件中使用 cssnano 插件
+
 **postcss.config.js**
 
 ``` javascript
@@ -740,6 +754,8 @@ module.exports = {
   }
 }
 ```
+
+将 postcss-loader 写入 webpack 配置文件中
 
 **webpack.config.js**
 
@@ -769,11 +785,11 @@ module.exports = {
 
 ### CSS 预处理
 
-这里使用 [postcss-preset-env](https://github.com/csstools/postcss-preset-env) 来预处理 CSS（也可以选择使用 Sass 或者 Less 等）
+这里使用 [postcss-preset-env](https://github.com/csstools/postcss-preset-env) 来预处理 CSS（当然也可以选择使用 Sass 或者 Less 等）
 
 执行 `npm install --save-dev postcss-preset-env`
 
-该插件也属于 PostCSS 生态系统，直接在 postcss.config.js 里增加配置即可
+该插件也属于 PostCSS 生态系统，继续在 postcss.config.js 里增加配置即可
 
 **postcss.config.js**
 
@@ -791,9 +807,9 @@ module.exports = {
 
 ### HTTP 请求
 
-使用 [Axios](https://github.com/axios/axios) 发送 HTTP 请求，Axios 基于 Promise，所以同时安装 [es6-promise](https://github.com/stefanpenner/es6-promise) polyfill
+使用 [Axios](https://github.com/axios/axios) 发送 HTTP 请求，Axios 是同构的，前后端通用，其基于 Promise，所以同时安装 [es6-promise](https://github.com/stefanpenner/es6-promise) polyfill 用以兼容更多设备
 
-执行 `npm install --save axios es6-promise`
+执行 `npm install --save axios es6-promise` 安装好后将两者都引入项目中
 
 **index.js**
 
@@ -804,7 +820,7 @@ module.exports = {
   // ...
 ```
 
-在项目中发送一个请求
+现在可以试试在项目中发送一个请求了
 
 **index.js**
 

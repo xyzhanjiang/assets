@@ -3,22 +3,21 @@ import './style.css'
 
 import 'es6-promise/auto'
 import axios from 'axios'
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+import { createRouter, createHashHistory } from 'vue-router'
 
 import routes from '@/js/routes'
 import appView from '@/pages/app.vue'
 
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createHashHistory(),
   routes
 })
 
-new Vue({
-  el: '#app',
-  router,
-  render(h) { return h(appView) }
-})
+createApp(appView)
+  .use(router)
+  .mount('#app')
 
 axios.post('/login')
