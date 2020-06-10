@@ -3,14 +3,14 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   resolve: {
     alias: {
@@ -48,14 +48,6 @@ module.exports = {
         options: {
           name: 'images/[name].[ext]'
         }
-      },
-      {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader'
-          }
-        ]
       }
     ]
   },
@@ -66,8 +58,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    }),
-    new VueLoaderPlugin()
+    })
   ],
   devServer: {
     before(app, server) {
@@ -77,6 +68,7 @@ module.exports = {
         })
       })
     },
+    historyApiFallback: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
