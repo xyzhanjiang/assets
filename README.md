@@ -1,10 +1,6 @@
 # In Action
 
-* 这里的所有东西都是从实际工作中总结出来的，都可以直接应用到工作中去
-* 所有 JavaScript 代码均为 ES2015 and beyond 语法，可以在最新的环境中跑，也可以通过 Babel 编译
-* 所有 CSS 代码均为 CSSNext 语法，可以使用 PostCSS 编译
-* 绝大多数 CSS 代码都没有浏览器厂商前缀，可以使用 Autoprefixer 插件根据兼容自动添加
-* 自己工作中需要用到的解决方案，笔记等
+全弹发射
 
 ## <a name="TOC">Table of Contents</a>
 
@@ -19,29 +15,24 @@
 ### CSS
 
 1. [CSS Style Guide](#css-style-guide)
+1. [CSS Minifier](#css-minifier)
 1. [Normalize](#normalize)
-1. [PostCSS](https://github.com/xyzhanjiang/assets/tree/master/css/postcss/)
 1. [Effects](#effects)
 1. [Icon](#icon)
 
 ### JavaScript
 
 1. [JS Style Guide](#js-style-guide)
-1. [Core](#core)
 1. [Package](#package)
 1. [Bundler](#bundler)
 1. [ES5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
 1. [ES2015 and Beyond](#es2015)
 1. [HTML Template](#html-template)
-1. [Vue](https://github.com/xyzhanjiang/assets/tree/master/js/vue/)
-1. [Angular](https://github.com/xyzhanjiang/assets/tree/master/js/angular/)
-1. [Rxjs](https://github.com/xyzhanjiang/assets/tree/master/js/rxjs/)
 1. [Data Visualization](#data-visualization)
 1. [Polyfill](#polyfill)
 1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
 1. [Media](#media)
-1. [Code](https://github.com/xyzhanjiang/assets/tree/master/js/code/)
-1. [Others](#other)
+1. [Blog](#blog)
 
 ## HTML
 
@@ -74,19 +65,14 @@ Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再
 * [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 * [Code Guide by @mdo](http://codeguide.co/#css)
 
-### <a name="tips">Tips</a>
+### <a name="css-minifier">CSS Minifier</a>
 
-字体大小
-
-``` css
-html {
-  -webkit-text-size-adjust: 100%;
-}
-```
+* [CSSO](https://github.com/css/csso)
+* [cssnano](https://github.com/cssnano/cssnano)
 
 ### <a name="normalize">Normalize</a>
 
-推荐使用 [normalize.css](https://github.com/necolas/normalize.css) 作为重置样式表，这也是 Bootstrap 内置使用的
+* [normalize.css](https://github.com/necolas/normalize.css)
 
 ### <a name="effects">Effects</a>
 
@@ -109,11 +95,6 @@ html {
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [JavaScript Standard Style](https://github.com/feross/standard)
 
-### <a name="core">Core</a>
-
-* [常用 JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
-* [那些啰儿八嗦的 JavaScript 代码](https://github.com/xyzhanjiang/assets/tree/master/js/core/verbose/)
-
 ### <a name="package">Package</a>
 
 [npm](https://www.npmjs.com/)
@@ -128,15 +109,9 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="bundler">Bundler</a>
 
-[Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
-
-* [从零开始使用 Webpack 搭建 Vue 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/vue)
-* [让 Webpack 项目兼容 IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
+* [Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
 
 ### <a name="es2015">ES2015 and Beyond</a>
-
-* [在 Webpack 项目中配置 Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
-* [在 Webpack 项目中配置支持 async/await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
 
 深入学习 ES2015
 
@@ -146,7 +121,7 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 ### <a name="html-template">HTML Template</a>
 
-* [在 Webpack 项目中使用 Handlebars](https://github.com/xyzhanjiang/assets/tree/master/js/template/handlebars/)
+You don't need!
 
 ### <a name="router">Router</a>
 
@@ -173,7 +148,9 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 
 * [pdf.js](https://github.com/xyzhanjiang/assets/tree/master/js/media/pdf/)
 
-### <a name="other">Other</a>
+### <a name="blog">Blog</a>
+
+部落格
 
 * [处理异步](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
 * [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
@@ -181,3 +158,11 @@ npm install gulp-cli --global --registry=https://registry.npm.taobao.org
 * [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
 * [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
 * [客户端存储](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
+* [常用 JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
+* [那些啰儿八嗦的 JavaScript 代码](https://github.com/xyzhanjiang/assets/tree/master/js/core/verbose/)
+* [从零开始使用 Webpack 搭建 Vue 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/vue)
+* [从零开始使用 Webpack 搭建 React 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/react)
+* [让 Webpack 项目兼容 IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
+* [在 Webpack 项目中配置 Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
+* [在 Webpack 项目中配置支持 async/await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
+* [在 Webpack 项目中使用 Handlebars](https://github.com/xyzhanjiang/assets/tree/master/js/template/handlebars/)

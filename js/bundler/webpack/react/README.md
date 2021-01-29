@@ -1,12 +1,43 @@
 ## Webpack 开发
 
-从零开始使用 Webpack 搭建 Vue 开发环境
+从零开始使用 Webpack 搭建 React 开发环境
+
+### 安装 Node
+
+访问 [Node](https://nodejs.org/en/) 官方网站下载安装
+
+安装完成后在命令行输入，显示版本号则表示安装成功
+
+``` shell
+node -v
+```
+
+Node 安装好的同时 npm 也安装好了
+
+``` shell
+npm -v
+```
+
+npm 是 Node 包管理器，用于安装和管理各种包或模块，我们使用另一个包管理器 [Yarn](https://yarnpkg.com/)
+
+同样，安装完成后在命令行验证是否成功
+
+``` shell
+yarn -v
+```
 
 ### 创建项目
 
-使用 [Create-react-app](#create-react-app) 跳过
+首先需要创建一个空目录，在该目录打开命令行，执行 `yarn init` 命令创建一个项目，这个过程会提示输入一些内容，完成后会自动生成一个 package.json 文件，里面包含了刚才输入的那些内容
 
-首先需要创建一个空目录，在该目录打开命令行，执行 `npm init` 命令创建一个项目（无法执行 npm 命令？需要先安装 [Node](https://nodejs.org/en/)），这个过程会提示输入一些内容，随意输入就行，完成后会自动生成一个 package.json 文件，里面包含了刚才输入的那些内容，其实这个步骤就只是生成一个 package.json 文件而已，手动创建也可以
+``` json
+{
+  "name": "webpack-react-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
+```
 
 然后创建一个 index.html 页面，内容也很简单，就只有一个 div#app
 
@@ -69,7 +100,7 @@ module.exports = {
 
 entry 属性告诉 webpack 哪个是应用的主入口
 
-执行 `npm install --save-dev webpack-cli` 安装 Webpack
+执行 `yarn add webpack-cli --dev` 安装 Webpack
 
 在 package.json 文件对应的 `scripts` 处新增一条打包命令
 
@@ -83,13 +114,19 @@ entry 属性告诉 webpack 哪个是应用的主入口
   }
 ```
 
-写在这里的命令可以通过 `npm run xxx` 执行，这里是 build，因此执行命令是 `npm run build`，如果打包成功后的话，打包后的文件将会放在 dist 目录里面（这是由配置文件自定义的），目前打包出来的只有一个 index.js 文件，如果打包失败则需要查看是什么原因导致
+写在这里的命令可以通过 `yarn run xxx` 执行，这里是 build，因此执行命令是 `yarn run build`，如果打包成功后的话，打包后的文件将会放在 dist 目录里面（这是由配置文件自定义的），目前打包出来的只有一个 index.js 文件，如果打包失败则需要查看是什么原因导致
+
+关于执行 yarn add 命令时 --dev 参数，表示此时安装的包是开发构建时依赖的包，在 package.json 文件中会记录在 "devDependencies" 处
+
+没有参数时安装的包记录在 package.json 文件的 "dependencies" 处，表示这些包是运行时依赖的包
+
+参数 --dev 等同于 -D
 
 ### 启动本地服务
 
 为了方便开发和调试，我们需要启动一个本地服务，这可以通过使用 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 来实现
 
-执行 `npm install --save-dev webpack webpack-dev-server`
+执行 `yarn add webpack webpack-dev-server --dev`
 
 在 package.json 文件对应的 `scripts` 处新增一条命令
 
@@ -103,7 +140,7 @@ entry 属性告诉 webpack 哪个是应用的主入口
   }
 ```
 
-执行 `npm run dev` 即可启动本地服务，访问 localhost:8080 即可，8080 是默认的端口号，可以在 webpack 配置文件中修改端口号，如果当前端口号被占用的话，需要另外设置一个端口号
+执行 `yarn run dev` 即可启动本地服务，访问 localhost:8080 即可，8080 是默认的端口号，可以在 webpack 配置文件中修改端口号，如果当前端口号被占用的话，需要另外设置一个端口号
 
 **webpack.config.js**
 
@@ -120,7 +157,7 @@ module.exports = {
 
 使用 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 来自动生成 HTML 文件
 
-执行 `npm install --save-dev html-webpack-plugin`
+执行 `yarn add html-webpack-plugin --dev`
 
 这是一个 webpack 插件，在 webpack 配置文件中使用
 
@@ -156,7 +193,7 @@ module.exports = {
 
 然后安装 [Bulma](https://github.com/jgthms/bulma)，这是一个 CSS framework，提供了一些基础样式，本示例将以这个框架为主
 
-执行 `npm install --save bulma`
+执行 `yarn add bulma`
 
 直接在 index.js 里面引用
 
@@ -167,9 +204,9 @@ module.exports = {
 + import '@/css/style.css'
 ```
 
-由于这里直接在 js 文件中引用了 css 文件，所以需要 [css-loader](https://github.com/webpack-contrib/css-loader) 来处理
+由于这里直接在 js 文件中导入了 css 文件，正常情况下是无法识别的，所以需要 [css-loader](https://github.com/webpack-contrib/css-loader) 来处理
 
-执行 `npm install --save-dev css-loader style-loader` 命令安装，在 webpack 配置文件 rules 处添加规则
+执行 `yarn add css-loader style-loader --dev` 命令安装，在 webpack 配置文件 rules 处添加规则
 
 **webpack.config.js**
 
@@ -197,7 +234,7 @@ module.exports = {
 
 上面引入 css 的方式最终打包之后 CSS 代码都在 js 里面，为了网站的性能可以将 CSS 单独提取出来，使用 [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) 插件来提取 CSS
 
-执行 `npm install --save-dev mini-css-extract-plugin`
+执行 `yarn add mini-css-extract-plugin --dev`
 
 **webpack.config.js**
 
@@ -234,7 +271,7 @@ module.exports = {
 
 项目中如果有用到图片需要 [file-loader](https://github.com/webpack-contrib/file-loader) 来处理
 
-执行 `npm install --save-dev file-loader`
+执行 `yarn add file-loader --dev`
 
 **webpack.config.js**
 
@@ -268,7 +305,7 @@ module.exports = {
 
 使用 [cssnano](https://github.com/cssnano/cssnano) 压缩 CSS，该插件属于 PostCSS 生态系统，所以需要同时安装 [postcss-loader](https://github.com/postcss/postcss-loader)
 
-执行 `npm install --save-dev cssnano postcss-loader`
+执行 `yarn add cssnano postcss-loader --dev`
 
 创建一个 postcss.config.js 文件，这是 PostCSS 的配置文件，相关配置都写在这里面
 
@@ -325,7 +362,7 @@ module.exports = {
 
 这里使用 [postcss-preset-env](https://github.com/csstools/postcss-preset-env) 来预处理 CSS（当然也可以选择使用 Sass/Less/Stylus）
 
-执行 `npm install --save-dev postcss-preset-env`
+执行 `yarn add postcss-preset-env --dev`
 
 该插件也属于 PostCSS 生态系统，只需要在 postcss.config.js 里增加配置即可
 
@@ -345,9 +382,9 @@ module.exports = {
 
 ### 配置 Babel
 
-在项目中使用 ES2015 语法，为了使项目兼容更多浏览器，需要用 [Babel](https://github.com/babel/babel) 对代码进行转换
+在项目中使用 ES2015+ 语法，为了使项目兼容更多浏览器，需要用 [Babel](https://github.com/babel/babel) 对代码进行转换
 
-执行 `npm install --save-dev @babel/core @babel/preset-env babel-loader`
+执行 `yarn add @babel/core @babel/preset-env babel-loader --dev`
 
 **webpack.config.js**
 
@@ -391,9 +428,9 @@ module.exports = {
 
 ### 安装 React
 
-执行 `npm install --save-dev @babel/preset-react` 安装开发依赖
+执行 `yarn add @babel/preset-react --dev` 安装开发依赖
 
-执行 `npm install --save react react-dom` 安装项目依赖
+执行 `yarn add react react-dom` 安装项目依赖
 
 React 拆分成了两个包，react 和 react-dom，react 是核心，与浏览器相关的特性都放在了 react-dom 中，这样做的好处是核心可以应用于不同的平台，比如移动端平台的 React Native
 
@@ -458,15 +495,11 @@ ReactDOM.render(<App/>, document.getElementById('app'))
 
 启动服务，访问 localhost:8080 即可
 
-### <a name="create-react-app">Create-react-app</a>
-
-如果使用 Create-react-app 来创建项目可以跳过前面所有步骤，通过 Create-react-app 创建项目直接执行 `npm init react-app project-name` 就可以
-
 ### Polyfill
 
 React 依赖 ES2015 的 Map 和 Set，如需要兼容旧浏览器需要 polyfill
 
-执行 `npm install --save core-js` 安装并在项目中引用，这些引用应该在入口文件最开始的地方
+执行 `yarn add core-js` 安装并在项目中引用，这些引用应该在入口文件最开始的地方
 
 **src/index.js**
 
@@ -475,13 +508,23 @@ import 'core-js/features/set'
 import 'core-js/features/map'
 ```
 
+### 浏览器兼容性
+
+在 package.json 文件中添加
+
+``` diff
++ "browserslist": ["defaults"],
+```
+
+像 Babel, PostCSS 这些工具会读取这个参数，对代码进行部分兼容性处理
+
 ### 路由
 
-执行 `npm install --save react-router-dom` 安装
+执行 `yarn add react-router-dom` 安装
 
 **src/app.js**
 
-``` js
+``` javascript
 import React from 'react'
 import {
   BrowserRouter as Router,
@@ -643,7 +686,7 @@ export default () => {
 
 使用 [Axios](https://github.com/axios/axios) 发送 HTTP 请求，Axios 是同构的，前后端通用，同时安装 [es6-promise](https://github.com/stefanpenner/es6-promise) polyfill 用以兼容更多设备
 
-执行 `npm install --save axios es6-promise` 安装好后将两者都引入项目中
+执行 `yarn add axios es6-promise` 安装好后将两者都引入项目中
 
 **src/index.js**
 
@@ -877,7 +920,7 @@ export default () => {
 
 这时，例如请求 /api/posts 实际上会被代理到 `http://localhost:3000/posts`，为了使这个地址生效，可以使用 json-server
 
-执行 `npm install --save-dev json-server` 命令安装，并在项目根目录新建一个 db.json 文件用来保存数据
+执行 `yarn add json-server --dev` 命令安装，并在项目根目录新建一个 db.json 文件用来保存数据
 
 **project**
 
@@ -914,7 +957,7 @@ export default () => {
   }
 ```
 
-执行 `npm run db` 命令然后在浏览器中访问 http://localhost:3000/posts 地址即可看见 db.json 中保存的数据
+执行 `yarn run db` 命令然后在浏览器中访问 http://localhost:3000/posts 地址即可看见 db.json 中保存的数据
 
 在 Index 组件中遍历数据并展示
 
@@ -957,7 +1000,7 @@ export default () => {
 
 `production` 和 `development` 两种 mode 参数很明显，`production` 用于发布，`development` 用于开发，具体有什么区别，看这里 [Click here](https://webpack.js.org/configuration/mode/)
 
-执行 `npm run build` 即可打包，打包后生成的文件都在 dist 目录中
+执行 `yarn run build` 即可打包，打包后生成的文件都在 dist 目录中
 
 ### 服务端渲染
 
