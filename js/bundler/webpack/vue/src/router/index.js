@@ -6,15 +6,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/index.vue')
+    component: () => import(/* webpackChunkName: "m" */'@/views/index.vue')
   },
   {
     path: '/posts/:id',
-    component: () => import('@/views/post.vue')
+    component: () => import(/* webpackChunkName: "m" */'@/views/post.vue')
   },
   {
     path: '/login',
-    component: () => import('@/views/login.vue')
+    component: () => import(/* webpackChunkName: "m" */'@/views/login.vue')
   }
 ]
 

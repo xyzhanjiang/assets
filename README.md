@@ -2,38 +2,6 @@
 
 全弹发射
 
-## <a name="TOC">Table of Contents</a>
-
-### HTML
-
-1. [Doctype](#doctype)
-1. [Meta](https://github.com/xyzhanjiang/assets/tree/master/html/meta/)
-1. [IE Conditional Comments](#conditional-comments)
-1. [Form](https://github.com/xyzhanjiang/assets/tree/master/html/form/)
-1. [Compatible With IE 8](https://github.com/xyzhanjiang/assets/tree/master/html/ie8/)
-
-### CSS
-
-1. [CSS Style Guide](#css-style-guide)
-1. [CSS Minifier](#css-minifier)
-1. [Normalize](#normalize)
-1. [Effects](#effects)
-1. [Icon](#icon)
-
-### JavaScript
-
-1. [JS Style Guide](#js-style-guide)
-1. [Package](#package)
-1. [Bundler](#bundler)
-1. [ES5](https://github.com/xyzhanjiang/assets/tree/master/js/es5/)
-1. [ES2015 and Beyond](#es2015)
-1. [HTML Template](#html-template)
-1. [Data Visualization](#data-visualization)
-1. [Polyfill](#polyfill)
-1. [jQuery](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/)
-1. [Media](#media)
-1. [Blog](#blog)
-
 ## HTML
 
 ### <a name="doctype">HTML5 文档类型声明</a>
