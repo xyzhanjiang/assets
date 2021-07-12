@@ -1,136 +1,86 @@
 # In Action
 
-全弹发射
+Full Original Attack
 
-## HTML
+## <a name="useful-repos">Useful Repos</a>
 
-### <a name="doctype">HTML5 文档类型声明</a>
+No Dead!
 
-``` html
-<!DOCTYPE html>
-<html lang="zh-CN">
-```
-
-### <a name="conditional-comments">IE Conditional Comments</a>
-
-``` html
-<!--[if (lt IE 9) & (!IEMobile)]>
-<script src="js/respond.min.js"></script>
-<![endif]-->
-```
-
-IE 中的条件注释(Conditional comments)对 IE 的版本和 IE 非 IE 有优秀的区分能力，是 WEB 设计中常用的 hack 方法，推荐使用。
-
-lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
-
-Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
-
-## CSS
-
-### <a name="css-style-guide">CSS Style Guide</a>
-
+* [HTML5 Please](https://github.com/h5bp/html5please)
+* [Modernizr](https://github.com/modernizr/modernizr)
+* [Yarn](https://github.com/yarnpkg/berry)
+* [Front-End Checklist](https://github.com/thedaviddias/Front-End-Checklist) - 🗂 The perfect Front-End Checklist for modern websites and meticulous developers
+* [HEAD](https://github.com/joshbuchea/HEAD)
+* [@mdn/browser-compat-data](https://github.com/mdn/browser-compat-data)
 * [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
-* [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
-* [Code Guide by @mdo](http://codeguide.co/#css)
-
-### <a name="css-minifier">CSS Minifier</a>
-
+* [Principles of writing consistent, idiomatic CSS](https://github.com/necolas/idiomatic-css)
+* [Code Guide](https://github.com/mdo/code-guide)
+* [Sass](https://github.com/sass/sass)
+    * [sass-loader](https://github.com/webpack-contrib/sass-loader)
+* [Less.js](https://github.com/less/less.js)
+    * [less-loader](https://github.com/webpack-contrib/less-loader)
+* [PostCSS](https://github.com/postcss/postcss)
+    * [postcss-loader](https://github.com/webpack-contrib/postcss-loader)
+    * [Autoprefixer](https://github.com/postcss/autoprefixer)
+    * [cssnano](https://github.com/cssnano/cssnano)
 * [CSSO](https://github.com/css/csso)
-* [cssnano](https://github.com/cssnano/cssnano)
-
-### <a name="normalize">Normalize</a>
-
 * [normalize.css](https://github.com/necolas/normalize.css)
-
-### <a name="effects">Effects</a>
-
-* [Animate.css](https://daneden.github.io/animate.css/)
-* [Hover.css](http://ianlunn.github.io/Hover/)
-* [iHover](http://gudh.github.io/ihover/dist/index.html)
-
-#### Timing Function
-
-抖动效果的贝塞尔曲线：`cubic-bezier(0.68, -0.55, 0.27, 1.55)`
-
-### <a name="icon">Icon</a>
-
-* [Font-Awesome](http://fontawesome.io/)
-
-## JavaScript
-
-### <a name="js-style-guide">JS Style Guide</a>
-
+* [Bootstrap](https://github.com/twbs/bootstrap)
+* [Bulma](https://github.com/jgthms/bulma)
+    * [Bulmaswatch](https://github.com/jenil/bulmaswatch)
+* [Animate.css](https://github.com/animate-css/animate.css/)
+* [Hover.css](https://github.com/IanLunn/Hover/)
+* [iHover](https://github.com/gudh/ihover)
+* [Font-Awesome](https://github.com/FortAwesome/Font-Awesome/)
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [JavaScript Standard Style](https://github.com/feross/standard)
-
-### <a name="package">Package</a>
-
-[npm](https://www.npmjs.com/)
-
-[Node](https://nodejs.org/en/) 安装完成后 npm 也安装好了
-
-如果使用 npm 安装模块因为网络原因安装不成功，可以使用 [cnpm](https://npm.taobao.org)，例如
-
-``` shell
-npm install gulp-cli --global --registry=https://registry.npm.taobao.org
-```
-
-### <a name="bundler">Bundler</a>
-
-* [Webpack](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/)
-
-### <a name="es2015">ES2015 and Beyond</a>
-
-深入学习 ES2015
-
-* [es6features](https://github.com/lukehoban/es6features), ECMAScript 6 Features
-* [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)，这是一个 ES2015(ES6) 的 Cheatsheet，其中包括提示、小技巧、最佳实践和一些代码片段，帮助你 完成日复一日的开发工作。
+* [Webpack](https://github.com/webpack/webpack/)
+    * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+    * [HTML Webpack Plugin](https://github.com/jantimon/html-webpack-plugin)
+    * [style-loader](https://github.com/webpack-contrib/style-loader)
+    * [css-loader](https://github.com/webpack-contrib/css-loader)
+    * [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
+* [ECMAScript compatibility tables](https://github.com/kangax/compat-table)
+* [es6features](https://github.com/lukehoban/es6features)
+* [es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
 * [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
-
-### <a name="html-template">HTML Template</a>
-
-You don't need!
-
-### <a name="router">Router</a>
-
-客户端路由如果使用 hash 模式，将 `#` 替换为 `#!`，谷歌的爬虫才会索引这个页面的内容
-
-* [Navigo](https://github.com/krasimir/navigo)
-* [director](https://github.com/flatiron/director)
-
-### <a name="data-visualization">Data Visualization</a>
-
-* [Chart.js](http://www.chartjs.org/), [https://github.com/chartjs/Chart.js](https://github.com/chartjs/Chart.js)
-
-### <a name="polyfill">Polyfill</a>
-
-常用 polyfill
-
+* [Babel](https://github.com/babel/babel) - 🐠 Babel is a compiler for writing next generation JavaScript.
+    * [Babel Loader](https://github.com/babel/babel-loader) - 📦 Babel loader for webpack
+* [TypeScript](https://github.com/microsoft/TypeScript) - TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
+* [React](https://github.com/facebook/react)
+    * [Next.js](https://github.com/vercel/next.js)
+    * [Gatsby](https://github.com/gatsbyjs/gatsby) - Build blazing fast, modern apps and websites with React
+* [MobX](https://github.com/mobxjs/mobx)
+* [Vue.js](https://github.com/vuejs/vue)
+    * [vue-router](https://github.com/vuejs/vue-router)
+    * [Vuex](https://github.com/vuejs/vuex)
+    * [vue-loader](https://github.com/vuejs/vue-loader)
+    * [NuxtJS](https://github.com/nuxt/nuxt.js)
+* [Lit](https://github.com/lit/lit)
+* [axios](https://github.com/axios/axios)
+* [http-server](https://github.com/http-party/http-server) - a simple zero-configuration command-line http server
+* [JSON Server](https://github.com/typicode/json-server)
+* [JSONPlaceholder](https://github.com/typicode/jsonplaceholder)
+* [core-js](https://github.com/zloirock/core-js)
 * [JSON2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js)
 * [es5-shim](https://github.com/es-shims/es5-shim)
-* [ExplorerCanvas](https://github.com/arv/ExplorerCanvas) - Canvas for IE8 and older.
+* [ExplorerCanvas](https://github.com/arv/ExplorerCanvas)
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 * [fetch](https://github.com/github/fetch)
+* [Chart.js](https://github.com/chartjs/Chart.js)
+* [PDF.js](https://github.com/mozilla/pdf.js) - PDF Reader in JavaScript
+* [Navigo](https://github.com/krasimir/navigo)
+* [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+* [slick](https://github.com/kenwheeler/slick)
+* [jquery-confirm](https://github.com/craftpip/jquery-confirm/)
+* [Electron](https://github.com/electron/electron) - :electron: Build cross-platform desktop apps with JavaScript, HTML, and CSS
+    * [electron-builder](https://github.com/electron-userland/electron-builder) - A complete solution to package and build a ready for distribution Electron app with “auto update” support out of the box
 
-### <a name="media">Media</a>
+## <a name="useful-blogs">Useful Blogs</a>
 
-* [pdf.js](https://github.com/xyzhanjiang/assets/tree/master/js/media/pdf/)
+Fucking Goods!
 
-### <a name="blog">Blog</a>
-
-部落格
-
-* [处理异步](https://github.com/xyzhanjiang/assets/tree/master/js/async/)
-* [文件上传](https://github.com/xyzhanjiang/assets/tree/master/js/upload/)
-* [Http 请求](https://github.com/xyzhanjiang/assets/tree/master/js/http-request/)
-* [Modal](https://github.com/xyzhanjiang/assets/tree/master/js/modal/)
-* [Spin](https://github.com/xyzhanjiang/assets/tree/master/js/spin/)
-* [客户端存储](https://github.com/xyzhanjiang/assets/tree/master/js/storage/)
-* [常用 JavaScript 判断](https://github.com/xyzhanjiang/assets/tree/master/js/core/is/)
-* [那些啰儿八嗦的 JavaScript 代码](https://github.com/xyzhanjiang/assets/tree/master/js/core/verbose/)
-* [从零开始使用 Webpack 搭建 Vue 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/vue)
-* [从零开始使用 Webpack 搭建 React 开发环境](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/react)
-* [让 Webpack 项目兼容 IE8](https://github.com/xyzhanjiang/assets/tree/master/js/bundler/webpack/ie8)
-* [在 Webpack 项目中配置 Babel](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/babel/)
-* [在 Webpack 项目中配置支持 async/await](https://github.com/xyzhanjiang/assets/tree/master/js/es2015/async-await/)
-* [在 Webpack 项目中使用 Handlebars](https://github.com/xyzhanjiang/assets/tree/master/js/template/handlebars/)
+* [Front-End Performance Checklist 2021](https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/)
+* [Implementing promises from scratch](https://www.mauriciopoppe.com/notes/computer-science/computation/promises/)
+* [All you need to know about CSS Transitions](https://blog.alexmaccaw.com/all-you-need-to-know-about-css-transitions/)
+* [Conditional comments are no longer supported](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)

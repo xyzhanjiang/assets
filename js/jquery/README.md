@@ -17,9 +17,3 @@ $(() => {
   })
 })
 ```
-
-### <a name="jquery-plugins">jQuery plugins</a>
-
-* [jQuery Validation Plugin](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/plugins/jquery-validation/)
-* [slick](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/plugins/slick/)
-* [jquery-confirm](https://github.com/xyzhanjiang/assets/tree/master/js/jquery/plugins/jquery-confirm/)
