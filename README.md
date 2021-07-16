@@ -33,10 +33,13 @@ No Dead!
 * [iHover](https://github.com/gudh/ihover)
 * [Font-Awesome](https://github.com/FortAwesome/Font-Awesome/)
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+* [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 * [JavaScript Standard Style](https://github.com/feross/standard)
 * [Webpack](https://github.com/webpack/webpack/)
+    * [webpack CLI](https://github.com/webpack/webpack-cli)
     * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
     * [HTML Webpack Plugin](https://github.com/jantimon/html-webpack-plugin)
+    * [html-loader](https://github.com/webpack-contrib/html-loader)
     * [style-loader](https://github.com/webpack-contrib/style-loader)
     * [css-loader](https://github.com/webpack-contrib/css-loader)
     * [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
@@ -47,7 +50,10 @@ No Dead!
 * [Babel](https://github.com/babel/babel) - 🐠 Babel is a compiler for writing next generation JavaScript.
     * [Babel Loader](https://github.com/babel/babel-loader) - 📦 Babel loader for webpack
 * [TypeScript](https://github.com/microsoft/TypeScript) - TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
+    * [TypeScript loader for webpack](https://github.com/TypeStrong/ts-loader)
 * [React](https://github.com/facebook/react)
+    * [Create React App](https://github.com/facebook/create-react-app)
+    * [React Router](https://github.com/ReactTraining/react-router)
     * [Next.js](https://github.com/vercel/next.js)
     * [Gatsby](https://github.com/gatsbyjs/gatsby) - Build blazing fast, modern apps and websites with React
 * [MobX](https://github.com/mobxjs/mobx)
@@ -67,12 +73,18 @@ No Dead!
 * [ExplorerCanvas](https://github.com/arv/ExplorerCanvas)
 * [ES6-Promise](https://github.com/stefanpenner/es6-promise)
 * [fetch](https://github.com/github/fetch)
+* [localForage](https://github.com/localForage/localForage)
+* [JavaScript Cookie](https://github.com/js-cookie/js-cookie)
 * [Chart.js](https://github.com/chartjs/Chart.js)
 * [PDF.js](https://github.com/mozilla/pdf.js) - PDF Reader in JavaScript
 * [Navigo](https://github.com/krasimir/navigo)
-* [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+* [jQuery](https://github.com/jquery/jquery)
+    * [jQuery Validation Plugin](https://github.com/jquery-validation/jquery-validation)
+    * [jquery-confirm](https://github.com/craftpip/jquery-confirm/)
 * [slick](https://github.com/kenwheeler/slick)
-* [jquery-confirm](https://github.com/craftpip/jquery-confirm/)
+* [Swiper](https://github.com/nolimits4web/swiper)
+* [RxJS](https://github.com/ReactiveX/rxjs)
+* [Nest](https://github.com/nestjs/nest)
 * [Electron](https://github.com/electron/electron) - :electron: Build cross-platform desktop apps with JavaScript, HTML, and CSS
     * [electron-builder](https://github.com/electron-userland/electron-builder) - A complete solution to package and build a ready for distribution Electron app with “auto update” support out of the box
 
@@ -81,6 +93,7 @@ No Dead!
 Fucking Goods!
 
 * [Front-End Performance Checklist 2021](https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/)
+* [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)
 * [Implementing promises from scratch](https://www.mauriciopoppe.com/notes/computer-science/computation/promises/)
 * [All you need to know about CSS Transitions](https://blog.alexmaccaw.com/all-you-need-to-know-about-css-transitions/)
 * [Conditional comments are no longer supported](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
