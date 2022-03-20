@@ -1,7 +1,5 @@
 # In Action
 
-Full Original Attack
-
 ## <a name="useful-repos">Useful Repos</a>
 
 No Dead!
