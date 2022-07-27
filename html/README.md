@@ -25,6 +25,59 @@ lt = 小于，lte = 小于等于，gt = 大于，gte = 大于等于
 
 Internet Explorer 10 浏览器删除了对条件注释的支持，参考 [不再支持条件注释](https://msdn.microsoft.com/zh-cn/library/ie/hh801214.aspx)
 
+### 响应式图像及现代图像文件格式
+
+``` html
+<picture>
+  <source
+    sizes="(max-width: 600px) 100vw, 50vw"
+    srcset="avatar-small.avif 400w,
+            avatar-large.avif 800w" type="image/avif">
+  <source
+    sizes="(max-width: 600px) 100vw, 50vw"
+    srcset="avatar-small.webp 400w,
+            avatar-large.webp 800w" type="image/webp">
+  <img
+    alt="avatar"
+    decoding="async"
+    height="100"
+    loading="lazy"
+    sizes="(max-width: 600px) 100vw, 50vw"
+    src="avatar.jpg"
+    srcset="avatar-small.jpg 400w,
+            avatar-large.jpg 800w"
+    width="100">
+</picture>
+```
+
+### 图像延迟加载带插件兼容方案
+
+``` html
+<img
+  alt="avator" class="lazyload"
+  height="100"
+  data-src="avator.jpg"
+  decoding="async"
+  loading="lazy"
+  width="100">
+
+<script>
+;(function() {
+  if ('loading' in HTMLImageElement.prototype) {
+    var images = document.querySelectorAll('img.lazyload')
+    images.forEach(function(img) {
+      img.src = img.dataset.src
+    })
+  } else {
+    var script = document.createElement('script')
+    script.async = true
+    script.src = '//afarkas.github.io/lazysizes/lazysizes.min.js'
+    document.body.appendChild(script)
+  }
+})();
+</script>
+```
+
 ## CSS
 
 #### Timing Function
