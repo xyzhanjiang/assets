@@ -23,7 +23,7 @@
     "eslint-loader": "^4.0.2",
     "file-loader": "^4.3.0",
     "html-webpack-plugin": "^4.5.1",
-    "json-server": "^0.16.1",
+    "json-server": "^0.17.1",
     "mini-css-extract-plugin": "^0.8.2",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
